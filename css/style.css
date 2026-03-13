@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+:root {
+  --main-color: #D38922;
+  --main-color-shadow: #BE7208;
+}
+
+body{
+    font-family: inter;
+}
+
+p{
+    margin: 0;
+}
+
+header{
+    height: 85px;
+}
+
+.nav-bar{
+    width: 100%;
+    position: fixed;
+    height: 85px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing:border-box;
+    border-bottom: 5px solid #e5e5e5;
+    background-color: white;
+}
+.nav-bar > div{
+    width: 1280px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-bar > div div{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.nav-bar > div div a{
+    color: var(--main-color);
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 24px;
+}
+
+.container{
+    padding: 25px 0;
+    max-width: 1280px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.lesson{
+    scale: 0.5;
+    height: 250px;
+    padding: 4px;
+    border-radius: 20px;
+    background-color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    box-shadow: 0px 10px 0px var(--main-color-shadow);
+}
+
+.lesson-bg{
+    border-radius: 17px;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+.lesson-emoji{
+    text-decoration: none;
+    font-size: 96px;
+    border-radius: 15px;
+    aspect-ratio: 1 / 1;
+    background-color: var(--main-color);
+    box-shadow: 0px 5px 0px var(--main-color-shadow);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.25s ease-out;
+}
+
+.lesson-emoji p{
+    color: white;
+    font-size: 24px;
+    font-weight: 900;
+    text-align: center;
+    opacity: 0;
+    transition: 0.15s ease-out;
+}
+
+.lesson-emoji:hover{
+    aspect-ratio: 1 / 1;
+    background-color: var(--main-color-shadow);
+
+    p{
+        opacity: 1;
+    }
+}
+
+.lesson-info{
+    padding: 20px;
+    border-radius: 15px;
+    width: 100%;
+    background-color: #e5e5e5;
+    box-shadow: 0px 5px 0px #D9D9D9;
+}
+
+.title1{
+    color: black;
+    height: 58px;
+    font-size: 48px;
+    font-weight: 900;
+}
+.title2{
+    height: 44px;
+    font-size: 36px;
+    color:#aeaeae;
+    font-weight: 900;
+}
