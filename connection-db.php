@@ -1,3 +1,3 @@
 <?php
 
-$conn = mysqli_connect("localhost","root","","Talkie Lang");
+$conn = mysqli_connect("localhost","root","","Talkie Lang test");

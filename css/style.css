@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    transition: 0.15s ease-out;
+}
+
 :root {
-  --main-color: #D38922;
-  --main-color-shadow: #BE7208;
+  --main-color: #e0834d;
+  --main-color-shadow: #c06b3a;
+  --main-color-light: rgb(235, 155, 109)
 }
 
 body{
@@ -48,7 +54,6 @@ header{
 }
 
 .container{
-    padding: 25px 0;
     max-width: 1280px;
     display: flex;
     flex-direction: column;
@@ -56,8 +61,7 @@ header{
 }
 
 .lesson{
-    scale: 0.5;
-    height: 250px;
+    height: 150px;
     padding: 4px;
     border-radius: 20px;
     background-color: var(--main-color);
@@ -79,7 +83,7 @@ header{
 }
 .lesson-emoji{
     text-decoration: none;
-    font-size: 96px;
+    font-size: 52px;
     border-radius: 15px;
     aspect-ratio: 1 / 1;
     background-color: var(--main-color);
@@ -89,20 +93,23 @@ header{
     justify-content: center;
     align-items: center;
     transition: 0.25s ease-out;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0);
 }
 
 .lesson-emoji p{
     color: white;
-    font-size: 24px;
+    font-size: 12px;
     font-weight: 900;
     text-align: center;
-    opacity: 0;
     transition: 0.15s ease-out;
 }
 
 .lesson-emoji:hover{
     aspect-ratio: 1 / 1;
-    background-color: var(--main-color-shadow);
+    box-shadow: 0px 5px 0px var(--main-color);
+    background-color: var(--main-color-light);
+    border: 1px solid var(--main-color-shadow);
 
     p{
         opacity: 1;
@@ -119,13 +126,31 @@ header{
 
 .title1{
     color: black;
-    height: 58px;
-    font-size: 48px;
+    height: 28px;
+    font-size: 28px;
     font-weight: 900;
 }
 .title2{
-    height: 44px;
-    font-size: 36px;
+    height: 24px;
+    font-size: 24px;
     color:#aeaeae;
     font-weight: 900;
+}
+.title3{
+    height: 24px;
+    font-size: 24px;
+    color:var(--main-color);
+    font-weight: 900;
+}
+.title3:hover{
+    color:var(--main-color-light);
+}
+
+main{
+    padding: 25px 0;
+}
+aside{
+    
+    position: fixed;
+
 }
