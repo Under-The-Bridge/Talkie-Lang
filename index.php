@@ -3,7 +3,7 @@ require "connection-db.php";
 
 $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
 
-$selected_lang = isset($_GET["lang_id"]) ? $_GET["lang_id"] : 0;
+$selected_lang = isset($_GET["lang_id"]) ? $_GET["lang_id"] : 1;
 $modules = mysqli_fetch_all(mysqli_query($conn, "select * from modules where lang_id = $selected_lang"));
 
 
@@ -48,33 +48,6 @@ $lessons = mysqli_fetch_all(mysqli_query($conn, "select * from lessons where mod
                         </div>
                     </div>
             <?php endforeach ?>
-            <!-- <div class="lesson">
-                <div class="lesson-bg">
-                    <a href="" class="lesson-emoji">👨🏻‍✈️<p>Начать урок</p></a>
-                    <div class="lesson-info">
-                        <p class="title1">Урок 2: Аэропорт</p>
-                        <p class="title2">Какое-то описание урока</p>
-                    </div>
-                </div>
-            </div>
-            <div class="lesson">
-                <div class="lesson-bg">
-                    <a href="" class="lesson-emoji">☕<p>Начать урок</p></a>
-                    <div class="lesson-info">
-                        <p class="title1">Урок 3: Кофейня</p>
-                        <p class="title2">Какое-то описание урока</p>
-                    </div>
-                </div>
-            </div>
-            <div class="lesson">
-                <div class="lesson-bg">
-                    <a href="" class="lesson-emoji">👋🏻<p>Начать урок</p></a>
-                    <div class="lesson-info">
-                        <p class="title1">Урок 1: Приветствие</p>
-                        <p class="title2">Какое-то описание урока</p>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </main>
     <!-- <h1><?= isset($_COOKIE["user"]) ? $_COOKIE["user"] : "re" ?></h1>
