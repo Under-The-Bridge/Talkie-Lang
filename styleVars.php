@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 require "connection-db.php";
 
 $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
@@ -9,32 +9,33 @@ $modules = mysqli_fetch_all(mysqli_query($conn, "select * from modules where lan
 
 $selected_module = isset($_GET["module_id"]) ? $_GET["module_id"] : $modules[0][0];
 $lessons = mysqli_fetch_all(mysqli_query($conn, "select * from lessons where module_id = $selected_module"));
-?> -->
+?> 
 <!DOCTYPE html>
 <html lang="en">
 
-
+<style>
+    header>*{
+        width: 100% !important;
+        height: 100% !important;
+    }
+    .nav-bar{
+        width: 100% !important;
+        height: 100% !important;
+        position: relative !important;
+        div, div>div{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    body{
+        display: flex;
+    }
+</style>
 <?php include "components/head.php"; ?>
 
 <body>
     <?php include "components/header.php"; ?>
     <main>
-        <!-- <aside>
-            <form id="lang">
-                <p class="title1 mb-3">Выберите язык</p>
-                <select name="lang_id">
-                    <?php foreach ($langs as $lang): ?>
-                        <option value="<?= $lang[0] ?>" <?= ($lang[0] == $selected_lang) ? "selected" : "" ?>><?= $lang[1] ?>
-                        </option>
-                    <?php endforeach ?>
-                </select>
-            </form>
-            <ul>
-                <?php foreach ($modules as $module): ?>
-                    <li><a href="?lang_id=<?= $selected_lang ?>&module_id=<?= $module[0] ?>" class="title3"><?= $module[1] ?></a></li>
-                <?php endforeach ?>
-            </ul>
-        </aside> -->
         <div class="container">
             <?php foreach ($lessons as $lesson): ?>
                     <div class="lesson">
@@ -50,16 +51,6 @@ $lessons = mysqli_fetch_all(mysqli_query($conn, "select * from lessons where mod
             <?php endforeach ?>
         </div>
     </main>
-    <!-- <h1><?= isset($_COOKIE["user"]) ? $_COOKIE["user"] : "re" ?></h1>
-    <?php foreach ($lessons as $lesson): ?>
-        <a href="lesson.php?lesson_id=<?= $lesson[0] ?>">lesson <?= $lesson[1] ?></a>
-    <?php endforeach; ?> -->
 </body>
-<script>
-    let lang = document.querySelector("#lang>select");
-    lang.addEventListener("change", () => {
-        lang.parentNode.submit();
-    })
-</script>
 
 </html>

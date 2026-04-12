@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `langs` (
   `lang_id` int NOT NULL,
   `lang_name` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Дамп данных таблицы `langs`
@@ -51,7 +51,7 @@ CREATE TABLE `lessons` (
   `lesson_name` text NOT NULL,
   `lesson_desc` text NOT NULL,
   `module_id` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Дамп данных таблицы `lessons`
@@ -78,7 +78,7 @@ CREATE TABLE `modules` (
   `module_id` int NOT NULL,
   `module_name` text NOT NULL,
   `lang_id` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Дамп данных таблицы `modules`
@@ -101,7 +101,7 @@ CREATE TABLE `words` (
   `word_translate` text NOT NULL,
   `word_transcription` text NOT NULL,
   `lesson_id` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Дамп данных таблицы `words`

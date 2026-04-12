@@ -6,6 +6,7 @@
                 <a href="">Обучение</a>
                 <a href="">Алфавит</a>
                 <a href="">Языки</a>
+                <a href="styleVars.php">Варианты дизайна <!--у этого долбаеба--></a>
             </div>
             <div>
                 <?php if (!isset($_COOKIE["user"])): ?>
