@@ -1,12 +1,11 @@
 <body>
     <main>
         <h1>Соедени переводы</h1>
-        <h2>qweqweew</h2>
         <div id="answers">
             <div class="column">
                 <?php foreach ($w1 as $w): ?>
                     <button class="word">
-                        <div><?= $w?></div>
+                        <div><?= $w ?></div>
                     </button>
                 <?php endforeach; ?>
             </div>
@@ -30,34 +29,79 @@
     buttons_word.forEach(butt => {
         butt.addEventListener("click", () => {
             ru_speak(butt.children[0].innerHTML);
-            butt.classList.remove("bad");
-            if (butt.classList.item(1) != "good") {
+            if (butt.classList[1] != "good") {
                 buttons_word.forEach(e => { e.classList.remove("selected") });
-                butt.classList.add("selected");
-                checkWords()
+                if (butt.classList[1] != "bad") {
+                    if (butt.classList[1] == "selected") {
+                        butt.classList.remove("selected");
+                    } else {
+                        butt.classList.add("selected");
+                    }
+                    checkWords();
+                } else {
+                    butt.classList.remove("bad");
+                }
             }
+
+
+
+            // butt.classList.remove("bad");
+            // if (butt.classList[1] != "good") {
+            //     buttons_word.forEach(e => { e.classList.remove("selected") });
+            //     if (butt.classList[1] == "selected") {
+            //         butt.classList.remove("selected");
+            //     } else {
+            //         butt.classList.add("selected");
+            //     }
+            //     checkWords()
+            // } else {
+            //     buttons_word.forEach(e => { e.classList.remove("good") });
+            // }
         })
     });
 
     buttons_translate.forEach(butt => {
         butt.addEventListener("click", () => {
-            en_speak(butt.children[0].innerHTML)
-            butt.classList.remove("bad");
-            if (butt.classList.item(1) != "good") {
+            ru_speak(butt.children[0].innerHTML);
+            if (butt.classList[1] != "good") {
                 buttons_translate.forEach(e => { e.classList.remove("selected") });
-                if (butt.classList.item(1) == "selected") {
-                    butt.classList.remove("selected");
+                if (butt.classList[1] != "bad") {
+                    if (butt.classList[1] == "selected") {
+                        butt.classList.remove("selected");
+                    } else {
+                        butt.classList.add("selected");
+                    }
+                    checkWords();
                 } else {
-                    butt.classList.add("selected");
+                    butt.classList.remove("bad");
                 }
-                checkWords()
             }
+
+
+            // console.log(butt.classList);
+            // if (butt.classList[1] != "bad") {
+            //     en_speak(butt.children[0].innerHTML)
+            //     butt.classList.remove("bad");
+            //     if (butt.classList[1] != "good") {
+            //         buttons_translate.forEach(e => { e.classList.remove("selected") });
+            //         if (butt.classList[1] == "selected") {
+            //             butt.classList.remove("selected");
+            //         } else {
+            //             butt.classList.add("selected");
+            //         }
+            //         checkWords();
+            //     }
+            // } else {
+            //     buttons_translate.forEach(e => { e.classList.remove("bad") });
+            // }
         })
     });
 
     function checkWords() {
         let word = document.querySelector("button.word.selected>div");
         let translate = document.querySelector("button.translate.selected>div");
+        console.log(word);
+        console.log(translate);
         if (word.innerHTML == translate.getAttribute("value")) {
             word.parentNode.classList.add("good");
             translate.parentNode.classList.add("good");

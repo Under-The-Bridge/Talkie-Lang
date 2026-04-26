@@ -13,7 +13,7 @@
     --red-color: #e0524d;
     --red-color-shadow: #b6362d;
 }
-
+/* 
 body {
     display: flex;
     justify-content: center;
@@ -26,6 +26,17 @@ main {
     height: 100vh;
     display: flex;
     flex-direction: column;
+} */
+h1{
+    align-self: flex-start;
+}
+.container{
+    justify-content: space-between;
+}
+.q{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #answers {
@@ -234,5 +245,23 @@ button.bad {
     >div {
         color: white;
         background-color: var(--red-color);
+    }
+}
+
+
+.alert{
+    display: flex;
+    justify-content: space-between;
+    animation: 0.5s show ease-out;
+}
+
+@keyframes show {
+    from{
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0px);
     }
 }

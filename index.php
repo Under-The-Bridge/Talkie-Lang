@@ -1,15 +1,6 @@
 <?php
-require "connection-db.php";
-
-$langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
-
-$selected_lang = isset($_GET["lang_id"]) ? $_GET["lang_id"] : 1;
-$modules = mysqli_fetch_all(mysqli_query($conn, "select * from modules where lang_id = $selected_lang"));
-
-
-$selected_module = isset($_GET["module_id"]) ? $_GET["module_id"] : $modules[0][0];
-$lessons = mysqli_fetch_all(mysqli_query($conn, "select * from lessons where module_id = $selected_module"));
-?>
+session_start();
+require "connection-db.php";?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,48 +9,10 @@ $lessons = mysqli_fetch_all(mysqli_query($conn, "select * from lessons where mod
 
 <body>
     <?php include "components/header.php"; ?>
-    <main>
-        <aside>
-            <form id="lang">
-                <p class="title1 mb-3">Выберите язык</p>
-                <select name="lang_id">
-                    <?php foreach ($langs as $lang): ?>
-                        <option value="<?= $lang[0] ?>" <?= ($lang[0] == $selected_lang) ? "selected" : "" ?>><?= $lang[1] ?>
-                        </option>
-                    <?php endforeach ?>
-                </select>
-            </form>
-            <ul>
-                <?php foreach ($modules as $module): ?>
-                    <li><a href="?lang_id=<?= $selected_lang ?>&module_id=<?= $module[0] ?>" class="title3"><?= $module[1] ?></a></li>
-                <?php endforeach ?>
-            </ul>
-        </aside>
-        <div class="container">
-            <?php foreach ($lessons as $lesson): ?>
-                    <div class="lesson">
-                        <div class="lesson-bg">
-                            <a href="" class="lesson-emoji">👋🏻<p>Начать урок</p>
-                            </a>
-                            <div class="lesson-info">
-                                <p class="title1"><?=$lesson[1]?></p>
-                                <p class="title2"><?=$lesson[2]?></p>
-                            </div>
-                        </div>
-                    </div>
-            <?php endforeach ?>
-        </div>
+    <main class="container">
+        <a href="/en/">Английский</a>
+        <a href="/jp/">Японский</a>
     </main>
-    <!-- <h1><?= isset($_COOKIE["user"]) ? $_COOKIE["user"] : "re" ?></h1>
-    <?php foreach ($lessons as $lesson): ?>
-        <a href="lesson.php?lesson_id=<?= $lesson[0] ?>">lesson <?= $lesson[1] ?></a>
-    <?php endforeach; ?> -->
 </body>
-<script>
-    let lang = document.querySelector("#lang>select");
-    lang.addEventListener("change", () => {
-        lang.parentNode.submit();
-    })
-</script>
 
 </html>

@@ -26,7 +26,7 @@
 
     buttons.forEach(butt => {
         butt.addEventListener("click",()=>{
-            if(butt.innerText == "<?=$answer?>"){
+            if(butt.innerText == "<?= $word[3] ?>"){
                 butt.classList.add("good");
             }else{
                 butt.classList.add("bad");
