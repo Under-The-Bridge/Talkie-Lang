@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3307
--- Время создания: Апр 26 2026 г., 17:59
--- Версия сервера: 8.0.30
+-- Время создания: Апр 28 2026 г., 12:06
+-- Версия сервера: 5.7.39-log
 -- Версия PHP: 8.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -24,13 +24,54 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `completed_lessons`
+--
+
+CREATE TABLE `completed_lessons` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `lesson_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `completed_lessons`
+--
+
+INSERT INTO `completed_lessons` (`id`, `user_id`, `lesson_id`) VALUES
+(1, 2, 1),
+(2, 2, 2),
+(4, 3, 1),
+(5, 3, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `langs`
+--
+
+CREATE TABLE `langs` (
+  `lang_id` int(11) NOT NULL,
+  `lang_name` text COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `langs`
+--
+
+INSERT INTO `langs` (`lang_id`, `lang_name`) VALUES
+(1, 'Английский'),
+(2, 'Японский');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `lesson`
 --
 
 CREATE TABLE `lesson` (
-  `lesson_id` int NOT NULL,
+  `lesson_id` int(11) NOT NULL,
   `lesson_name` varchar(100) NOT NULL,
-  `lesson_language` varchar(50) DEFAULT NULL
+  `lesson_language` int(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -38,12 +79,12 @@ CREATE TABLE `lesson` (
 --
 
 INSERT INTO `lesson` (`lesson_id`, `lesson_name`, `lesson_language`) VALUES
-(1, 'Английский: базовые слова', 'Английский'),
-(2, 'Еда', 'Английский'),
-(3, 'Животные', 'Английский'),
-(4, 'Японский: базовые слова', 'Японский'),
-(5, 'Еда', 'Японский'),
-(6, 'Животные', 'Японский');
+(1, 'Английский: базовые слова', 1),
+(2, 'Еда', 1),
+(3, 'Животные', 1),
+(4, 'Японский: базовые слова', 2),
+(5, 'Еда', 2),
+(6, 'Животные', 2);
 
 -- --------------------------------------------------------
 
@@ -52,9 +93,9 @@ INSERT INTO `lesson` (`lesson_id`, `lesson_name`, `lesson_language`) VALUES
 --
 
 CREATE TABLE `lessons_words` (
-  `id` int NOT NULL,
-  `lesson_id` int NOT NULL,
-  `word_id` int NOT NULL
+  `id` int(11) NOT NULL,
+  `lesson_id` int(11) NOT NULL,
+  `word_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -108,7 +149,7 @@ INSERT INTO `lessons_words` (`id`, `lesson_id`, `word_id`) VALUES
 --
 
 CREATE TABLE `users` (
-  `user_id` int NOT NULL,
+  `user_id` int(11) NOT NULL,
   `user_login` text NOT NULL,
   `user_email` text NOT NULL,
   `user_password` text NOT NULL,
@@ -120,7 +161,29 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `user_login`, `user_email`, `user_password`, `user_role`) VALUES
-(2, 'Under-The-Bridge', 'ramazanikbaev6@gmail.com', 'Under-The-Bridge', 'user');
+(2, 'Under-The-Bridge', 'ramazanikbaev6@gmail.com', 'Under-The-Bridge', 'user'),
+(3, 'admin', 'admin@admin.admin', 'admin', 'user');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `user_lang_progress`
+--
+
+CREATE TABLE `user_lang_progress` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `lang_id` int(11) NOT NULL,
+  `progress` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `user_lang_progress`
+--
+
+INSERT INTO `user_lang_progress` (`id`, `user_id`, `lang_id`, `progress`) VALUES
+(1, 2, 1, 2),
+(4, 3, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -129,7 +192,7 @@ INSERT INTO `users` (`user_id`, `user_login`, `user_email`, `user_password`, `us
 --
 
 CREATE TABLE `words` (
-  `word_id` int NOT NULL,
+  `word_id` int(11) NOT NULL,
   `word_name` varchar(100) NOT NULL,
   `word_transcription` varchar(100) DEFAULT NULL,
   `word_translate` varchar(100) NOT NULL
@@ -184,10 +247,25 @@ INSERT INTO `words` (`word_id`, `word_name`, `word_transcription`, `word_transla
 --
 
 --
+-- Индексы таблицы `completed_lessons`
+--
+ALTER TABLE `completed_lessons`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `lesson_id` (`lesson_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Индексы таблицы `langs`
+--
+ALTER TABLE `langs`
+  ADD PRIMARY KEY (`lang_id`);
+
+--
 -- Индексы таблицы `lesson`
 --
 ALTER TABLE `lesson`
-  ADD PRIMARY KEY (`lesson_id`);
+  ADD PRIMARY KEY (`lesson_id`),
+  ADD KEY `lesson_language` (`lesson_language`);
 
 --
 -- Индексы таблицы `lessons_words`
@@ -204,6 +282,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
+-- Индексы таблицы `user_lang_progress`
+--
+ALTER TABLE `user_lang_progress`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `words`
 --
 ALTER TABLE `words`
@@ -214,32 +298,63 @@ ALTER TABLE `words`
 --
 
 --
+-- AUTO_INCREMENT для таблицы `completed_lessons`
+--
+ALTER TABLE `completed_lessons`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT для таблицы `langs`
+--
+ALTER TABLE `langs`
+  MODIFY `lang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT для таблицы `lesson`
 --
 ALTER TABLE `lesson`
-  MODIFY `lesson_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `lesson_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `lessons_words`
 --
 ALTER TABLE `lessons_words`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT для таблицы `user_lang_progress`
+--
+ALTER TABLE `user_lang_progress`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `words`
 --
 ALTER TABLE `words`
-  MODIFY `word_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `word_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
 --
+
+--
+-- Ограничения внешнего ключа таблицы `completed_lessons`
+--
+ALTER TABLE `completed_lessons`
+  ADD CONSTRAINT `completed_lessons_ibfk_1` FOREIGN KEY (`lesson_id`) REFERENCES `lesson` (`lesson_id`),
+  ADD CONSTRAINT `completed_lessons_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+
+--
+-- Ограничения внешнего ключа таблицы `lesson`
+--
+ALTER TABLE `lesson`
+  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`lesson_language`) REFERENCES `langs` (`lang_id`);
 
 --
 -- Ограничения внешнего ключа таблицы `lessons_words`
