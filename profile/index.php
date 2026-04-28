@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "connection-db.php";
+require "../connection-db.php";
 $id = $_SESSION["id"];
 $user = mysqli_fetch_assoc(mysqli_query($conn, "select * from users where user_id = $id"));
 ?>

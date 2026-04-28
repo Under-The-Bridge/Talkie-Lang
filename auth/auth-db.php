@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "connection-db.php";
+require "../connection-db.php";
 
 $login = $_POST["login"] ?? false;
 $password = $_POST["password"] ?? false;
@@ -11,10 +11,19 @@ if (mysqli_num_rows($usercheck) != 0) {
     $user = mysqli_fetch_assoc($usercheck);
     if ($user["user_password"] == $password) {
         $_SESSION["id"] = $user["user_id"];
-        echo "Зареганы";
+                        echo "    <script>
+        alert('Вы вошли');
+        location.href = '/';
+    </script>";
     } else {
-        echo "Неверный пароль";
+                echo "    <script>
+        alert('Неправильный пароль');
+        location.href = '/auth/';
+    </script>";
     }
 } else {
-    echo "нет такого пользователя";
+        echo "    <script>
+        alert('Пользователя с таким логином/почтой нет');
+        location.href = '/auth/';
+    </script>";
 }

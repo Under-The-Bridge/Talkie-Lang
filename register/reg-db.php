@@ -1,6 +1,6 @@
 <?php
 
-require "connection-db.php";
+require "../connection-db.php";
 
 $login = $_POST["login"] ?? false;
 $email = $_POST["email"] ?? false;
@@ -11,6 +11,13 @@ $usercheck = mysqli_query($conn, "select * from users where user_login = '$login
 if (mysqli_num_rows($usercheck) == 0) {
     $sql = "insert into `users`(`user_login`,`user_email`,`user_password`) values ('$login','$email','$password')";
     $result = mysqli_query($conn, $sql);
+    echo "    <script>
+        alert('Вы зарегистрировались');
+        location.href = '/auth/';
+    </script>";
 }else{
-    echo "занято";
+    echo "    <script>
+        alert('Логин или почта занята');
+        location.href = '/register/';
+    </script>";
 }

@@ -1,32 +1,23 @@
 <?php
-
+session_start();
 //http://talkie-lang/en/lesson/index.php?id=1&prog=9&mistakes=5
-$conn = mysqli_connect("localhost", "root", "", "Lang");
-$mistakes = $_GET["mistakes"] ?? 0;
+require "../../connection-db.php";
+$mistakes = $_SESSION["mistakes"] ?? 0;
 $progress = $_GET["prog"] ?? 0;
 $lesson_id = $_GET["id"] ?? 1;
 
+$lesson = $_SESSION["lesson"];
+
 $all = [];
-$words = [];
-$answers = [];
-echo "<br>";
-foreach ($_GET as $key => $value) {
-    if (str_contains($key, 'word')) {
-        array_push($words, $value);
-    } else if (str_contains($key, 'ans')) {
-        array_push($answers, $value);
-    }
-}
-for ($i = 0; $i < count($words); $i++) {
-    $wq = $words[$i];
-    $aq = $answers[$i];
+for ($i = 0; $i < count($lesson); $i++) {
+    $wq = $lesson[$i][0];
+    $aq = $lesson[$i][1];
     $wq = mysqli_fetch_assoc(mysqli_query($conn, "Select * from words where word_id = $wq"));
     $aq = mysqli_fetch_assoc(mysqli_query($conn, "Select * from words where word_id = $aq"));
 
     $temp = [$wq, $aq];
     array_push($all, $temp);
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,6 +36,7 @@ for ($i = 0; $i < count($words); $i++) {
 <body>
     <main class="container">
         <div>
+            <a href="/en/">Вернуться на главную</a>
             <h4>Вы закончили урок</h4>
             <h5 class="mb-4">Количество ошибок: <?= $mistakes ?></h5>
             <h5>Ваши результаты</h5>

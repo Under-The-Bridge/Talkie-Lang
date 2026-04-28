@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "connection-db.php";
+require "../connection-db.php";
 $lessons = mysqli_fetch_all(mysqli_query($conn, "select * from lesson where `lesson_language` = 'Японский'"));
 ?>
 <!DOCTYPE html>

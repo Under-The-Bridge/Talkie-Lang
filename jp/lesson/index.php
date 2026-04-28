@@ -1,6 +1,6 @@
 <?php
+require "../../connection-db.php";
 session_start();
-$conn = mysqli_connect("localhost","root","","Lang");
 $lesson_id = $_GET["id"];
 $sql = "select * from lesson join lessons_words on lesson.lesson_id = lessons_words.lesson_id join words on words.word_id = lessons_words.word_id where lesson.lesson_id = $lesson_id";
 $w = [];
