@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "../../connection-db.php";
-$lessonSize = 10;
+$lessonSize = 2;
 
 
 $lesson_id = $_GET["id"];
@@ -9,7 +9,7 @@ $progress = $_SESSION["progress"] ?? 0;
 
 $mistakes = $_GET["mistakes"] ?? 0;
 if ($progress == $lessonSize) {
-    header("location: /en/lesson-end/");
+    header("location: /en/lesson-end/?id=$lesson_id");
 }
 session_start();
 $sql = "select * from lesson join lessons_words on lesson.lesson_id = lessons_words.lesson_id join words on words.word_id = lessons_words.word_id where lesson.lesson_id = $lesson_id";

@@ -4,7 +4,22 @@ session_start();
 require "../../connection-db.php";
 $mistakes = $_SESSION["mistakes"] ?? 0;
 $progress = $_GET["prog"] ?? 0;
+
 $lesson_id = $_GET["id"] ?? 1;
+$id = $_SESSION["id"];
+
+$lang = mysqli_fetch_array(mysqli_query($conn,"select lesson_language from lesson"))[0];
+
+$nums = mysqli_num_rows(mysqli_query($conn,"select * from completed_lessons where lesson_id = $lesson_id and user_id = $id"));
+
+if($nums == 0){
+    mysqli_query($conn,"INSERT INTO `completed_lessons`(`user_id`, `lesson_id`) VALUES ('$id','$lesson_id')");
+    $progress = mysqli_fetch_array(mysqli_query($conn,"select progress from user_lang_progress where lang_id = $lang and user_id = $id"))[0];
+    $progress++; 
+    mysqli_query($conn,"UPDATE `user_lang_progress` SET `progress`='$progress' where lang_id = $lang and user_id = $id");
+}else{
+    echo "0";
+}
 
 $lesson = $_SESSION["lesson"];
 

@@ -31,7 +31,7 @@ CREATE TABLE `lesson` (
   `lesson_id` int NOT NULL,
   `lesson_name` varchar(100) NOT NULL,
   `lesson_language` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `lesson`
@@ -55,7 +55,7 @@ CREATE TABLE `lessons_words` (
   `id` int NOT NULL,
   `lesson_id` int NOT NULL,
   `word_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `lessons_words`
@@ -113,7 +113,7 @@ CREATE TABLE `users` (
   `user_email` text NOT NULL,
   `user_password` text NOT NULL,
   `user_role` enum('user','admin') NOT NULL DEFAULT 'user'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `users`
@@ -133,7 +133,7 @@ CREATE TABLE `words` (
   `word_name` varchar(100) NOT NULL,
   `word_transcription` varchar(100) DEFAULT NULL,
   `word_translate` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `words`

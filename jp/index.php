@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "../connection-db.php";
-$lessons = mysqli_fetch_all(mysqli_query($conn, "select * from lesson where `lesson_language` = 'Японский'"));
+$lessons = mysqli_fetch_all(mysqli_query($conn, "select * from lesson join langs on lesson.lesson_language = langs.lang_id where `lang_name` = 'Японский'"));
 ?>
 <!DOCTYPE html>
 <html lang="en">
