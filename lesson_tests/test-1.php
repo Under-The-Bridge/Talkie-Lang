@@ -1,3 +1,27 @@
+<?php
+$sql = "select * from lesson join lessons_words on lesson.lesson_id = lessons_words.lesson_id join words on words.word_id = lessons_words.word_id where lesson.lesson_id = $lesson_id";
+$w = [];
+$words = mysqli_fetch_all(mysqli_query($conn, $sql), MYSQLI_ASSOC);
+shuffle($words);
+foreach ($words as $word) {
+    array_push($w, $word["word_id"]);
+}
+$rand_word = $w[array_rand($w)];
+$sql = "select * from words where word_id = $rand_word";
+$word = mysqli_fetch_array(mysqli_query($conn, $sql));
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../lesson_tests/temp.css">
+</head>
+
 <body>
     <main class="container">
         <div class="q">
@@ -34,7 +58,7 @@
         let prog = <?= $progress - 1 ?>;
         let bar = document.querySelector('.bar');
         document.addEventListener('DOMContentLoaded', () => {
-            bar.setAttribute("style","width: calc(100%*" + prog + "/<?=$lessonSize?>);");
+            bar.setAttribute("style", "width: calc(100%*" + prog + "/<?= $lessonSize ?>);");
         })
 
         let buttons = document.querySelectorAll("#answers>button");
@@ -45,7 +69,7 @@
             butt.addEventListener("click", () => {
                 if (!answered) {
                     prog++;
-                    bar.setAttribute("style","width: calc(100%*" + prog + "/<?=$lessonSize?>);");
+                    bar.setAttribute("style", "width: calc(100%*" + prog + "/<?= $lessonSize ?>);");
                     userAns = butt.getAttribute("value");
                     if (butt.innerText == answer) {
                         butt.classList.add("good");
@@ -94,7 +118,7 @@
             }
             let word = <?= $word[0] ?>;
             let ans = userAns;
-            let type = 'some';
+            let type = 'toRu';
             let fd = new FormData();
             fd.append("mistakes", mistakes);
             fd.append("progress", progress);

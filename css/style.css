@@ -12,8 +12,10 @@
     --green-color-shadow: #2db64b;
     --red-color: #e0524d;
     --red-color-shadow: #b6362d;
-    --bg-color: #0f0f0f; 
+    --bg-color: #0f0f0f;
     --bg-secondary: #1a1a1a;
+    --gray-color: #a38a7a;
+    --gray-color-light: #d3c2b6;
 }
 
 body {
@@ -38,6 +40,7 @@ header {
     box-sizing: border-box;
     border-bottom: 5px solid #e5e5e5;
     background-color: white;
+    z-index: 10;
 }
 
 .nav-bar>div {
@@ -167,4 +170,114 @@ aside {
 
     position: fixed;
 
+}
+
+
+
+
+
+
+
+.levels {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+.razd{
+    transform: translateX(-25px);
+}
+.invert{
+    transform: translateX(25px);
+}
+.razd, .invert{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+.circles {
+    height: 80px;
+    width: 80px;
+    padding: 4px;
+    border-radius: 50px;
+    background-color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 7px 0px var(--main-color-shadow);
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--main-color);
+    border: none;
+    color: white;
+    text-decoration: none;
+}
+.circles.closed{
+    padding: 5px;
+    background-color: var(--gray-color-light);
+    box-shadow: 0px 7px 0px var(--gray-color);
+}
+.circles .closed>div {
+    color: var(--gray-color-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:50px;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+
+.razd .circles:nth-child(2){
+    transform: translateX(-50px);
+}
+.razd .circles:nth-child(3){
+    transform: translateX(-100px);
+}
+.razd .circles:nth-child(4){
+    transform: translateX(-50px);
+}
+.invert .circles:nth-child(2){
+    transform: translateX(50px);
+}
+.invert .circles:nth-child(3){
+    transform: translateX(100px);
+}
+.invert .circles:nth-child(4){
+    transform: translateX(50px);
+}
+
+.circles:hover {
+    .hover {
+        scale: 1;
+        opacity: 1;
+    }
+}
+
+.hover {
+    width: 200px;
+    scale: 0;
+    transition: 0.25s ease-out;
+    background-color: white;
+    z-index: 10;
+    padding: 10px;
+    border-radius: 20px;
+    border: 3px solid;
+    position: absolute;
+    transform: translateX(-150px);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0;
+    font-size: 60%;
+    color: var(--main-color);
+    p {
+        margin: 0;
+    }
+}
+.closed .hover {
+    color: var(--gray-color-light);
 }

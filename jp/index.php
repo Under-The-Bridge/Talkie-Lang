@@ -1,6 +1,13 @@
 <?php
 session_start();
 require "../connection-db.php";
+if (!isset($_SESSION["id"])) {
+    echo "    <script>
+        alert('Войдите в профиль');
+        location.href = '/auth/';
+    </script>";
+}
+
 $lessons = mysqli_fetch_all(mysqli_query($conn, "select * from lesson join langs on lesson.lesson_language = langs.lang_id where `lang_name` = 'Японский'"));
 ?>
 <!DOCTYPE html>
