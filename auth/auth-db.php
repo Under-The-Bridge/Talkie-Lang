@@ -11,10 +11,16 @@ if (mysqli_num_rows($usercheck) != 0) {
     $user = mysqli_fetch_assoc($usercheck);
     if ($user["user_password"] == $password) {
         $_SESSION["id"] = $user["user_id"];
-                        echo "    <script>
-        alert('Вы вошли');
-        location.href = '/';
-    </script>";
+        if($user["user_role"] == "admin"){
+            echo "    <script>
+location.href = '/admin';
+</script>";
+        }else{
+            echo "    <script>
+alert('Вы вошли');
+location.href = '/';
+</script>";
+        }
     } else {
                 echo "    <script>
         alert('Неправильный пароль');

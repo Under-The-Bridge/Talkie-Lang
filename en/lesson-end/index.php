@@ -12,11 +12,23 @@ $lang = mysqli_fetch_array(mysqli_query($conn, "select lesson_language from less
 
 $nums = mysqli_num_rows(mysqli_query($conn, "select * from completed_lessons where lesson_id = $lesson_id and user_id = $id"));
 
-if ($nums == 0) {
+$count = mysqli_fetch_assoc(mysqli_query($conn,"select * from completed_lessons where user_id = $id and lesson_id = $lesson_id"))["count"] ?? false;
+if(!$count){
+    $sql = "INSERT INTO `completed_lessons`(`user_id`, `lesson_id`) VALUES ('$id','$lesson_id')";
+    mysqli_query($conn,$sql);
+}
+$count = mysqli_fetch_assoc(mysqli_query($conn,"select * from completed_lessons where user_id = $id and lesson_id = $lesson_id"))["count"];
+if ($count == 3) {
+    $lessons_count = mysqli_fetch_array(mysqli_query($conn,"SELECT COUNT(*) FROM `lesson` WHERE lesson_id <= $lesson_id and lesson_language = 1"))[0];
+    $lesson_id = mysqli_fetch_array(mysqli_query($conn,"SELECT * from lesson where lesson_language = 1 LIMIT 1 OFFSET $lessons_count"))[0];
     mysqli_query($conn, "INSERT INTO `completed_lessons`(`user_id`, `lesson_id`) VALUES ('$id','$lesson_id')");
     $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_lang_progress where lang_id = $lang and user_id = $id"))[0];
     $progress++;
     mysqli_query($conn, "UPDATE `user_lang_progress` SET `progress`='$progress' where lang_id = $lang and user_id = $id");
+}else{
+    $count++;
+    $sql = "UPDATE `completed_lessons` SET `count`='$count' where user_id = $id and lesson_id = $lesson_id";
+    $query = mysqli_query($conn,$sql);
 }
 
 $lesson = $_SESSION["lesson"];

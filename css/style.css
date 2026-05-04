@@ -43,6 +43,24 @@ header {
     z-index: 10;
 }
 
+label {
+    font-weight: 900;
+    color: #e0834d;
+}
+
+.btn {
+    background: #e0834d;
+    color: white;
+    box-sizing: border-box;
+    border: 2px #e0834d solid;
+    font-weight: 900;
+}
+
+.btn:hover {
+    border: 2px #e0834d solid;
+    color: #e0834d;
+}
+
 .nav-bar>div {
     width: 1280px;
     display: flex;
@@ -185,18 +203,26 @@ aside {
     align-items: center;
     gap: 25px;
 }
-.razd{
+
+.razd {
     transform: translateX(-25px);
 }
-.invert{
+
+.invert {
     transform: translateX(25px);
 }
-.razd, .invert{
+
+.razd,
+.invert {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 25px;
+    border-bottom: 2px lightgray dashed;
+    padding-bottom: 35px;
 }
+
 .circles {
     height: 80px;
     width: 80px;
@@ -214,38 +240,45 @@ aside {
     color: white;
     text-decoration: none;
 }
-.circles.closed{
+
+.circles.closed {
     padding: 5px;
     background-color: var(--gray-color-light);
     box-shadow: 0px 7px 0px var(--gray-color);
 }
+
 .circles .closed>div {
     color: var(--gray-color-light);
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius:50px;
+    border-radius: 50px;
     width: 100%;
     height: 100%;
     background-color: white;
 }
 
-.razd .circles:nth-child(2){
+.razd .circles:nth-child(2) {
     transform: translateX(-50px);
 }
-.razd .circles:nth-child(3){
+
+.razd .circles:nth-child(3) {
     transform: translateX(-100px);
 }
-.razd .circles:nth-child(4){
+
+.razd .circles:nth-child(4) {
     transform: translateX(-50px);
 }
-.invert .circles:nth-child(2){
+
+.invert .circles:nth-child(2) {
     transform: translateX(50px);
 }
-.invert .circles:nth-child(3){
+
+.invert .circles:nth-child(3) {
     transform: translateX(100px);
 }
-.invert .circles:nth-child(4){
+
+.invert .circles:nth-child(4) {
     transform: translateX(50px);
 }
 
@@ -257,7 +290,7 @@ aside {
 }
 
 .hover {
-    width: 200px;
+    width: 150px;
     scale: 0;
     transition: 0.25s ease-out;
     background-color: white;
@@ -272,12 +305,31 @@ aside {
     flex-direction: column;
     gap: 10px;
     opacity: 0;
-    font-size: 60%;
+    font-size: 50%;
     color: var(--main-color);
+
     p {
         margin: 0;
     }
 }
+
 .closed .hover {
     color: var(--gray-color-light);
+}
+
+#banner {
+    position: fixed;
+    font-size: 24px;
+    color: var(--main-color);
+    font-weight: 900;
+}
+.word{
+    display: flex;
+}
+.word p{
+    width: 100%;
+}
+
+.wq{
+    display: flex;
 }

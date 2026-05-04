@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "../../connection-db.php";
-$lessonSize = 4;
+$lessonSize = 1;
 
 
 $lesson_id = $_GET["id"];

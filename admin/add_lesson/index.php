@@ -1,23 +1,11 @@
-<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/bootstrap-grid.min.css">
-    <link rel="stylesheet" href="../css/bootstrap-reboot.css.map">
-    <link rel="stylesheet" href="../css/bootstrap-utilities.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <script src="../assets/js/bootstrap.bundle.min.js" async defer></script>
-    <script src="../assets/js/jquery-4.0.0.js" async defer></script>
-    <title>Talkie Lang</title>
-</head>
+
+
+<?php include "../../components/head.php"; ?>
 
 <body>
-    <?php
-    include "../components/header.php";
-    ?>
+    <?php include "../../components/header-admin.php"; ?>
     <main class="container">
         <form method="post" action="reg-db.php">
             <div class="mb-3">
