@@ -165,18 +165,21 @@ shuffle($w2);
         const message = new SpeechSynthesisUtterance();
         message.lang = "en-US";
         message.text = text;
+        speechSynthesis.cancel();
         window.speechSynthesis.speak(message);
     }
     function ru_speak(text) {
         const message = new SpeechSynthesisUtterance();
         message.lang = "ru-RU";
         message.text = text;
+        speechSynthesis.cancel();
         window.speechSynthesis.speak(message);
     }
     function jp_speak(text) {
         const message = new SpeechSynthesisUtterance();
         message.lang = "ja-JP";
         message.text = text;
+        speechSynthesis.cancel();
         window.speechSynthesis.speak(message);
     }
 
@@ -208,8 +211,15 @@ shuffle($w2);
 
     function sendData() {
         let progress = <?= $progress ?>;
+        let word = [];
+        document.querySelectorAll("button.word>div").forEach(w=>{
+            word.push(" " + w.innerText);
+        })
+        console.log(word);
         let fd = new FormData();
         fd.append("progress", progress);
+        fd.append("word", word);
+        fd.append("type", "list");
         fetch("score.php", {
             method: "post",
             body: fd

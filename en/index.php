@@ -28,7 +28,7 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
 <?php include "../components/head.php"; ?>
 
 <body>
-    <?php include "../components/header.php"; ?>
+    <?php include "components/header.php"; ?>
     <main class="container">
         <div id="banner"><?= $lessons[0][1] ?></div>
         <div class="levels">

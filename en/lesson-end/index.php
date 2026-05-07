@@ -12,34 +12,38 @@ $lang = mysqli_fetch_array(mysqli_query($conn, "select lesson_language from less
 
 $nums = mysqli_num_rows(mysqli_query($conn, "select * from completed_lessons where lesson_id = $lesson_id and user_id = $id"));
 
-$count = mysqli_fetch_assoc(mysqli_query($conn,"select * from completed_lessons where user_id = $id and lesson_id = $lesson_id"))["count"] ?? false;
-if(!$count){
+$count = mysqli_fetch_assoc(mysqli_query($conn, "select * from completed_lessons where user_id = $id and lesson_id = $lesson_id"))["count"] ?? false;
+if (!$count) {
     $sql = "INSERT INTO `completed_lessons`(`user_id`, `lesson_id`) VALUES ('$id','$lesson_id')";
-    mysqli_query($conn,$sql);
+    mysqli_query($conn, $sql);
 }
-$count = mysqli_fetch_assoc(mysqli_query($conn,"select * from completed_lessons where user_id = $id and lesson_id = $lesson_id"))["count"];
+$count = mysqli_fetch_assoc(mysqli_query($conn, "select * from completed_lessons where user_id = $id and lesson_id = $lesson_id"))["count"];
 if ($count == 3) {
-    $lessons_count = mysqli_fetch_array(mysqli_query($conn,"SELECT COUNT(*) FROM `lesson` WHERE lesson_id <= $lesson_id and lesson_language = 1"))[0];
-    $lesson_id = mysqli_fetch_array(mysqli_query($conn,"SELECT * from lesson where lesson_language = 1 LIMIT 1 OFFSET $lessons_count"))[0];
+    $lessons_count = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `lesson` WHERE lesson_id <= $lesson_id and lesson_language = 1"))[0];
+    $lesson_id = mysqli_fetch_array(mysqli_query($conn, "SELECT * from lesson where lesson_language = 1 LIMIT 1 OFFSET $lessons_count"))[0];
     mysqli_query($conn, "INSERT INTO `completed_lessons`(`user_id`, `lesson_id`) VALUES ('$id','$lesson_id')");
     $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_lang_progress where lang_id = $lang and user_id = $id"))[0];
     $progress++;
     mysqli_query($conn, "UPDATE `user_lang_progress` SET `progress`='$progress' where lang_id = $lang and user_id = $id");
-}else{
+} else {
     $count++;
     $sql = "UPDATE `completed_lessons` SET `count`='$count' where user_id = $id and lesson_id = $lesson_id";
-    $query = mysqli_query($conn,$sql);
+    $query = mysqli_query($conn, $sql);
 }
 
 $lesson = $_SESSION["lesson"];
-
 $all = [];
 for ($i = 0; $i < count($lesson); $i++) {
+    if ($lesson[$i][2] == "list") {
+        $temp = [[$lesson[$i][0], $lesson[$i][2]]];
+        array_push($all, $temp);
+        continue;
+    }
     $wq = $lesson[$i][0];
     $aq = $lesson[$i][1];
     $wq = mysqli_fetch_assoc(mysqli_query($conn, "Select * from words where word_id = $wq"));
     $aq = mysqli_fetch_assoc(mysqli_query($conn, "Select * from words where word_id = $aq"));
-    $temp = [$wq, $aq,$lesson[$i][2]];
+    $temp = [$wq, $aq, $lesson[$i][2]];
     array_push($all, $temp);
 }
 ?>
@@ -64,45 +68,55 @@ for ($i = 0; $i < count($lesson); $i++) {
             <h4>Вы закончили урок</h4>
             <h5 class="mb-4">Количество ошибок: <?= $mistakes ?></h5>
             <h5>Ваши результаты</h5>
-            <div class="row row-cols-1 row-cols-md-2 g-4">
-                <?php foreach ($all as $al): ?>
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-body">
-                                <?php if ($al[2] == "toRu"): ?>
-                                    <p class="card-text">Слово:<?= $al[0]["word_name"] ?></p>
-                                    <p class="card-text">Ваш ответ:<?= $al[1]["word_translate"] ?></p>
-                                    <p class="card-text">
-                                        <?php if ($al[0]["word_id"] == $al[1]["word_id"]): ?>
-                                            <small class="text-body-secondary">Всё верно!</small>
-                                        <?php else: ?>
-                                            <small class="text-body-secondary">Правильный
-                                                ответ: <?= $al[0]["word_translate"] ?></small>
-                                        <?php endif; ?>
-                                    </p>
-                                <?php elseif ($al[2] == "toEn"): ?>
-                                    <p class="card-text">Слово:
-                                        <?= $al[0]["word_translate"] ?>
-                                    </p>
+            <div class="grid">
+                <?php foreach ($all as $al):
+                    $l = $al[0][1] ?? false ?>
+                    <? if ($l): ?>
+                        <div class="answers end">
+                            <button class="good">
+                                <div>
                                     <p class="card-text">Ваш ответ:
-                                        <?= $al[1]["word_name"] ?>
+                                        <?= $al[0]["0"] ?>
                                     </p>
-                                    <p class="card-text">
-                                        <?php if ($al[0]["word_id"] == $al[1]["word_id"]): ?>
-                                            <small class="text-body-secondary">Всё верно!</small>
-                                        <?php else: ?>
-                                            <small class="text-body-secondary">Правильный
-                                                ответ:
-                                                <?= $al[0]["word_name"] ?>
-                                            </small>
-                                        <?php endif; ?>
-                                    </p>
-                                <?php else: ?>
-                                <?php endif; ?>
-                            </div>
+                                </div>
+                            </button>
                         </div>
-                    </div>
-                <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="answers end">
+                            <button class="<?= ($al[0]["word_id"] == $al[1]["word_id"]) ? "good" : "bad" ?>">
+                                <div>
+                                    <?php if ($al[2] == "toRu"): ?>
+                                        <p class="card-text">Слово:<?= $al[0]["word_name"] ?></p>
+                                        <p class="card-text">Ваш ответ:<?= $al[1]["word_translate"] ?></p>
+                                        <p class="card-text">
+                                            <?php if ($al[0]["word_id"] != $al[1]["word_id"]): ?>
+                                                <!-- <small class="text-body-secondary">Всё верно!</small> -->
+                                                <small class="text-body-secondary">Верный
+                                                    ответ: <?= $al[0]["word_translate"] ?></small>
+                                            <?php endif; ?>
+                                        </p>
+                                    <?php elseif ($al[2] == "toEn"): ?>
+                                        <p class="card-text">Слово:
+                                            <?= $al[0]["word_translate"] ?>
+                                        </p>
+                                        <p class="card-text">Ваш ответ:
+                                            <?= $al[1]["word_name"] ?>
+                                        </p>
+                                        <p class="card-text">
+                                            <?php if ($al[0]["word_id"] != $al[1]["word_id"]): ?>
+                                                <small class="text-body-secondary">Верный
+                                                    ответ:
+                                                    <?= $al[0]["word_name"] ?>
+                                                </small>
+                                            <?php endif; ?>
+                                        </p>
+                                    <?php endif; ?>
+                                </div>
+                            </button>
+                        </div>
+                    <?php endif; ?>
+
+                                <?php endforeach; ?>
             </div>
         </div>
     </main>

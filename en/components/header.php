@@ -2,10 +2,9 @@
     <div class="nav-bar">
         <div>
             <div>
-                <a href="/">Talkie Lang</a>
-                <a href="">Языки</a>
-                <a href="">Обучение</a>
-                <a href="">О нас</a>
+                <a href="/en">Talkie Lang</a>
+                <a href="/en/letters">Алфавит</a>
+                <a href="/">Языки</a>
             </div>
             <div>
                 <?php if (!isset($_SESSION["id"])): ?>
