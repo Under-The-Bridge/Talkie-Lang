@@ -2,8 +2,8 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1:3306
--- Время создания: Апр 29 2026 г., 10:42
+-- Хост: 127.0.0.1:3307
+-- Время создания: Май 11 2026 г., 16:32
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -30,18 +30,94 @@ SET time_zone = "+00:00";
 CREATE TABLE `completed_lessons` (
   `id` int NOT NULL,
   `user_id` int NOT NULL,
-  `lesson_id` int NOT NULL
+  `lesson_id` int NOT NULL,
+  `count` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `completed_lessons`
 --
 
-INSERT INTO `completed_lessons` (`id`, `user_id`, `lesson_id`) VALUES
-(4, 3, 1),
-(5, 3, 2),
-(6, 2, 1),
-(7, 4, 1);
+INSERT INTO `completed_lessons` (`id`, `user_id`, `lesson_id`, `count`) VALUES
+(4, 3, 1, 0),
+(5, 3, 2, 0),
+(7, 4, 1, 0),
+(10, 2, 1, 3),
+(18, 2, 1, 3),
+(19, 2, 2, 0),
+(20, 2, 2, 0),
+(21, 2, 2, 0),
+(22, 2, 2, 0),
+(23, 2, 2, 0),
+(24, 2, 2, 0),
+(25, 2, 2, 0),
+(26, 2, 2, 0),
+(27, 2, 2, 0),
+(28, 2, 2, 0),
+(29, 2, 2, 0),
+(30, 2, 2, 0),
+(31, 2, 2, 0),
+(32, 2, 2, 0),
+(33, 2, 2, 0),
+(34, 2, 2, 0),
+(35, 2, 2, 0),
+(36, 2, 2, 0),
+(37, 2, 2, 0),
+(38, 2, 2, 0),
+(39, 2, 2, 0),
+(40, 2, 2, 0),
+(41, 2, 2, 0),
+(42, 2, 2, 0),
+(43, 2, 2, 0),
+(44, 2, 2, 0),
+(45, 2, 2, 0),
+(46, 2, 2, 0),
+(47, 2, 2, 0),
+(48, 2, 2, 0),
+(49, 2, 2, 0),
+(50, 2, 2, 0),
+(51, 2, 2, 0),
+(52, 2, 2, 0),
+(53, 2, 2, 0),
+(54, 2, 2, 0),
+(55, 2, 2, 0),
+(56, 2, 2, 0),
+(57, 2, 2, 0),
+(58, 2, 2, 0),
+(59, 2, 2, 0),
+(60, 2, 2, 0),
+(61, 2, 2, 0),
+(62, 2, 2, 0),
+(63, 2, 2, 0),
+(64, 2, 2, 0),
+(65, 2, 2, 0),
+(66, 2, 2, 0),
+(67, 2, 2, 0),
+(68, 2, 2, 0),
+(69, 2, 2, 0),
+(70, 2, 2, 0),
+(71, 2, 2, 0),
+(72, 2, 2, 0),
+(73, 2, 2, 0),
+(74, 2, 2, 0),
+(75, 2, 2, 0),
+(76, 2, 2, 0),
+(77, 2, 2, 0),
+(78, 2, 2, 0),
+(79, 2, 2, 0),
+(80, 2, 2, 0),
+(81, 2, 2, 0),
+(82, 2, 2, 0),
+(83, 2, 2, 0),
+(84, 2, 2, 0),
+(85, 2, 2, 0),
+(86, 2, 2, 0),
+(87, 2, 2, 0),
+(88, 2, 2, 0),
+(89, 2, 2, 0),
+(90, 2, 2, 0),
+(91, 2, 2, 0),
+(92, 2, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -65,6 +141,17 @@ INSERT INTO `langs` (`lang_id`, `lang_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `leagues`
+--
+
+CREATE TABLE `leagues` (
+  `league_id` int NOT NULL,
+  `league_name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `lesson`
 --
 
@@ -84,7 +171,8 @@ INSERT INTO `lesson` (`lesson_id`, `lesson_name`, `lesson_language`) VALUES
 (3, 'Животные', 1),
 (4, 'Японский: базовые слова', 2),
 (5, 'Еда', 2),
-(6, 'Животные', 2);
+(6, 'Животные', 2),
+(26, 'Пусто', 1);
 
 -- --------------------------------------------------------
 
@@ -140,7 +228,8 @@ INSERT INTO `lessons_words` (`id`, `lesson_id`, `word_id`) VALUES
 (41, 6, 53),
 (42, 6, 54),
 (43, 6, 55),
-(44, 6, 56);
+(44, 6, 56),
+(77, 26, 20);
 
 -- --------------------------------------------------------
 
@@ -163,7 +252,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `user_login`, `user_email`, `user_password`, `user_role`, `user_moneys`) VALUES
 (2, 'Under-The-Bridge', 'ramazanikbaev6@gmail.com', 'Under-The-Bridge', 'user', 0),
-(3, 'admin', 'admin@admin.admin', 'admin', 'user', 0),
+(3, 'admin', 'admin@admin.admin', 'admin', 'admin', 0),
 (4, 'qweqwe', 'qweqwe@qweqwe.qweqwe', 'qweqwe', 'user', 0);
 
 -- --------------------------------------------------------
@@ -184,8 +273,8 @@ CREATE TABLE `user_lang_progress` (
 --
 
 INSERT INTO `user_lang_progress` (`id`, `user_id`, `lang_id`, `progress`) VALUES
-(1, 2, 1, 1),
-(4, 3, 1, 2),
+(1, 2, 1, 76),
+(4, 3, 1, 0),
 (5, 4, 1, 1);
 
 -- --------------------------------------------------------
@@ -198,52 +287,53 @@ CREATE TABLE `words` (
   `word_id` int NOT NULL,
   `word_name` varchar(100) NOT NULL,
   `word_transcription` varchar(100) DEFAULT NULL,
-  `word_translate` varchar(100) NOT NULL
+  `word_translate` varchar(100) NOT NULL,
+  `lang_id` int NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `words`
 --
 
-INSERT INTO `words` (`word_id`, `word_name`, `word_transcription`, `word_translate`) VALUES
-(19, 'house', '[haʊs]', 'дом'),
-(20, 'car', '[kɑːr]', 'машина'),
-(21, 'sun', '[sʌn]', 'солнце'),
-(22, 'moon', '[muːn]', 'луна'),
-(23, 'tree', '[triː]', 'дерево'),
-(24, 'bread', '[bred]', 'хлеб'),
-(25, 'cheese', '[tʃiːz]', 'сыр'),
-(26, 'egg', '[eɡ]', 'яйцо'),
-(27, 'meat', '[miːt]', 'мясо'),
-(28, 'juice', '[dʒuːs]', 'сок'),
-(29, 'banana', '[bəˈnænə]', 'банан'),
-(30, 'orange', '[ˈɒrɪndʒ]', 'апельсин'),
-(31, 'lion', '[ˈlaɪən]', 'лев'),
-(32, 'tiger', '[ˈtaɪɡər]', 'тигр'),
-(33, 'elephant', '[ˈelɪfənt]', 'слон'),
-(34, 'monkey', '[ˈmʌŋki]', 'обезьяна'),
-(35, 'bear', '[beər]', 'медведь'),
-(36, 'wolf', '[wʊlf]', 'волк'),
-(37, 'fox', '[fɒks]', 'лиса'),
-(38, 'いえ', '[ie]', 'дом'),
-(39, 'くるま', '[kuruma]', 'машина'),
-(40, 'たいよう', '[taiyou]', 'солнце'),
-(41, 'つき', '[tsuki]', 'луна'),
-(42, 'き', '[ki]', 'дерево'),
-(43, 'パン', '[pan]', 'хлеб'),
-(44, 'チーズ', '[chiizu]', 'сыр'),
-(45, 'たまご', '[tamago]', 'яйцо'),
-(46, 'にく', '[niku]', 'мясо'),
-(47, 'ジュース', '[juusu]', 'сок'),
-(48, 'バナナ', '[banana]', 'банан'),
-(49, 'オレンジ', '[orenji]', 'апельсин'),
-(50, 'ねこ', '[neko]', 'кот'),
-(51, 'いぬ', '[inu]', 'собака'),
-(52, 'うま', '[uma]', 'лошадь'),
-(53, 'とり', '[tori]', 'птица'),
-(54, 'くま', '[kuma]', 'медведь'),
-(55, 'おおかみ', '[ookami]', 'волк'),
-(56, 'きつね', '[kitsune]', 'лиса');
+INSERT INTO `words` (`word_id`, `word_name`, `word_transcription`, `word_translate`, `lang_id`) VALUES
+(19, 'house', '[haʊs]', 'дом', 1),
+(20, 'car', '[kɑːr]', 'машина', 1),
+(21, 'sun', '[sʌn]', 'солнце', 1),
+(22, 'moon', '[muːn]', 'луна', 1),
+(23, 'tree', '[triː]', 'дерево', 1),
+(24, 'bread', '[bred]', 'хлеб', 1),
+(25, 'cheese', '[tʃiːz]', 'сыр', 1),
+(26, 'egg', '[eɡ]', 'яйцо', 1),
+(27, 'meat', '[miːt]', 'мясо', 1),
+(28, 'juice', '[dʒuːs]', 'сок', 1),
+(29, 'banana', '[bəˈnænə]', 'банан', 1),
+(30, 'orange', '[ˈɒrɪndʒ]', 'апельсин', 1),
+(31, 'lion', '[ˈlaɪən]', 'лев', 1),
+(32, 'tiger', '[ˈtaɪɡər]', 'тигр', 1),
+(33, 'elephant', '[ˈelɪfənt]', 'слон', 1),
+(34, 'monkey', '[ˈmʌŋki]', 'обезьяна', 1),
+(35, 'bear', '[beər]', 'медведь', 1),
+(36, 'wolf', '[wʊlf]', 'волк', 1),
+(37, 'fox', '[fɒks]', 'лиса', 1),
+(38, 'いえ', '[ie]', 'дом', 2),
+(39, 'くるま', '[kuruma]', 'машина', 2),
+(40, 'たいよう', '[taiyou]', 'солнце', 2),
+(41, 'つき', '[tsuki]', 'луна', 2),
+(42, 'き', '[ki]', 'дерево', 2),
+(43, 'パン', '[pan]', 'хлеб', 2),
+(44, 'チーズ', '[chiizu]', 'сыр', 2),
+(45, 'たまご', '[tamago]', 'яйцо', 2),
+(46, 'にく', '[niku]', 'мясо', 2),
+(47, 'ジュース', '[juusu]', 'сок', 2),
+(48, 'バナナ', '[banana]', 'банан', 2),
+(49, 'オレンジ', '[orenji]', 'апельсин', 2),
+(50, 'ねこ', '[neko]', 'кот', 2),
+(51, 'いぬ', '[inu]', 'собака', 2),
+(52, 'うま', '[uma]', 'лошадь', 2),
+(53, 'とり', '[tori]', 'птица', 2),
+(54, 'くま', '[kuma]', 'медведь', 2),
+(55, 'おおかみ', '[ookami]', 'волк', 2),
+(56, 'きつね', '[kitsune]', 'лиса', 2);
 
 --
 -- Индексы сохранённых таблиц
@@ -262,6 +352,12 @@ ALTER TABLE `completed_lessons`
 --
 ALTER TABLE `langs`
   ADD PRIMARY KEY (`lang_id`);
+
+--
+-- Индексы таблицы `leagues`
+--
+ALTER TABLE `leagues`
+  ADD PRIMARY KEY (`league_id`);
 
 --
 -- Индексы таблицы `lesson`
@@ -296,7 +392,8 @@ ALTER TABLE `user_lang_progress`
 -- Индексы таблицы `words`
 --
 ALTER TABLE `words`
-  ADD PRIMARY KEY (`word_id`);
+  ADD PRIMARY KEY (`word_id`),
+  ADD KEY `lang_id` (`lang_id`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -306,25 +403,31 @@ ALTER TABLE `words`
 -- AUTO_INCREMENT для таблицы `completed_lessons`
 --
 ALTER TABLE `completed_lessons`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT для таблицы `langs`
 --
 ALTER TABLE `langs`
-  MODIFY `lang_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `lang_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT для таблицы `leagues`
+--
+ALTER TABLE `leagues`
+  MODIFY `league_id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `lesson`
 --
 ALTER TABLE `lesson`
-  MODIFY `lesson_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `lesson_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT для таблицы `lessons_words`
 --
 ALTER TABLE `lessons_words`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
@@ -342,7 +445,7 @@ ALTER TABLE `user_lang_progress`
 -- AUTO_INCREMENT для таблицы `words`
 --
 ALTER TABLE `words`
-  MODIFY `word_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `word_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -374,6 +477,12 @@ ALTER TABLE `lessons_words`
 ALTER TABLE `user_lang_progress`
   ADD CONSTRAINT `user_lang_progress_ibfk_1` FOREIGN KEY (`lang_id`) REFERENCES `langs` (`lang_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `user_lang_progress_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Ограничения внешнего ключа таблицы `words`
+--
+ALTER TABLE `words`
+  ADD CONSTRAINT `words_ibfk_1` FOREIGN KEY (`lang_id`) REFERENCES `langs` (`lang_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

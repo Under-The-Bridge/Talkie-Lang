@@ -11,12 +11,15 @@ if (!isset($_SESSION["id"])) {
 }
 
 $id = $_SESSION["id"];
+$_SESSION["lang"] = "en";
 $sql = "select * from lesson join langs on lesson.lesson_language = langs.lang_id where `lang_name` = 'Английский'";
 $query = mysqli_query($conn, $sql);
 $lessons = mysqli_fetch_all($query);
 $count = mysqli_num_rows($query);
 if (mysqli_num_rows(mysqli_query($conn, "select progress from user_lang_progress where user_id = $id and lang_id = 1")) == 0) {
-    mysqli_query($conn, "INSERT INTO `user_lang_progress`(`user_id`, `lang_id`, `progress`) VALUES ('$id','1','0')");
+    $first_lesson_id = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM `lesson` WHERE lesson_language = 1 ORDER by lesson_id ASC"))[0];
+    mysqli_query($conn, "INSERT INTO `user_lang_progress`(`user_id`, `lang_id`) VALUES ('$id','1')");
+    mysqli_query($conn, "INSERT INTO `completed_lessons`(`user_id`, `lesson_id`) VALUES ('$id','$first_lesson_id')");
 }
 
 $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_lang_progress where user_id = $id and lang_id = 1"))[0];
@@ -45,7 +48,7 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
                     <?php for ($i = 0; $i < 4; $i++): ?>
                         <?php if ($temp < $count && $check):
                             $temp++ ?>
-                            <a href="lesson/?id=<?= $lesson[0] ?>" class="circles">
+                            <a href="lesson/?id=<?= $lesson[0] ?>&c=<?=$temp?>" class="circles">
                                 <p>></p>
                                 <div class="hover">
                                     <p>

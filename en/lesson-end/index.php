@@ -2,9 +2,19 @@
 session_start();
 //http://talkie-lang/en/lesson/index.php?id=1&prog=9&mistakes=5
 require "../../connection-db.php";
-$mistakes = $_SESSION["mistakes"] ?? 0;
-$progress = $_GET["prog"] ?? 0;
 
+$xp = 1000;
+
+$mistakes = $_SESSION["mistakes"] ?? 0;
+$prog = $_SESSION["progress"] ?? 0;
+$c = $_SESSION["lesson_count"];
+$time = $_SESSION["lesson_time"];
+if (!isset($_SESSION["current_time"])) {
+    $_SESSION["current_time"] = time();
+}
+$current_time = $_SESSION["current_time"];
+
+$xp = $xp - ($current_time - $time) - ($mistakes * 150);
 $lesson_id = $_GET["id"] ?? 1;
 $id = $_SESSION["id"];
 
@@ -12,23 +22,27 @@ $lang = mysqli_fetch_array(mysqli_query($conn, "select lesson_language from less
 
 $nums = mysqli_num_rows(mysqli_query($conn, "select * from completed_lessons where lesson_id = $lesson_id and user_id = $id"));
 
-$count = mysqli_fetch_assoc(mysqli_query($conn, "select * from completed_lessons where user_id = $id and lesson_id = $lesson_id"))["count"] ?? false;
-if (!$count) {
-    $sql = "INSERT INTO `completed_lessons`(`user_id`, `lesson_id`) VALUES ('$id','$lesson_id')";
-    mysqli_query($conn, $sql);
-}
 $count = mysqli_fetch_assoc(mysqli_query($conn, "select * from completed_lessons where user_id = $id and lesson_id = $lesson_id"))["count"];
-if ($count == 3) {
-    $lessons_count = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `lesson` WHERE lesson_id <= $lesson_id and lesson_language = 1"))[0];
-    $lesson_id = mysqli_fetch_array(mysqli_query($conn, "SELECT * from lesson where lesson_language = 1 LIMIT 1 OFFSET $lessons_count"))[0];
-    mysqli_query($conn, "INSERT INTO `completed_lessons`(`user_id`, `lesson_id`) VALUES ('$id','$lesson_id')");
-    $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_lang_progress where lang_id = $lang and user_id = $id"))[0];
-    $progress++;
-    mysqli_query($conn, "UPDATE `user_lang_progress` SET `progress`='$progress' where lang_id = $lang and user_id = $id");
-} else {
-    $count++;
-    $sql = "UPDATE `completed_lessons` SET `count`='$count' where user_id = $id and lesson_id = $lesson_id";
-    $query = mysqli_query($conn, $sql);
+if (round($prog * 0.25) >= $mistakes) {
+    if ($count == 3 && $c == 3) {
+        $lessons_count = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `lesson` WHERE lesson_id <= $lesson_id and lesson_language = 1"))[0];
+        $les_id = mysqli_fetch_array(mysqli_query($conn, "SELECT * from lesson where lesson_language = 1 LIMIT 1 OFFSET $lessons_count"))[0];
+        mysqli_query($conn, "INSERT INTO `completed_lessons`(`user_id`, `lesson_id`) VALUES ('$id','$les_id')");
+        $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_lang_progress where lang_id = $lang and user_id = $id"))[0];
+        $progress++;
+        mysqli_query($conn, "UPDATE `user_lang_progress` SET `progress`='$progress' where lang_id = $lang and user_id = $id");
+        $count++;
+        $sql = "UPDATE `completed_lessons` SET `count`='$count' where user_id = $id and lesson_id = $lesson_id";
+        $query = mysqli_query($conn, $sql);
+        $exp = $user["user_weekly_xp"] + $xp;
+        mysqli_query($conn, "UPDATE `users` SET `user_weekly_xp`='$exp' WHERE user_id = $id");
+    } else if ($c == $count) {
+        $exp = $user["user_weekly_xp"] + $xp;
+        mysqli_query($conn, "UPDATE `users` SET `user_weekly_xp`='$exp' WHERE user_id = $id");
+        $count++;
+        $sql = "UPDATE `completed_lessons` SET `count`='$count' where user_id = $id and lesson_id = $lesson_id";
+        $query = mysqli_query($conn, $sql);
+    }
 }
 
 $lesson = $_SESSION["lesson"];
@@ -66,7 +80,10 @@ for ($i = 0; $i < count($lesson); $i++) {
         <div>
             <a href="/en/">Вернуться на главную</a>
             <h4>Вы закончили урок</h4>
+            <h5 class="mb-4">Время прохождения: <?= date("i:s", $current_time - $time) ?></h5>
             <h5 class="mb-4">Количество ошибок: <?= $mistakes ?></h5>
+            <h5 class="mb-4">Полученный опыт: <?= $xp?></h5>
+            <h5 class="mb-4">Решено: <?= $prog - $mistakes ?>/<?= $prog ?></h5>
             <h5>Ваши результаты</h5>
             <div class="grid">
                 <?php foreach ($all as $al):
@@ -116,7 +133,7 @@ for ($i = 0; $i < count($lesson); $i++) {
                         </div>
                     <?php endif; ?>
 
-                                <?php endforeach; ?>
+                <?php endforeach; ?>
             </div>
         </div>
     </main>

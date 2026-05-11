@@ -1,38 +1,12 @@
 <?php
 require "../../connection-db.php";
 
-if (isset($_POST["add"])) {
-    $name = trim($_POST["name"]);
-    $transcription = trim($_POST["transcription"]);
-    $translate = trim($_POST["translate"]);
-    $lang = $_POST["lang"];
-    $check = [$name, $transcription, $translate, $lang];
-    foreach ($check as $c) {
-        if (empty($c)) {
-            echo "<script>
-            alert('Пустые поля');
-            back();
-            </script>";
-            break;
-        }
-    }
-    $sql = "INSERT INTO `words`(`word_name`, `word_transcription`, `word_translate`, `lang_id`) VALUES ('$name','[$transcription]','$translate','$lang')";
-    $query = mysqli_query($conn, $sql);
-    if($query){
-        echo "<script>
-                alert('Добавлено');
-                </script>";
-    }else{
-        echo "<script>
-                alert('Ошибка');
-                </script>";
-    }
-}
-
 $filter = $_POST["filter"] ?? -1;
 $sql = "select * from words join langs on langs.lang_id = words.lang_id where 1";
-if ($filter != -1)
+if ($filter != -1){
     $sql .= " and words.lang_id = $filter";
+}
+$sql .= " order by words.lang_id ASC, word_id DESC";
 $words = mysqli_fetch_all(mysqli_query($conn, $sql), MYSQLI_ASSOC);
 $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
 
@@ -47,26 +21,29 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
 <body>
     <?php include "../../components/header-admin.php"; ?>
     <main class="container">
-        <form action="" method="post">
-            <div class="mb-2">
+        <form action="addWord.php" method="post">
+            <div class="mb-3">
                 <label for="login" class="form-label">Слово</label>
-                <input type="text" class="form-control" id="login" aria-describedby="login" name="name">
+                <input type="text" class="form-control" id="login" aria-describedby="login" name="name" required>
             </div>
-            <div class="mb-2">
+            <div class="mb-3">
                 <label for="email" class="form-label">Транскрипция</label>
-                <input type="text" class="form-control" id="email" aria-describedby="email" name="transcription">
+                <input type="text" class="form-control" id="email" aria-describedby="email" name="transcription" required>
             </div>
-            <div class="mb-2">
+            <div class="mb-3">
                 <label for="password" class="form-label">Перевод</label>
-                <input type="text" class="form-control" id="password" name="translate">
+                <input type="text" class="form-control" id="password" name="translate" required>
             </div>
-            <select name="lang" id="lang" class="form-select mb-2">
-                <?php foreach ($langs as $lang): ?>
-                    <option value="<?= $lang[0] ?>">
-                        <?= $lang[1] ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
+            <div class="mb-3">
+                <label for="lang" class="form-label">Язык</label>
+                <select name="lang" id="lang" class="form-select">
+                    <?php foreach ($langs as $lang): ?>
+                        <option value="<?= $lang[0] ?>">
+                            <?= $lang[1] ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
             <button name="add" type="submit" class="btn">Добавить</button>
         </form>
         <form action="" method="post">
@@ -78,7 +55,7 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
                 <?php endforeach; ?>
             </select>
         </form>
-        <div>
+        <!-- <div>
             <?php foreach ($words as $word): ?>
                 <div class="word">
                     <p>Слово: <?= $word["word_name"] ?></p>
@@ -87,7 +64,18 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
                     <p>Язык: <?= $word["lang_name"] ?></p>
                 </div>
             <?php endforeach; ?>
-        </div>
+        </div> -->
+        <table class="table table-striped-columns">
+            <?php foreach ($words as $word): ?>
+                <tr>
+                    <td>Слово: <?= $word["word_name"] ?></td>
+                    <td>Транскрипция:<?= $word["word_transcription"] ?></td>
+                    <td>Перевод: <?= $word["word_translate"] ?></td>
+                    <td>Язык: <?= $word["lang_name"] ?></td>
+                    <td><a href="del.php?id=<?= $word["word_id"] ?>">Удалить</a></td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
     </main>
     <script>
         let filter = document.querySelector("#filter");
