@@ -1,6 +1,12 @@
 <?php
 session_start();
 require "../connection-db.php";
+if (!isset($_SESSION["id"])) {
+    echo "    <script>
+        alert('Войдите в профиль');
+        location.href = '/auth/';
+    </script>";
+}
 $id = $_SESSION["id"];
 $time = mysqli_fetch_array(mysqli_query($conn, "SELECT `time` FROM `weekly_league` LIMIT 1"))[0];
 $inLeague = false;

@@ -3,9 +3,10 @@
         <div>
             <div>
                 <a href="/en">Talkie Lang</a>
-                <a href="/en/letters">Алфавит</a>
                 <a href="/league">Лига</a>
                 <a href="/langs">Языки</a>
+                <a href="/en/letters">Алфавит</a>
+                <a href="/dictionary">Словарь</a>
             </div>
             <div>
                 <?php if (!isset($_SESSION["id"])): ?>

@@ -41,7 +41,7 @@ foreach($downUser as $user){
     if($leagues <= -1) $leagues = 0;
     if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM `leagues` limit 1 OFFSET $leagues")) != 0){
         $league = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM `leagues` limit 1 OFFSET $leagues"))[0];
-        $sql = "UPDATE `users` SET `user_league`='$league' WHERE user_id = $user_id";
+        $sql = "UPDATE `users` SET `user_league`='$league', `user_weekly_xp` = '0' WHERE user_id = $user_id";
         // echo $sql."<br>";
         mysqli_query($conn,$sql);
     }

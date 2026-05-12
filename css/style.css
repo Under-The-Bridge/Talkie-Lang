@@ -338,6 +338,7 @@ aside {
 }
 
 .tbtn {
+    cursor: pointer;
     height: 100px;
     width: 150px;
     padding: 4px;
@@ -381,10 +382,54 @@ aside {
     grid-template-columns: repeat(6, 1fr);
     gap: 25px;
 }
+.wordgrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: space-between;
+    gap: 25px;
+}
 
 .xp {
     color: var(--green-color);
     text-decoration: none;
     font-weight: 900;
     font-size: 24px;
+}
+
+.wordbtn {
+    cursor: pointer;
+    height: 150px;
+    width: 250px;
+    padding: 4px;
+    border-radius: 20px;
+    background-color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 10px 0px var(--main-color-shadow);
+    font-weight: 900;
+    color: var(--main-color);
+    border: none;
+    font-size: 28px;
+
+    >div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 17px;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+    }
+
+    p:nth-child(2) {
+        font-size: 16px;
+    }
+}
+.wordbtn:hover {
+    >div {
+        color: white;
+        background-color: var(--main-color-light);
+    }
 }

@@ -1,6 +1,12 @@
 <?php
 session_start();
 require "../connection-db.php";
+if (!isset($_SESSION["id"])) {
+    echo "    <script>
+        alert('Войдите в профиль');
+        location.href = '/auth/';
+    </script>";
+}
 $id = $_SESSION["id"];
 $user = mysqli_fetch_assoc(mysqli_query($conn, "select * from users where user_id = $id"));
 $progresses = mysqli_fetch_all(mysqli_query($conn,"select * from user_lang_progress where user_id = $id"));
