@@ -27,10 +27,21 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
 <!DOCTYPE html>
 <html lang="en">
 
-
 <?php include "../components/head.php"; ?>
 
 <body>
+    <!-- Глобальный прогресс-бар -->
+    <div class="global-progress">
+        <div class="global-progress-bar" style="width: <?= $progress ?>%"></div>
+    </div>
+    
+    <!-- Счетчик опыта -->
+    <div class="xp-counter">
+        <span class="xp-icon">⚡</span>
+        <span class="xp-value"><?= $progress ?></span>
+        <span class="xp-label">XP</span>
+    </div>
+    
     <?php include "components/header.php"; ?>
     <main class="container">
         <div id="banner"><?= $lessons[0][1] ?></div>
@@ -48,13 +59,13 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
                     <?php for ($i = 0; $i < 4; $i++): ?>
                         <?php if ($temp < $count && $check):
                             $temp++ ?>
-                            <a href="lesson/?id=<?= $lesson[0] ?>&c=<?=$temp?>" class="circles">
-                                <p>></p>
+                            <a href="lesson/?id=<?= $lesson[0] ?>&c=<?=$temp?>" class="circles <?= $temp == $count-1 ? 'completed' : '' ?>">
+                                <p><?= $temp+1 ?></p>
                                 <div class="hover">
                                     <p>
-                                        Урок
+                                        Lesson
                                         <?= $i + 1 ?>
-                                        из
+                                        of
                                         4
                                     </p>
                                 </div>
@@ -63,12 +74,12 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
                             $check = false;
                             ?>
                             <div class="circles closed">
-                                <p>X</p>
+                                <p>🔒</p>
                                 <div class="hover">
                                     <p>
-                                        Урок
+                                        Lesson
                                         <?= $i + 1 ?>
-                                        из
+                                        of
                                         4
                                     </p>
                                 </div>
@@ -80,25 +91,33 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
         </div>
     </main>
     <script>
-        // let count = <?= $count ?>;
         let html = document.querySelector("html");
         let banner = document.querySelector("#banner");
         let elems = document.querySelectorAll(".razd, .invert");
+        
         for (let i = 0; i < elems.length; i++) {
             document.addEventListener('scroll', () => {
                 if (html.scrollTop >= 375 * i) {
                     console.log(i);
                     banner.innerHTML = elems[i].getAttribute("value");
                 }
-            })
+            });
         }
-        // document.addEventListener('scroll',()=>{
-        //     if(document.scrollTop > 500){
-        //         console.log(html.scrollTop);
-        //     }else{
-        //         console.log(html.scrollTop);
-        //     }
-        // })
+        
+        // Эффект при скролле для элементов
+        document.addEventListener('scroll', () => {
+            const scrolled = html.scrollTop;
+            const elements = document.querySelectorAll('.razd, .invert');
+            
+            elements.forEach((el, index) => {
+                const offset = el.offsetTop;
+                const progress = Math.max(0, Math.min(1, (scrolled - offset + 300) / 300));
+                const opacity = Math.min(1, progress * 2);
+                
+                el.style.opacity = opacity;
+                el.style.transform = `translateX(${index % 2 === 0 ? -25 : 25}px) scale(${0.95 + progress * 0.05})`;
+            });
+        });
     </script>
 </body>
 
