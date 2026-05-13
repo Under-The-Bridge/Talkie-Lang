@@ -34,17 +34,27 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `league_users` where user
                 foreach ($league as $us):
                     $count++ ?>
                     <tr>
+                        <td hidden></td>
+                        <td class="col col-lg-1"><?=$count?></td>
                         <?php if ($us["user_id"] == $user["user_id"]): ?>
-                            <th class="link-success"><?= $us["user_login"] ?></th>
+                            <td class="table-active"><?= $us["user_login"] ?></td>
                         <?php else: ?>
                             <td><?= $us["user_login"] ?></td>
                         <?php endif; ?>
                         <td><?= $us["user_weekly_xp"] ?> XP</td>
                     </tr>
                     <?php if ($count == 5)
-                        echo "<tr><td class='link-success'>Зона повышения ^ </td></tr>" ?>
+                        echo "<tr class='table-success'>
+                    <td class='link-success'></td>
+                    <td class='link-success'>Зона повышения</td>
+                    <td class='link-success'></td>
+                    </tr>" ?>
                     <?php if ($count == 10)
-                        echo "<tr><td class='link-danger'>Зона понижения v</td></tr>" ?>
+                        echo "<tr class='table-danger'>
+                    <td class='link-danger'></td>
+                    <td class='link-danger'>Зона понижения</td>
+                    <td class='link-danger'></td>
+                    </tr>" ?>
                 <?php endforeach; ?>
             </table>
         <?php else: ?>
