@@ -8,9 +8,10 @@ $word = $_POST["word"] ?? false;
 $ans = $_POST["ans"] ?? false;
 $type = $_POST["type"] ?? false;
 
-
-if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `user_words` WHERE user_id = $id and word_id = $word")) == 0){
-    mysqli_query($conn, "INSERT INTO `user_words`(`user_id`, `word_id`) VALUES ('$id','$word')");
+if(is_numeric($word)){
+    if(mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `user_words` WHERE user_id = $id and word_id = $word")) == 0){
+        mysqli_query($conn, "INSERT INTO `user_words`(`user_id`, `word_id`) VALUES ('$id','$word')");
+    }
 }
 
 

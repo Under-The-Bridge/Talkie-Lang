@@ -6,9 +6,25 @@ shuffle($words);
 foreach ($words as $word) {
     array_push($w, $word["word_id"]);
 }
+
 $rand_word = $w[array_rand($w)];
 $sql = "select * from words where word_id = $rand_word";
-$word = mysqli_fetch_array(mysqli_query($conn, $sql));
+$word = mysqli_fetch_assoc(mysqli_query($conn, $sql));
+
+$words = array_slice($words, 0, 4);
+
+$check = true;
+
+
+foreach ($words as $wo) {
+    if (in_array($word["word_id"], $wo)) {
+        $check = false;
+        break;
+    }
+}
+if ($check) {
+    $words[array_rand($words)] = $word;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,13 +48,13 @@ $word = mysqli_fetch_array(mysqli_query($conn, $sql));
             <h1>Переведи</h1>
             <div class="t">
                 <h2>
-                    <?= $word[1] ?>
+                    <?= $word["word_name"] ?>
                     <div class="hover">
                         <p>
-                            <?= $word[2] ?>
+                            <?= $word["word_transcription"] ?>
                         </p>
                         <p>
-                            <?= $word[3] ?>
+                            <?= $word["word_translate"] ?>
                         </p>
                     </div>
             </div>

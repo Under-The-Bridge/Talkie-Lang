@@ -382,6 +382,7 @@ aside {
     grid-template-columns: repeat(6, 1fr);
     gap: 25px;
 }
+
 .wordgrid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -427,9 +428,281 @@ aside {
         font-size: 16px;
     }
 }
+
 .wordbtn:hover {
     >div {
         color: white;
         background-color: var(--main-color-light);
     }
+}
+
+.league-table-wrapper {
+    background: white;
+    border-radius: 24px;
+    padding: 4px;
+    box-shadow: 0 10px 0 var(--main-color-shadow);
+    background: var(--main-color);
+    overflow-x: auto;
+}
+
+.league-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 20px;
+    overflow: hidden;
+    background: white;
+}
+
+.league-table thead tr {
+    background: var(--main-color);
+}
+
+.league-table th {
+    padding: 18px 20px;
+    text-align: left;
+    font-weight: 900;
+    font-size: 18px;
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+.league-table th:first-child {
+    width: 80px;
+}
+
+.league-table th:last-child {
+    width: 120px;
+}
+
+.league-row td {
+    padding: 14px 20px;
+    vertical-align: middle;
+}
+
+.rank-cell {
+    font-weight: 900;
+}
+
+.rank-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #f5f5f5;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--main-color);
+}
+
+.rank-number.top-rank {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: white;
+    box-shadow: 0 3px 0 #b8860b;
+}
+.rank-number.mid-rank {
+    background: linear-gradient(135deg, #cfcfcf, #ebebeb);
+    color: white;
+    box-shadow: 0 3px 0 #b8860b;
+}
+.rank-number.bottom-rank {
+    background: linear-gradient(135deg, #a77338, #c28b66);
+    color: white;
+    box-shadow: 0 3px 0 #b8860b;
+}
+
+.player-cell {
+    padding: 10px 20px;
+}
+
+.player-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.player-avatar {
+    width: 44px;
+    height: 44px;
+    background: var(--main-color);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 20px;
+    color: white;
+    box-shadow: 0 5px 0 var(--main-color-shadow);
+}
+
+.player-name {
+    font-weight: 700;
+    font-size: 16px;
+    color: #333;
+}
+
+.current-user-name {
+    color: var(--main-color);
+    font-weight: 900;
+}
+
+.you-badge {
+    background: var(--main-color);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+
+.xp-cell {
+    font-weight: 900;
+}
+
+.xp-display {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.xp-value {
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--green-color);
+}
+
+.xp-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gray-color);
+}
+
+.league-row.current-user {
+    background: linear-gradient(90deg, #fff3eb 0%, white 100%);
+    border-left: 4px solid var(--main-color);
+    box-shadow: inset 0 1px 0 rgba(224, 131, 77, 0.2);
+}
+
+.separator-row td {
+    padding: 0;
+    background: transparent;
+}
+
+.zone-divider {
+    text-align: center;
+    padding: 12px 20px;
+    font-weight: 900;
+    font-size: 14px;
+}
+
+.league-row {
+    border-bottom: 1px solid #ffffff;
+    transition: 0.15s ease-out;
+}
+.league-row.green {
+    background: linear-gradient(90deg, #e8f5e959, #c8e6c959);
+}
+.league-row.red {
+    background: linear-gradient(90deg, #ffebe959, #ffcdd959);
+}
+
+.zone-divider.promotion {
+    background: linear-gradient(90deg, #e8f5e959, #c8e6c959);
+    color: #2e7d32;
+    border-radius: 0 0 12px 12px;
+}
+
+.zone-divider.demotion {
+    background: linear-gradient(90deg, #ffebe959, #ffcdd959);
+    color: #c62828;
+    border-radius: 12px 12px 0 0 ;
+}
+
+.not-in-league {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border: 5px solid var(--main-color);
+    border-radius: 24px;
+    box-shadow: 0 10px 0 var(--main-color-shadow);
+}
+
+.not-in-league-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.not-in-league h4 {
+    color: var(--main-color);
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+.not-in-league p {
+    color: var(--gray-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    .league-table th,
+    .league-table td {
+        padding: 12px 12px;
+    }
+
+    .player-avatar {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+
+    .player-name {
+        font-size: 14px;
+    }
+
+    .xp-value {
+        font-size: 16px;
+    }
+
+    .rank-number {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+}
+
+
+.trophy {
+    transition: 0.25s ease-out;
+    width: 75px;
+}
+.trophy:hover{
+    width: 75px;
+    scale: 1.1;
+    transform: translateY(-5px);
+}
+.trophy.gold {
+    filter: brightness(0.6);
+}
+.trophy.gold.active {
+    filter: none;
+}
+.trophy.active {
+    width: 125px;
+}
+
+.trophy.copper.active {
+    filter: brightness(0.85) saturate(1.8) sepia(0.8) hue-rotate(-15deg);
+}
+.trophy.copper {
+    filter: brightness(0.5) saturate(1.8) sepia(0.8) hue-rotate(-15deg);
+}
+
+.trophy.silver.active {
+    filter: grayscale(100%) brightness(0.9) contrast(1);
+}
+.trophy.silver {
+    filter: grayscale(100%) brightness(0.6) contrast(1);
 }

@@ -9,6 +9,20 @@ foreach ($words as $word) {
 $rand_word = $w[array_rand($w)];
 $sql = "select * from words where word_id = $rand_word";
 $word = mysqli_fetch_array(mysqli_query($conn, $sql));
+$words = array_slice($words, 0, 4);
+
+$check = true;
+
+
+foreach ($words as $wo) {
+    if (in_array($word["word_id"], $wo)) {
+        $check = false;
+        break;
+    }
+}
+if ($check) {
+    $words[array_rand($words)] = $word;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
