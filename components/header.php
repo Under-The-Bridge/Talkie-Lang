@@ -3,25 +3,34 @@
         <div>
             <div>
                 <?php if (!isset($_SESSION["lang"])): ?>
-                    <a href="/">Talkie Lang</a>
+                    <a class="header-btns" href="/">Talkie Lang</a>
                 <?php else: ?>
-                    <a href="/<?= $_SESSION["lang"] ?>">Talkie Lang</a>
+                    <a class="header-btns" href="/<?= $_SESSION["lang"] ?>">Talkie Lang</a>
                 <?php endif; ?>
-                <a href="/league">Лига</a>
-                <a href="/langs">Языки</a>
+                <a class="header-btns" href="/league">Лига</a>
+                <div class="dropdown">
+                    <button class="header-btns" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Языки
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item header-btns" href="/en/">Английский</a></li>
+                        <li><a class="dropdown-item header-btns" href="/jp/">Японский</a></li>
+                    </ul>
+                </div>
                 <?php if (!isset($_SESSION["lang"])): ?>
-                    <a href="/dictionary">Словарь</a>
+                    <a class="header-btns" href="/dictionary">Словарь</a>
                 <?php endif; ?>
-                <a href="">Обучение</a>
-                <a href="">О нас</a>
+                <a class="header-btns">Обучение</a>
+                <a class="header-btns">О нас</a>
             </div>
             <div>
                 <?php if (!isset($_SESSION["id"])): ?>
-                    <a href="/auth/">Вход</a>
-                    <a href="/register/">Регистрация</a>
+                    <a class="header-btns" href="/auth/">Вход</a>
+                    <a class="header-btns" href="/register/">Регистрация</a>
                 <?php else: ?>
                     <p class="xp"><?= $user["user_weekly_xp"] ?> XP</p>
-                    <a href="/profile/">Профиль</a>
+                    <a class="header-btns" href="/profile/">Профиль</a>
                 <?php endif; ?>
             </div>
         </div>

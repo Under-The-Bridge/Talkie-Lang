@@ -74,11 +74,29 @@ label {
     gap: 50px;
 }
 
-.nav-bar>div div a {
+.header-btns {
+    transition: 0.2s ease-out;
     color: var(--main-color);
     text-decoration: none;
     font-weight: 900;
     font-size: 24px;
+    border: none;
+    background: none;
+}
+
+.header-btns.l {
+    font-weight: 900;
+    font-size: 18px;
+    border-bottom: 3px solid var(--main-color);
+
+    :hover {
+        border-bottom: 3px solid var(--main-color-light);
+    }
+}
+
+.header-btns:hover {
+    transform: translateY(-3px);
+    color: var(--main-color-light);
 }
 
 .container {
@@ -501,11 +519,13 @@ aside {
     color: white;
     box-shadow: 0 3px 0 #b8860b;
 }
+
 .rank-number.mid-rank {
     background: linear-gradient(135deg, #cfcfcf, #ebebeb);
     color: white;
     box-shadow: 0 3px 0 #b8860b;
 }
+
 .rank-number.bottom-rank {
     background: linear-gradient(135deg, #a77338, #c28b66);
     color: white;
@@ -601,9 +621,11 @@ aside {
     border-bottom: 1px solid #ffffff;
     transition: 0.15s ease-out;
 }
+
 .league-row.green {
     background: linear-gradient(90deg, #e8f5e959, #c8e6c959);
 }
+
 .league-row.red {
     background: linear-gradient(90deg, #ffebe959, #ffcdd959);
 }
@@ -617,7 +639,7 @@ aside {
 .zone-divider.demotion {
     background: linear-gradient(90deg, #ffebe959, #ffcdd959);
     color: #c62828;
-    border-radius: 12px 12px 0 0 ;
+    border-radius: 12px 12px 0 0;
 }
 
 .not-in-league {
@@ -678,17 +700,21 @@ aside {
     transition: 0.25s ease-out;
     width: 75px;
 }
-.trophy:hover{
+
+.trophy:hover {
     width: 75px;
     scale: 1.1;
     transform: translateY(-5px);
 }
+
 .trophy.gold {
     filter: brightness(0.6);
 }
+
 .trophy.gold.active {
     filter: none;
 }
+
 .trophy.active {
     width: 125px;
 }
@@ -696,6 +722,7 @@ aside {
 .trophy.copper.active {
     filter: brightness(0.85) saturate(1.8) sepia(0.8) hue-rotate(-15deg);
 }
+
 .trophy.copper {
     filter: brightness(0.5) saturate(1.8) sepia(0.8) hue-rotate(-15deg);
 }
@@ -703,6 +730,15 @@ aside {
 .trophy.silver.active {
     filter: grayscale(100%) brightness(0.9) contrast(1);
 }
+
 .trophy.silver {
     filter: grayscale(100%) brightness(0.6) contrast(1);
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    position: absolute;
+    inset: 0px auto auto 0px;
+    margin: 0px;
+    transform: translate(0px, 42px);
 }

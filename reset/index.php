@@ -36,19 +36,12 @@
     include "../components/header.php";
     ?>
     <main class="container">
-        <form method="post" action="auth-db.php">
+        <form method="post" action="../server/sendmail.php">
             <div class="mb-3">
-                <label for="login" class="form-label">Логин/Почта</label>
-                <input type="text" class="form-control" id="login" aria-describedby="login" name="login">
+                <label for="email" class="form-label">Почта</label>
+                <input type="email" class="form-control" id="email" aria-describedby="email" name="email">
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Пароль</label>
-                <input type="password" class="form-control" id="password" name="password">
-            </div>
-            <div class="mb-3">
-                <a class="header-btns l" href="/resetpassword">Забыли пароль?</a>
-            </div>
-            <button type="submit" class="btn">Войти</button>
+            <button type="submit" class="btn">Отправить письмо</button>
         </form>
     </main>
 </body>
