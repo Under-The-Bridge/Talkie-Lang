@@ -55,8 +55,8 @@ if ($check) {
                             <?= $word[1] ?>
                         </p>
                     </div>
+                </h2>
             </div>
-            </h2>
             <div id="answers">
                 <?php foreach ($words as $wo): ?>
                     <button value="<?= $wo["word_id"] ?>">

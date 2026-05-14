@@ -8,7 +8,9 @@ if (!isset($_SESSION["id"])) {
         location.href = '/auth/';
     </script>";
 }
-$words = mysqli_fetch_all(mysqli_query($conn, "SELECT * FROM `user_words` join words on words.word_id = user_words.word_id where user_id = $id"),MYSQLI_ASSOC);
+$lang = $_SESSION["lang"];
+
+$words = mysqli_fetch_all(mysqli_query($conn, "SELECT * FROM `user_words` join words on words.word_id = user_words.word_id where user_id = $id and lang_id = $lang"),MYSQLI_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">

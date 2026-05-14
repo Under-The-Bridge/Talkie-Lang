@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "../../connection-db.php";
+require "../connection-db.php";
 $lessonSize = 1;
 
 $lesson_id = $_GET["id"];
@@ -12,7 +12,7 @@ $progress = $_SESSION["progress"] ?? 0;
 $mistakes = $_SESSION["mistakes"] ?? 0;
 
 if ($progress == $lessonSize) {
-    header("location: /en/lesson-end/?id=$lesson_id");
+    header("location: /lesson-end/?id=$lesson_id");
 }
 // $w1 = [];
 // $w2 = [];
@@ -33,4 +33,4 @@ $href = "$link?id=$lesson_id";
 
 
 ?>
-<?php include "../../lesson_tests/test-".$rand.".php" ?>
+<?php include "../lesson_tests/test-".$rand.".php" ?>

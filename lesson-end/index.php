@@ -1,7 +1,7 @@
 <?php
 session_start();
 //http://talkie-lang/en/lesson/index.php?id=1&prog=9&mistakes=5
-require "../../connection-db.php";
+require "../connection-db.php";
 
 $xp = 1000;
 
@@ -78,7 +78,7 @@ for ($i = 0; $i < count($lesson); $i++) {
 <body>
     <main class="container">
         <div>
-            <a href="/en/">Вернуться на главную</a>
+            <a href="/?lang=<?=$_SESSION["lang"]?>">Вернуться на главную</a>
             <h4>Вы закончили урок</h4>
             <h5 class="mb-4">Время прохождения: <?= date("i:s", $current_time - $time) ?></h5>
             <h5 class="mb-4">Количество ошибок: <?= $mistakes ?></h5>

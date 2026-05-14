@@ -141,7 +141,7 @@ h2:hover {
     }
 }
 
-.hover {
+.hover{
     transition: 0.15s ease-out;
     padding: 10px;
     border-radius: 0 20px 20px 20px;

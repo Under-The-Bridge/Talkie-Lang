@@ -80,7 +80,7 @@ if ($check) {
         let buttons = document.querySelectorAll("#answers>button");
         let answered = false;
         let userAns;
-        let answer = "<?= $word[3] ?>";
+        let answer = "<?= $word["word_translate"] ?>";
         buttons.forEach(butt => {
             butt.addEventListener("click", () => {
                 if (!answered) {
@@ -107,7 +107,7 @@ if ($check) {
         function next(mistake) {
             let nextBad = `
             <div class="alert alert-danger" role="alert">
-                    <p>Правильный ответ: <?= $word[3] ?></p>
+                    <p>Правильный ответ: <?= $word["word_translate"] ?></p>
                     <a class="alert-link" href=`+ href + `>Дальше</a>
                 </div>
                 `;
@@ -132,7 +132,7 @@ if ($check) {
             } else {
                 mistakes = <?= $noMistakes ?>;
             }
-            let word = <?= $word[0] ?>;
+            let word = <?= $word["word_id"] ?>;
             let ans = userAns;
             let type = 'toRu';
             let fd = new FormData();

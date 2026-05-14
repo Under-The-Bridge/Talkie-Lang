@@ -10,6 +10,7 @@ if (!isset($_SESSION["id"])) {
     </script>";
 }
 
+
 $id = $_SESSION["id"];
 $_SESSION["lang"] = "en";
 $sql = "select * from lesson join langs on lesson.lesson_language = langs.lang_id where `lang_name` = 'Английский'";

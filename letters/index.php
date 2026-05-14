@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "../connection-db.php";
-require "../../clearSession.php";
+require "../clearSession.php";
 
 if (!isset($_SESSION["id"])) {
     echo "    <script>
@@ -14,7 +14,7 @@ if (!isset($_SESSION["id"])) {
 <html lang="en">
 
 
-<?php include "../../components/head.php"; ?>
+<?php include "../components/head.php"; ?>
 
 <body>
     <?php include "../components/header.php"; ?>
