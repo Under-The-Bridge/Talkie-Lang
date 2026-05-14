@@ -41,11 +41,10 @@ $words = mysqli_fetch_all(mysqli_query($conn, "SELECT * FROM `user_words` join w
         letters.forEach(btn => {
             btn.addEventListener("click", () => {
                 let text = btn.querySelector("p:nth-child(1)");
-                let message = new SpeechSynthesisUtterance(text.innerText[0]);
+                let message = new SpeechSynthesisUtterance(text.innerText);
                 message.lang = 'en-US';
                 speechSynthesis.cancel();
                 window.speechSynthesis.speak(message);
-
             })
         })
     </script>

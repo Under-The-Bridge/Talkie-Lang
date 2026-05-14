@@ -1,12 +1,19 @@
-<?php $conn = mysqli_connect("localhost","root","","Lang");?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <a class="" href="lesson.php?id=1">Начать урок</a>
-</body>
-</html>
+<?php 
+$array = [1,2,3,4,5,6,7,8,9,10];
+
+shuffle($array);
+
+$num = $array[array_rand($array)];
+
+echo $num;
+
+echo "<br>";
+
+$array = array_slice($array,0,4);
+
+if(!in_array($num,$array)){
+    $array[array_rand($array)] = $num;
+}
+
+print_r($array);
+?>
