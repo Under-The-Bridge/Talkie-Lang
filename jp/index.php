@@ -4,7 +4,7 @@ require "../connection-db.php";
 if (!isset($_SESSION["id"])) {
     echo "    <script>
         alert('Войдите в профиль');
-        location.href = '/auth/';
+        location.href = '/welcome/';
     </script>";
 }
 

@@ -18,7 +18,7 @@ $_SESSION['lang'] = $lang;
 if (!isset($_SESSION["id"])) {
     echo "    <script>
         alert('Войдите в профиль');
-        location.href = '/auth/';
+        location.href = '/welcome/';
     </script>";
 }
 
@@ -42,8 +42,10 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
 
 
 <?php include "components/head.php"; ?>
-
 <body>
+    <style>
+
+    </style>
     <?php include "components/header.php"; ?>
     <main class="container">
         <div id="banner"><?= $lessons[0][1] ?></div>

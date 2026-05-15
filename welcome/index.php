@@ -63,6 +63,7 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
                     Уже есть аккаунт? <a id="switchToLoginBtn">Войти</a>
                 </div>
             </form>
+            
         </div>
 
         <!-- Форма авторизации (скрыта по умолчанию) -->

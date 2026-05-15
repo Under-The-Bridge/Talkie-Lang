@@ -41,6 +41,6 @@ $headers = "Content-type: text/html; charset=UTF-8\r\n";
 mail($to, $subject, $message, $headers);
 echo "    <script>
         alert('Письмо отправлено');
-        location.href = '/auth/';
+        location.href = '/welcome/';
     </script>";
 ?>

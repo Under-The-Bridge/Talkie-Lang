@@ -19,7 +19,7 @@
             </div>
             <div>
                 <?php if (!isset($_SESSION["id"])): ?>
-                    <a class="header-btns" href="/auth/">Вход</a>
+                    <a class="header-btns" href="/welcome/">Вход</a>
                     <a class="header-btns" href="/register/">Регистрация</a>
                 <?php else: ?>
                     <p class="xp"><?= $user["user_weekly_xp"] ?> XP</p>

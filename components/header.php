@@ -1,6 +1,6 @@
 <header>
     <div class="nav-bar">
-        <div>
+        <div class="container header">
             <div>
                 <a class="header-btns" href="/?lang=<?= $_SESSION["lang"] ?>">Talkie Lang</a>
                 <a class="header-btns" href="/league">Лига</a>
@@ -26,7 +26,7 @@
             </div>
             <div>
                 <?php if (!isset($_SESSION["id"])): ?>
-                    <a class="header-btns" href="/auth/">Вход</a>
+                    <a class="header-btns" href="/welcome/">Вход</a>
                     <a class="header-btns" href="/register/">Регистрация</a>
                 <?php else: ?>
                     <p class="xp"><?= $user["user_weekly_xp"] ?> XP</p>

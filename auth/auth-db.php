@@ -24,12 +24,12 @@ location.href = '/';
     } else {
                 echo "    <script>
         alert('Неправильный пароль');
-        location.href = '/auth/';
+        location.href = '/welcome/';
     </script>";
     }
 } else {
         echo "    <script>
         alert('Пользователя с таким логином/почтой нет');
-        location.href = '/auth/';
+        location.href = '/welcome/';
     </script>";
 }

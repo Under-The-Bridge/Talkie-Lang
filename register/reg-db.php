@@ -13,7 +13,7 @@ if (mysqli_num_rows($usercheck) == 0) {
     $result = mysqli_query($conn, $sql);
     echo "    <script>
         alert('Вы зарегистрировались');
-        location.href = '/auth/';
+        location.href = '/welcome/';
     </script>";
 }else{
     echo "    <script>
