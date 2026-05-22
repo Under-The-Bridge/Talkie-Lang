@@ -1,4 +1,5 @@
 <?php
+$lang = mysqli_fetch_array(mysqli_query($conn, "select lesson_language from lesson where lesson_id = $lesson_id"))[0];
 $sql = "select * from lesson join lessons_words on lesson.lesson_id = lessons_words.lesson_id join words on words.word_id = lessons_words.word_id where lesson.lesson_id = $lesson_id";
 $w = [];
 $words = mysqli_fetch_all(mysqli_query($conn, $sql), MYSQLI_ASSOC);
@@ -34,12 +35,14 @@ shuffle($w2);
 
 <body>
     <main class="container">
-        <div class="q">
-            <a href="/en/" class="btn btn-danger mb-2">Выйти</a>
-            <div class="progressbar">
-                <div class="bar"></div>
+        <a href="/?lang=<?= $lang ?>" class="btn btn-danger mb-2">Выйти</a>
+        <div class="progressbar">
+            <div class="bar"></div>
+        </div>
+        <div class="q my-auto" style="gap:2.5%">
+            <div class="lesson-word">
+                <h1>Соедени переводы</h1>
             </div>
-            <h1>Соедени переводы</h1>
             <div id="answers">
                 <div class="column">
                     <?php foreach ($w1 as $w): ?>
@@ -59,6 +62,9 @@ shuffle($w2);
                 <!-- <button><?= $answer ?></button> -->
                 <!-- <button>выавыа</button> -->
             </div>
+        </div>
+        <div class="alert alert-success hidden" role="alert">
+            <p>Всё верно!</p>
         </div>
     </main>
 </body>
@@ -195,12 +201,13 @@ shuffle($w2);
     }
 
     function next() {
+        document.querySelector('.alert.hidden').remove();
         sendData();
         prog++;
         bar.setAttribute("style", "width: calc(100%*" + prog + "/<?= $lessonSize ?>);");
         let href = '<?= $href ?>';
         let link = `
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success good" role="alert">
                 <p>Всё верно!</p>
                 <a class="alert-link" href=`+ href + `>Дальше</a>
                 </div>
@@ -212,7 +219,7 @@ shuffle($w2);
     function sendData() {
         let progress = <?= $progress ?>;
         let word = [];
-        document.querySelectorAll("button.word>div").forEach(w=>{
+        document.querySelectorAll("button.word>div").forEach(w => {
             word.push(" " + w.innerText);
         })
         console.log(word);

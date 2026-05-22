@@ -12,8 +12,15 @@
     --green-color-shadow: #2db64b;
     --red-color: #e0524d;
     --red-color-shadow: #b6362d;
+    --bg-color: #0f0f0f;
+    --bg-secondary: #1a1a1a;
+    --gray-color: #a38a7a;
+    --gray-color-light: #d3c2b6;
 }
 
+body{
+    padding: 1em;
+}
 /* 
 body {
     display: flex;
@@ -28,29 +35,40 @@ main {
     display: flex;
     flex-direction: column;
 } */
-h1 {
+/* h1 {
     align-self: flex-start;
-}
+} */
 
-.container {
+.container{
+    max-height: 96.5vh;
+    margin-top: 0;
     justify-content: space-between;
-}
-
-.q {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     a{
         align-self: self-end;
     }
 }
 
+.q {
+    min-height: 322px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 70%;
+}
+.lesson-word{
+    h1{
+        opacity: 0.5;
+    }
+    width: 70%;
+}
+
 #answers {
-    width: 50%;
+    /* width: 50%; */
     align-self: center;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 25px;
+    gap: 20px;
     justify-items: center;
 }
 .answers button > div{
@@ -66,8 +84,10 @@ h1 {
     grid-template-columns: repeat(5,1fr);
 }
 button {
+    max-width: 200px;
+    max-height: 100px;
     height: 100px;
-    width: 250px;
+    width: 200px;
     padding: 4px;
     border-radius: 20px;
     background-color: var(--main-color);
@@ -102,6 +122,7 @@ button>div {
 }
 
 button:hover {
+    transform: translateY(-7px);
     >div {
         color: white;
         background-color: var(--main-color);
@@ -135,14 +156,16 @@ button.bad {
 }
 
 h2:hover {
-    .hover {
+    cursor: pointer;
+    .word-hover {
         opacity: 1;
 
     }
 }
 
-.hover{
-    transition: 0.15s ease-out;
+.word-hover{
+    transform: translateY(10px);
+    transition: 0.1s ease-out;
     padding: 10px;
     border-radius: 0 20px 20px 20px;
     min-width: 100px;
@@ -166,6 +189,8 @@ h2:hover {
     flex-direction: column;
     align-items: start;
     justify-content: center;
+    text-underline-offset: 10px;
+    text-decoration: underline dashed var(--red-color);
 }
 
 * {
@@ -196,31 +221,6 @@ main {
     flex-direction: column;
 }
 
-#answers {
-    width: 50%;
-    align-self: center;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    justify-items: center;
-}
-
-button {
-    height: 100px;
-    width: 250px;
-    padding: 4px;
-    border-radius: 20px;
-    background-color: var(--main-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0px 10px 0px var(--main-color-shadow);
-    font-size: 36px;
-    font-weight: 900;
-    color: var(--main-color);
-    border: none;
-}
-
 button>div {
     display: flex;
     justify-content: center;
@@ -248,10 +248,29 @@ button.selected {
 button.good {
     background-color: var(--green-color);
     box-shadow: 0px 10px 0px var(--green-color-shadow);
-
+    animation: 0.5s ease-out good;
     >div {
         color: white;
         background-color: var(--green-color);
+    }
+}
+button.good:hover{
+    transform: none;
+}
+
+@keyframes good {
+    0%{
+        transform: translateY(10px);
+    }
+    25%{
+        transform: translateY(5px) rotateY(15deg)  rotateZ(-2deg);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+
+    100%{
+        transform: translateY(0px);
     }
 }
 
@@ -267,9 +286,33 @@ button.bad {
 
 
 .alert {
+    box-sizing: border-box;
+    border: 2px solid var(--green-color);
+    background-color: white;
+    color: var(--green-color);
+    font-weight: 900;
     display: flex;
     justify-content: space-between;
     animation: 0.5s show ease-out;
+    font-size: 1.25em;
+}
+.alert.good{
+    border: 2px solid var(--green-color);
+    color: var(--green-color);
+    a{
+        color: var(--green-color-shadow) !important;
+    }
+}
+.alert.bad{
+    border: 2px solid var(--red-color);
+    color: var(--red-color);
+        a{
+        color: var(--red-color-shadow) !important;
+    }
+}
+.alert.hidden {
+    opacity: 0;
+    animation: none;
 }
 
 @keyframes show {

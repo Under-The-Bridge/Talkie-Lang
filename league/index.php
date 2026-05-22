@@ -56,7 +56,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `league_users` where user
                             $rank = ($count == 1) ? 'top-rank' : (($count == 2) ? 'mid-rank' : (($count == 3) ? 'bottom-rank' : ''));
                             $row = ($count >= 1 && $count <= 5) ? 'green' : (($count > 10 && $count <= 15) ? 'red' : '');
                             ?>
-                            <tr class="league-row <?=$row?>">
+                            <tr class="league-row <?=$row?>" style="animation: t <?= $count / 10 ?>s ease;">
                                 <td class="rank-cell">
                                     <span class="rank-number <?= $rank?>">
                                         <?= $count ?>

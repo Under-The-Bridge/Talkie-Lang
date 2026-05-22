@@ -1,4 +1,5 @@
 <?php
+$lang = mysqli_fetch_array(mysqli_query($conn, "select lesson_language from lesson where lesson_id = $lesson_id"))[0];
 $sql = "select * from lesson join lessons_words on lesson.lesson_id = lessons_words.lesson_id join words on words.word_id = lessons_words.word_id where lesson.lesson_id = $lesson_id";
 $w = [];
 $words = mysqli_fetch_all(mysqli_query($conn, $sql), MYSQLI_ASSOC);
@@ -40,25 +41,27 @@ if ($check) {
 
 <body>
     <main class="container">
-        <div class="q">
-            <a href="/en/" class="btn btn-danger mb-2">Выйти</a>
-            <div class="progressbar">
-                <div class="bar"></div>
+        <a href="/?lang=<?= $lang ?>" class="btn btn-danger mb-2">Выйти</a>
+        <div class="progressbar">
+            <div class="bar"></div>
+        </div>
+        <div class="q my-auto">
+            <div class="lesson-word">
+                <h1>Переведи на русский язык</h1>
+                <div class="t">
+                    <h2>
+                        <?= $word["word_name"] ?>
+                        <div class="word-hover">
+                            <p>
+                                <?= $word["word_transcription"] ?>
+                            </p>
+                            <p>
+                                <?= $word["word_translate"] ?>
+                            </p>
+                        </div>
+                    </h2>
+                </div>
             </div>
-            <h1>Переведи</h1>
-            <div class="t">
-                <h2>
-                    <?= $word["word_name"] ?>
-                    <div class="hover">
-                        <p>
-                            <?= $word["word_transcription"] ?>
-                        </p>
-                        <p>
-                            <?= $word["word_translate"] ?>
-                        </p>
-                    </div>
-            </div>
-            </h2>
             <div id="answers">
                 <?php foreach ($words as $wo): ?>
                     <button value="<?= $wo["word_id"] ?>">
@@ -68,6 +71,9 @@ if ($check) {
                     </button>
                 <?php endforeach; ?>
             </div>
+        </div>
+        <div class="alert alert-success hidden" role="alert">
+            <p>Всё верно!</p>
         </div>
     </main>
     <script>
@@ -105,14 +111,15 @@ if ($check) {
         let href = '<?= $href ?>';
 
         function next(mistake) {
+            document.querySelector('.alert.hidden').remove();
             let nextBad = `
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-danger bad" role="alert">
                     <p>Правильный ответ: <?= $word["word_translate"] ?></p>
                     <a class="alert-link" href=`+ href + `>Дальше</a>
                 </div>
                 `;
             let nextGood = `
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success good" role="alert">
                 <p>Всё верно!</p>
                 <a class="alert-link" href=`+ href + `>Дальше</a>
                 </div>

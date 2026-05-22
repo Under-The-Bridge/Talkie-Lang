@@ -1,12 +1,15 @@
 <?php
 session_start();
 require "../connection-db.php";
-$lessonSize = 1;
+$lessonSize = 15;
 
 $lesson_id = $_GET["id"];
 if(isset($_GET["c"])){
     $_SESSION["lesson_time"] = time();
     $_SESSION["lesson_count"] = $_GET["c"];
+    if($_GET["c"] == 3){
+        echo "c";
+    }
 }
 $progress = $_SESSION["progress"] ?? 0;
 $mistakes = $_SESSION["mistakes"] ?? 0;

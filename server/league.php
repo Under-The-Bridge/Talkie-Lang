@@ -1,6 +1,6 @@
 <?php
 require "../connection-db.php";
-$time = time() + 10;
+$time = time() + 3600;
 // echo $time;
 $leagues = mysqli_fetch_all(mysqli_query($conn,"SELECT * FROM `leagues`"),MYSQLI_ASSOC);
 foreach($leagues as $league){
