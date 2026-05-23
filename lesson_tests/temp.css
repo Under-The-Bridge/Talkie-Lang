@@ -18,9 +18,10 @@
     --gray-color-light: #d3c2b6;
 }
 
-body{
+body {
     padding: 1em;
 }
+
 /* 
 body {
     display: flex;
@@ -39,11 +40,12 @@ main {
     align-self: flex-start;
 } */
 
-.container{
+.container {
     max-height: 96.5vh;
     margin-top: 0;
     justify-content: space-between;
-    a{
+
+    a {
         align-self: self-end;
     }
 }
@@ -56,10 +58,12 @@ main {
     justify-content: center;
     gap: 70%;
 }
-.lesson-word{
-    h1{
+
+.lesson-word {
+    h1 {
         opacity: 0.5;
     }
+
     width: 70%;
 }
 
@@ -71,7 +75,8 @@ main {
     gap: 20px;
     justify-items: center;
 }
-.answers button > div{
+
+.answers button>div {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -79,10 +84,12 @@ main {
     line-height: 20px;
     overflow-wrap: break-word;
 }
-.grid{
+
+.grid {
     display: grid;
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(5, 1fr);
 }
+
 button {
     max-width: 200px;
     max-height: 100px;
@@ -101,7 +108,7 @@ button {
     border: none;
 }
 
-button>div {
+button .w {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,19 +118,11 @@ button>div {
     background-color: white;
 }
 
-button>div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 17px;
-    width: 100%;
-    height: 100%;
-    background-color: white;
-}
 
 button:hover {
     transform: translateY(-7px);
-    >div {
+
+    .w {
         color: white;
         background-color: var(--main-color);
     }
@@ -155,28 +154,49 @@ button.bad {
     gap: 25px;
 }
 
-h2:hover {
+button:hover {
     cursor: pointer;
+
     .word-hover {
         opacity: 1;
-
+        scale: 1;
     }
 }
 
-.word-hover{
-    transform: translateY(10px);
-    transition: 0.1s ease-out;
-    padding: 10px;
-    border-radius: 0 20px 20px 20px;
+.wrd:hover {
+    cursor: pointer;
+
+    .word-hover {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+button.word-hover {
+    transition: 0.25s ease-out;
+}
+
+.word-hover {
+    scale: 0;
     min-width: 100px;
-    border: 2px solid;
+    max-width: 250px;
+    max-height: 200px;
+    transition: 0.25s ease-out;
+    background-color: white;
+    z-index: 10;
+    padding: 10px;
+    border-radius: 20px;
+    border: 3px solid;
     position: absolute;
+    transform: translateY(20%);
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 10px;
     opacity: 0;
-    font-size: 60%;
+    font-size: 50%;
+    font-weight: 900;
+    color: var(--main-color);
 
     p {
         margin: 0;
@@ -221,7 +241,7 @@ main {
     flex-direction: column;
 }
 
-button>div {
+button .w {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -229,13 +249,6 @@ button>div {
     width: 100%;
     height: 100%;
     background-color: white;
-}
-
-button:hover {
-    >div {
-        color: white;
-        background-color: var(--main-color-light);
-    }
 }
 
 button.selected {
@@ -249,27 +262,43 @@ button.good {
     background-color: var(--green-color);
     box-shadow: 0px 10px 0px var(--green-color-shadow);
     animation: 0.5s ease-out good;
+
     >div {
         color: white;
         background-color: var(--green-color);
     }
 }
-button.good:hover{
+
+button.good:hover {
     transform: none;
+
+    .w {
+        background-color: var(--green-color);
+    }
+}
+
+button.bad:hover {
+    transform: none;
+
+    .w {
+        background-color: var(--red-color);
+    }
 }
 
 @keyframes good {
-    0%{
+    0% {
         transform: translateY(10px);
     }
-    25%{
-        transform: translateY(5px) rotateY(15deg)  rotateZ(-2deg);
+
+    25% {
+        transform: translateY(5px) rotateY(15deg) rotateZ(-2deg);
     }
+
     60% {
         transform: translateY(-15px);
     }
 
-    100%{
+    100% {
         transform: translateY(0px);
     }
 }
@@ -296,20 +325,25 @@ button.bad {
     animation: 0.5s show ease-out;
     font-size: 1.25em;
 }
-.alert.good{
+
+.alert.good {
     border: 2px solid var(--green-color);
     color: var(--green-color);
-    a{
+
+    a {
         color: var(--green-color-shadow) !important;
     }
 }
-.alert.bad{
+
+.alert.bad {
     border: 2px solid var(--red-color);
     color: var(--red-color);
-        a{
+
+    a {
         color: var(--red-color-shadow) !important;
     }
 }
+
 .alert.hidden {
     opacity: 0;
     animation: none;

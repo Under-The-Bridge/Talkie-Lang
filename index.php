@@ -67,7 +67,6 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
                         <?php if ($temp < $count && $check):
                             ?>
                             <?php if ($temp == 2): ?>
-
                                 <a href="lesson/?id=<?= $lesson[0] ?>&c=<?= $temp ?>" class="circles evil"
                                     style="animation: show <?= $anim / 5 ?>s ease;">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -117,7 +116,7 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
                                     </div>
                                 </a>
                             <?php endif; ?>
-                            <?php 
+                        <?php
                         else:
                             $check = false;
                             ?>
@@ -154,9 +153,9 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
                                     </div>
                                 </div>
                             <?php endif; ?>
-                            <?php endif; ?>
-                    <?php $temp++; endfor; ?>
-                    </div>
+                        <?php endif; ?>
+                        <?php $temp++; endfor; ?>
+                </div>
             <?php endforeach; ?>
         </div>
     </main>

@@ -45,16 +45,25 @@ shuffle($w2);
             </div>
             <div id="answers">
                 <div class="column">
-                    <?php foreach ($w1 as $w): ?>
+                    <?php foreach ($w1 as $w):
+                        $wt = mysqli_fetch_assoc(mysqli_query($conn, "select * from words where word_translate = '$w' and lang_id = $lang")) ?>
                         <button class="word">
-                            <div><?= $w ?></div>
+                            <div class="w"><?= $w ?></div>
+                            <div class="word-hover" style="transform: translateX(-165%);">
+                                <p>
+                                    <?= $wt["word_transcription"] ?>
+                                </p>
+                                <p>
+                                    <?= $wt["word_name"] ?>
+                                </p>
+                            </div>
                         </button>
                     <?php endforeach; ?>
                 </div>
                 <div class="column">
                     <?php foreach ($w2 as $w): ?>
                         <button class="translate">
-                            <div value="<?= $w[0] ?>"><?= $w[1] ?></div>
+                            <div class="w" value="<?= $w[0] ?>"><?= $w[1] ?></div>
                         </button>
                     <?php endforeach; ?>
                 </div>
@@ -69,6 +78,8 @@ shuffle($w2);
     </main>
 </body>
 <script>
+
+
     let buttons_word = document.querySelectorAll("#answers>.column>button.word");
     let buttons_translate = document.querySelectorAll("#answers>.column>button.translate");
     let prog = <?= $progress - 1 ?>;
@@ -93,23 +104,22 @@ shuffle($w2);
                     butt.classList.remove("bad");
                 }
             }
-
-
-
-            // butt.classList.remove("bad");
-            // if (butt.classList[1] != "good") {
-            //     buttons_word.forEach(e => { e.classList.remove("selected") });
-            //     if (butt.classList[1] == "selected") {
-            //         butt.classList.remove("selected");
-            //     } else {
-            //         butt.classList.add("selected");
-            //     }
-            //     checkWords()
-            // } else {
-            //     buttons_word.forEach(e => { e.classList.remove("good") });
-            // }
         })
-    });
+
+
+        // butt.classList.remove("bad");
+        // if (butt.classList[1] != "good") {
+        //     buttons_word.forEach(e => { e.classList.remove("selected") });
+        //     if (butt.classList[1] == "selected") {
+        //         butt.classList.remove("selected");
+        //     } else {
+        //         butt.classList.add("selected");
+        //     }
+        //     checkWords()
+        // } else {
+        //     buttons_word.forEach(e => { e.classList.remove("good") });
+        // }
+    })
 
     buttons_translate.forEach(butt => {
         butt.addEventListener("click", () => {

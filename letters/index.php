@@ -9,6 +9,10 @@ if (!isset($_SESSION["id"])) {
         location.href = '/welcome/';
     </script>";
 }
+$json = file_get_contents('letters.json');
+$data = json_decode($json);
+
+$letters = $data->english->alphabet; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +25,15 @@ if (!isset($_SESSION["id"])) {
     <main class="container">
         <h4>Английский алфавит</h4>
         <div class=" grid">
-
+            <?php foreach($letters as $letter):?>
+            <div class="tbtn">
+                <div>
+                    <p><?=$letter->letter?></p>
+                    <p><?=$letter->transcription?></p>
+                </div>
+            </div>
+            <?php endforeach;?>
+<!-- 
             <div class="tbtn">
                 <div>
                     <p>Aa</p>
@@ -201,7 +213,7 @@ if (!isset($_SESSION["id"])) {
                 <div>
                     <p>Zz</p>
                     <p>[zed]</p>
-                </div>
+                </div> -->
             </div>
         </div>
     </main>

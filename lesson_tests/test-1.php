@@ -49,7 +49,7 @@ if ($check) {
             <div class="lesson-word">
                 <h1>Переведи на русский язык</h1>
                 <div class="t">
-                    <h2>
+                    <h2 class="wrd">
                         <?= $word["word_name"] ?>
                         <div class="word-hover">
                             <p>
@@ -65,7 +65,7 @@ if ($check) {
             <div id="answers">
                 <?php foreach ($words as $wo): ?>
                     <button value="<?= $wo["word_id"] ?>">
-                        <div>
+                        <div class="w">
                             <?= $wo["word_translate"] ?>
                         </div>
                     </button>
