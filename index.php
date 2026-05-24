@@ -67,7 +67,7 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
                         <?php if ($temp < $count && $check):
                             ?>
                             <?php if ($temp == 2): ?>
-                                <a href="lesson/?id=<?= $lesson[0] ?>&c=<?= $temp ?>" class="circles evil"
+                                <a href="lesson/?id=<?= $lesson[0] ?>&c=<?= $temp+1 ?>" class="circles evil"
                                     style="animation: show <?= $anim / 5 ?>s ease;">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                             class="bi bi-star" viewBox="0 0 16 16">
@@ -81,7 +81,7 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
                                     </div>
                                 </a>
                             <?php elseif ($temp + 1 < $count): ?>
-                                <a href="lesson/?id=<?= $lesson[0] ?>&c=<?= $temp ?>" class="circles good"
+                                <a href="lesson/?id=<?= $lesson[0] ?>&c=<?= $temp+1 ?>" class="circles good"
                                     style="animation: show <?= $anim / 5 ?>s ease;">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                             class="bi bi-check" viewBox="0 0 16 16">
@@ -99,7 +99,7 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
                                 </a>
                             <?php else:
                                 ?>
-                                <a href="lesson/?id=<?= $lesson[0] ?>&c=<?= $temp ?>" class="circles"
+                                <a href="lesson/?id=<?= $lesson[0] ?>&c=<?= $temp+1 ?>" class="circles"
                                     style="animation: show <?= $anim / 5 ?>s ease;">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                             class="bi bi-play" viewBox="0 0 16 16">
@@ -122,7 +122,7 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
                             ?>
                             <?php if ($temp == 2): ?>
 
-                                <div href="lesson/?id=<?= $lesson[0] ?>&c=<?= $temp ?>" class="circles closed"
+                                <div class="circles closed"
                                     style="animation: show <?= $anim / 5 ?>s ease;">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                             class="bi bi-star" viewBox="0 0 16 16">

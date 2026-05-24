@@ -27,133 +27,118 @@ if ($check) {
     $words[array_rand($words)] = $word;
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/style.css">
-    <title>Document</title>
-    <link rel="stylesheet" href="../../lesson_tests/temp.css">
-</head>
-
-<body>
-    <main class="container">
-        <a href="/?lang=<?= $lang ?>" class="btn btn-danger mb-2">Выйти</a>
-        <div class="progressbar">
-            <div class="bar"></div>
-        </div>
-        <div class="q my-auto">
-            <div class="lesson-word">
-                <h1>Переведи на русский язык</h1>
-                <div class="t">
-                    <h2 class="wrd">
-                        <?= $word["word_name"] ?>
-                        <div class="word-hover">
-                            <p>
-                                <?= $word["word_transcription"] ?>
-                            </p>
-                            <p>
-                                <?= $word["word_translate"] ?>
-                            </p>
-                        </div>
-                    </h2>
-                </div>
-            </div>
-            <div id="answers">
-                <?php foreach ($words as $wo): ?>
-                    <button value="<?= $wo["word_id"] ?>">
-                        <div class="w">
-                            <?= $wo["word_translate"] ?>
-                        </div>
-                    </button>
-                <?php endforeach; ?>
+<main class="container">
+    <a href="/?lang=<?= $lang ?>" class="btn btn-danger mb-2">Выйти</a>
+    <div class="progressbar">
+        <div class="bar"></div>
+    </div>
+    <div class="q my-auto">
+        <div class="lesson-word">
+            <h1>Переведи на русский язык</h1>
+            <div class="t">
+                <h2 class="wrd">
+                    <?= $word["word_name"] ?>
+                    <div class="word-hover">
+                        <p>
+                            <?= $word["word_transcription"] ?>
+                        </p>
+                        <p>
+                            <?= $word["word_translate"] ?>
+                        </p>
+                    </div>
+                </h2>
             </div>
         </div>
-        <div class="alert alert-success hidden" role="alert">
-            <p>Всё верно!</p>
+        <div id="answers">
+            <?php foreach ($words as $wo): ?>
+                <button value="<?= $wo["word_id"] ?>">
+                    <div class="w">
+                        <?= $wo["word_translate"] ?>
+                    </div>
+                </button>
+            <?php endforeach; ?>
         </div>
-    </main>
-    <script>
-        let prog = <?= $progress - 1 ?>;
-        let bar = document.querySelector('.bar');
-        document.addEventListener('DOMContentLoaded', () => {
-            bar.setAttribute("style", "width: calc(100%*" + prog + "/<?= $lessonSize ?>);");
-        })
+    </div>
+    <div class="alert alert-success hidden" role="alert">
+        <p>Всё верно!</p>
+    </div>
+</main>
+<script>
+    let prog = <?= $progress - 1 ?>;
+    let bar = document.querySelector('.bar');
+    document.addEventListener('DOMContentLoaded', () => {
+        bar.setAttribute("style", "width: calc(100%*" + prog + "/<?= $lessonSize ?>);");
+    })
 
-        let buttons = document.querySelectorAll("#answers>button");
-        let answered = false;
-        let userAns;
-        let answer = "<?= $word["word_translate"] ?>";
-        buttons.forEach(butt => {
-            butt.addEventListener("click", () => {
-                if (!answered) {
-                    prog++;
-                    bar.setAttribute("style", "width: calc(100%*" + prog + "/<?= $lessonSize ?>);");
-                    userAns = butt.getAttribute("value");
-                    if (butt.innerText == answer) {
-                        butt.classList.add("good");
-                        next(false);
-                        sendData(false);
-                    } else {
-                        butt.classList.add("bad");
-                        next(true);
-                        sendData(true);
-                    }
-                    answered = true;
+    let buttons = document.querySelectorAll("#answers>button");
+    let answered = false;
+    let userAns;
+    let answer = "<?= $word["word_translate"] ?>";
+    buttons.forEach(butt => {
+        butt.addEventListener("click", () => {
+            if (!answered) {
+                prog++;
+                bar.setAttribute("style", "width: calc(100%*" + prog + "/<?= $lessonSize ?>);");
+                userAns = butt.getAttribute("value");
+                if (butt.innerText == answer) {
+                    butt.classList.add("good");
+                    next(false);
+                    sendData(false);
+                } else {
+                    butt.classList.add("bad");
+                    next(true);
+                    sendData(true);
                 }
-            })
-        });
+                answered = true;
+            }
+        })
+    });
 
 
-        let href = '<?= $href ?>';
+    let href = '<?= $href ?>';
 
-        function next(mistake) {
-            document.querySelector('.alert.hidden').remove();
-            let nextBad = `
+    function next(mistake) {
+        document.querySelector('.alert.hidden').remove();
+        let nextBad = `
             <div class="alert alert-danger bad" role="alert">
                     <p>Правильный ответ: <?= $word["word_translate"] ?></p>
                     <a class="alert-link" href=`+ href + `>Дальше</a>
                 </div>
                 `;
-            let nextGood = `
+        let nextGood = `
                 <div class="alert alert-success good" role="alert">
                 <p>Всё верно!</p>
                 <a class="alert-link" href=`+ href + `>Дальше</a>
                 </div>
                 `;
-            if (mistake) {
-                document.querySelector(".container").innerHTML += nextBad;
-            } else {
-                document.querySelector(".container").innerHTML += nextGood;
-            }
+        if (mistake) {
+            document.querySelector(".container").innerHTML += nextBad;
+        } else {
+            document.querySelector(".container").innerHTML += nextGood;
         }
+    }
 
-        function sendData(m) {
-            let progress = <?= $progress ?>;
-            let mistakes;
-            if (m) {
-                mistakes = <?= $mistakes ?>;
-            } else {
-                mistakes = <?= $noMistakes ?>;
-            }
-            let word = <?= $word["word_id"] ?>;
-            let ans = userAns;
-            let type = 'toRu';
-            let fd = new FormData();
-            fd.append("mistakes", mistakes);
-            fd.append("progress", progress);
-            fd.append("word", word);
-            fd.append("ans", ans);
-            fd.append("type", type);
-            fetch("score.php", {
-                method: "post",
-                body: fd
-            })
+    function sendData(m) {
+        let progress = <?= $progress ?>;
+        let mistakes;
+        if (m) {
+            mistakes = <?= $mistakes ?>;
+        } else {
+            mistakes = <?= $noMistakes ?>;
         }
-    </script>
-</body>
-
-</html>
+        let word = <?= $word["word_id"] ?>;
+        let ans = userAns;
+        let type = 'toRu';
+        let fd = new FormData();
+        fd.append("mistakes", mistakes);
+        fd.append("progress", progress);
+        fd.append("word", word);
+        fd.append("ans", ans);
+        fd.append("type", type);
+        fetch("score.php", {
+            method: "post",
+            body: fd
+        })
+    }
+</script>

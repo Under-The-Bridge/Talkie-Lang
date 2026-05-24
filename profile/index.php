@@ -1,52 +1,88 @@
 <?php
 session_start();
 require "../connection-db.php";
+
 if (!isset($_SESSION["id"])) {
-    echo "    <script>
-        alert('Войдите в профиль');
-        location.href = '/welcome/';
-    </script>";
+    echo "<script>alert('Войдите в профиль'); location.href = '/welcome/';</script>";
+    exit;
 }
+
 $id = $_SESSION["id"];
-$user = mysqli_fetch_assoc(mysqli_query($conn, "select * from users where user_id = $id"));
-$progresses = mysqli_fetch_all(mysqli_query($conn,"select * from user_lang_progress join langs on langs.lang_id = user_lang_progress.lang_id where user_id = $id"),MYSQLI_ASSOC);
+$user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM users WHERE user_id = $id"));
+$progresses = mysqli_fetch_all(mysqli_query($conn, "SELECT * FROM user_lang_progress JOIN langs ON langs.lang_id = user_lang_progress.lang_id WHERE user_id = $id"), MYSQLI_ASSOC);
+
+// Подсчет общей статистики
+$totalLessons = 0;
+$totalProgress = 0;
+foreach ($progresses as $progress) {
+    $lessonsCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as count FROM lesson WHERE lesson_language = " . $progress["lang_id"]))['count'];
+    $totalLessons += $lessonsCount;
+    $totalProgress += $progress['progress'];
+}
+$overallProgress = $totalLessons > 0 ? round(100 * $totalProgress / $totalLessons) : 0;
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
-
-
+<html lang="ru">
 <?php include "../components/head.php"; ?>
 
 <body>
     <?php include "../components/header.php"; ?>
+    
     <main class="container">
-        <h4>Привет, <?=$user["user_login"]?></h4>
-        <a href="logout.php">Выйти из профиля</a>
-        <?php foreach($progresses as $progress):
-            $lessons = mysqli_num_rows(mysqli_query($conn,"select * from lesson where lesson_language = ".$progress["lang_id"]));
-            ?>
-        <div class="card mb-3">
-            <div class="row g-0 d-flex justify-content-between align-items-center">
-                <div class="col-md-4"  style="height: 125px; max-width:125px">
-                    <h1>🍔,🍣</h1>
+        <!-- Welcome Banner -->
+        <div class="welcome-banner">
+            <div class="welcome-content">
+                <div class="welcome-text">
+                    <h1>С возвращением, <?= htmlspecialchars($user["user_login"]) ?>!</h1>
+                    <p>Продолжай изучать языки и достигать новых вершин</p>
                 </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <div class="d-flex g-1">
-                            <h2 class="card-title"><?=$progress["lang_name"]?> язык</h2>
-                            <h2 class="card-title ms-3"><?=(int)round(100*$progress['progress']/$lessons)."%"?></h2>
-                        </div>
-                    <p class="card-text">
-                        <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar" style="width: calc(100%*<?=$progress[3]?>/<?=$lessons?>)"></div>
-                        </div>
-                        </p>
+                <div class="welcome-stats">
+                    <div class="stat-card">
+                        <div class="stat-value"><?= count($progresses) ?></div>
+                        <div class="stat-label">Изучаемых языков</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value"><?= $overallProgress ?>%</div>
+                        <div class="stat-label">Общий прогресс</div>
                     </div>
                 </div>
             </div>
         </div>
-        <?php endforeach;?>
+
+        <!-- Languages Grid -->
+        <div class="languages-section">
+            <div class="section-header">
+                <h2>Мои курсы</h2>
+            </div>
+            
+            <div class="languages-grid">
+                <?php foreach ($progresses as $progress):
+                    $lessonsCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as count FROM lesson WHERE lesson_language = " . $progress["lang_id"]))['count'];
+                    $percent = $lessonsCount > 0 ? round(100 * $progress['progress'] / $lessonsCount) : 0;
+                ?>
+                <div class="lang-card">
+                    <div class="lang-card-header">
+                        <h3 class="lang-name"><?= $progress["lang_name"] ?></h3>
+                    </div>
+                    <div class="lang-card-body">
+                        <div class="progress-stats">
+                            <div class="progress-percent"><?= $percent ?>%</div>
+                            <div class="progress-bar-custom">
+                                <div class="progress-fill" style="width: <?= $percent ?>%;"></div>
+                            </div>
+                            <div class="progress-details">
+                                <span>Пройдено: <?= $progress['progress'] ?> из <?= $lessonsCount ?> разделов</span>
+                            </div>
+                        </div>
+                        <a href="/?lang=<?= $progress["lang_id"] ?>" class="continue-btn">
+                            Продолжить обучение →
+                        </a>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
     </main>
 </body>
-
 </html>

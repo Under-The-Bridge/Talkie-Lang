@@ -10,9 +10,10 @@ if (!isset($_SESSION["id"])) {
     </script>";
 }
 $json = file_get_contents('letters.json');
-$data = json_decode($json);
-
-$letters = $data->english->alphabet; 
+$data = json_decode($json,true);
+$lang = $_SESSION['lang'];
+$lang_name = mysqli_fetch_array(mysqli_query($conn,"select * from langs where lang_id = $lang"))[1];
+$letters = $data[$lang_name]['alphabet'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,13 +24,13 @@ $letters = $data->english->alphabet;
 <body>
     <?php include "../components/header.php"; ?>
     <main class="container">
-        <h4>Английский алфавит</h4>
-        <div class=" grid">
+        <h4><?=$lang_name?> алфавит</h4>
+        <div class="grid">
             <?php foreach($letters as $letter):?>
             <div class="tbtn">
                 <div>
-                    <p><?=$letter->letter?></p>
-                    <p><?=$letter->transcription?></p>
+                    <p><?=$letter["letter"]?></p>
+                    <p><?=$letter["transcription"]?></p>
                 </div>
             </div>
             <?php endforeach;?>
@@ -222,7 +223,7 @@ $letters = $data->english->alphabet;
         letters.forEach(btn => {
             btn.addEventListener("click", () => {
                 let text = btn.querySelector("p:nth-child(1)");
-                let message = new SpeechSynthesisUtterance(text.innerText[0]);
+                let message = new SpeechSynthesisUtterance(("<?=$lang_name?>" == "Японский") ? text.innerText : text.innerText[0]);
                 message.lang = 'en-US';
                 speechSynthesis.cancel();
                 window.speechSynthesis.speak(message);

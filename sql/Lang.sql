@@ -2,9 +2,9 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1:3306
--- Время создания: Май 12 2026 г., 10:44
--- Версия сервера: 5.7.39
+-- Хост: 127.0.0.1:3307
+-- Время создания: Май 24 2026 г., 14:56
+-- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `completed_lessons` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `lesson_id` int(11) NOT NULL,
-  `count` int(11) NOT NULL DEFAULT '0'
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `lesson_id` int NOT NULL,
+  `count` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `completed_lessons` (
 --
 
 INSERT INTO `completed_lessons` (`id`, `user_id`, `lesson_id`, `count`) VALUES
-(130, 2, 1, 2);
+(161, 2, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -48,8 +48,8 @@ INSERT INTO `completed_lessons` (`id`, `user_id`, `lesson_id`, `count`) VALUES
 --
 
 CREATE TABLE `langs` (
-  `lang_id` int(11) NOT NULL,
-  `lang_name` text COLLATE utf8mb4_unicode_ci NOT NULL
+  `lang_id` int NOT NULL,
+  `lang_name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -67,9 +67,9 @@ INSERT INTO `langs` (`lang_id`, `lang_name`) VALUES
 --
 
 CREATE TABLE `leagues` (
-  `league_id` int(11) NOT NULL,
+  `league_id` int NOT NULL,
   `league_name` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `leagues`
@@ -87,106 +87,110 @@ INSERT INTO `leagues` (`league_id`, `league_name`) VALUES
 --
 
 CREATE TABLE `league_users` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `weekly_league_id` varchar(12) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `weekly_league_id` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `league_users`
 --
 
 INSERT INTO `league_users` (`id`, `user_id`, `weekly_league_id`) VALUES
-(27762, 61, 'ReXrjpGOpCLi'),
-(27763, 90, 'ReXrjpGOpCLi'),
-(27764, 49, 'ReXrjpGOpCLi'),
-(27765, 40, 'ReXrjpGOpCLi'),
-(27766, 86, 'ReXrjpGOpCLi'),
-(27767, 76, 'ReXrjpGOpCLi'),
-(27768, 33, 'ReXrjpGOpCLi'),
-(27769, 79, 'ReXrjpGOpCLi'),
-(27770, 68, 'ReXrjpGOpCLi'),
-(27771, 32, 'ReXrjpGOpCLi'),
-(27772, 48, 'ReXrjpGOpCLi'),
-(27773, 71, 'ReXrjpGOpCLi'),
-(27774, 52, 'ReXrjpGOpCLi'),
-(27775, 10, 'ReXrjpGOpCLi'),
-(27776, 4, 'ReXrjpGOpCLi'),
-(27777, 85, 'amCSoRfRJeIc'),
-(27778, 55, 'amCSoRfRJeIc'),
-(27779, 37, 'amCSoRfRJeIc'),
-(27780, 89, 'amCSoRfRJeIc'),
-(27781, 66, 'amCSoRfRJeIc'),
-(27782, 46, 'amCSoRfRJeIc'),
-(27783, 17, 'amCSoRfRJeIc'),
-(27784, 11, 'amCSoRfRJeIc'),
-(27785, 88, 'amCSoRfRJeIc'),
-(27786, 67, 'amCSoRfRJeIc'),
-(27787, 23, 'amCSoRfRJeIc'),
-(27788, 63, 'amCSoRfRJeIc'),
-(27789, 53, 'amCSoRfRJeIc'),
-(27790, 28, 'amCSoRfRJeIc'),
-(27791, 9, 'amCSoRfRJeIc'),
-(27792, 5, 'JXusYTkRCnvT'),
-(27793, 26, 'JXusYTkRCnvT'),
-(27794, 20, 'JXusYTkRCnvT'),
-(27795, 13, 'JXusYTkRCnvT'),
-(27796, 29, 'JXusYTkRCnvT'),
-(27797, 82, 'JXusYTkRCnvT'),
-(27798, 81, 'JXusYTkRCnvT'),
-(27799, 58, 'JXusYTkRCnvT'),
-(27800, 51, 'JXusYTkRCnvT'),
-(27801, 30, 'JXusYTkRCnvT'),
-(27802, 78, 'JXusYTkRCnvT'),
-(27803, 44, 'JXusYTkRCnvT'),
-(27804, 14, 'JXusYTkRCnvT'),
-(27805, 21, 'JXusYTkRCnvT'),
-(27806, 15, 'JXusYTkRCnvT'),
-(27807, 54, 'ldLXKyLxwYxI'),
-(27808, 22, 'ldLXKyLxwYxI'),
-(27809, 43, 'ldLXKyLxwYxI'),
-(27810, 47, 'ldLXKyLxwYxI'),
-(27811, 60, 'ldLXKyLxwYxI'),
-(27812, 7, 'ldLXKyLxwYxI'),
-(27813, 18, 'ldLXKyLxwYxI'),
-(27814, 27, 'ldLXKyLxwYxI'),
-(27815, 2, 'ldLXKyLxwYxI'),
-(27816, 16, 'ldLXKyLxwYxI'),
-(27817, 74, 'ldLXKyLxwYxI'),
-(27818, 91, 'ldLXKyLxwYxI'),
-(27819, 39, 'ldLXKyLxwYxI'),
-(27820, 80, 'ldLXKyLxwYxI'),
-(27821, 36, 'ldLXKyLxwYxI'),
-(27822, 8, 'ejvcwqWBaImB'),
-(27823, 87, 'ejvcwqWBaImB'),
-(27824, 35, 'ejvcwqWBaImB'),
-(27825, 38, 'ejvcwqWBaImB'),
-(27826, 84, 'ejvcwqWBaImB'),
-(27827, 6, 'ejvcwqWBaImB'),
-(27828, 50, 'ejvcwqWBaImB'),
-(27829, 57, 'ejvcwqWBaImB'),
-(27830, 62, 'ejvcwqWBaImB'),
-(27831, 59, 'ejvcwqWBaImB'),
-(27832, 69, 'ejvcwqWBaImB'),
-(27833, 64, 'ejvcwqWBaImB'),
-(27834, 73, 'ejvcwqWBaImB'),
-(27835, 72, 'ejvcwqWBaImB'),
-(27836, 92, 'ejvcwqWBaImB'),
-(27837, 41, 'GGxPQjgxiUTd'),
-(27838, 34, 'GGxPQjgxiUTd'),
-(27839, 42, 'GGxPQjgxiUTd'),
-(27840, 70, 'GGxPQjgxiUTd'),
-(27841, 45, 'GGxPQjgxiUTd'),
-(27842, 25, 'GGxPQjgxiUTd'),
-(27843, 65, 'GGxPQjgxiUTd'),
-(27844, 31, 'GGxPQjgxiUTd'),
-(27845, 24, 'GGxPQjgxiUTd'),
-(27846, 56, 'GGxPQjgxiUTd'),
-(27847, 19, 'GGxPQjgxiUTd'),
-(27848, 83, 'GGxPQjgxiUTd'),
-(27849, 77, 'GGxPQjgxiUTd'),
-(27850, 75, 'GGxPQjgxiUTd'),
-(27851, 12, 'GGxPQjgxiUTd');
+(18054, 31, 'QtUoPyEgrylq'),
+(18055, 111, 'QtUoPyEgrylq'),
+(18056, 50, 'QtUoPyEgrylq'),
+(18057, 27, 'QtUoPyEgrylq'),
+(18058, 92, 'QtUoPyEgrylq'),
+(18059, 24, 'QtUoPyEgrylq'),
+(18060, 34, 'QtUoPyEgrylq'),
+(18061, 47, 'QtUoPyEgrylq'),
+(18062, 4, 'QtUoPyEgrylq'),
+(18063, 54, 'QtUoPyEgrylq'),
+(18064, 76, 'QtUoPyEgrylq'),
+(18065, 89, 'QtUoPyEgrylq'),
+(18066, 43, 'QtUoPyEgrylq'),
+(18067, 81, 'QtUoPyEgrylq'),
+(18068, 68, 'QtUoPyEgrylq'),
+(18069, 75, 'dOcIsqBXZkie'),
+(18070, 59, 'dOcIsqBXZkie'),
+(18071, 45, 'dOcIsqBXZkie'),
+(18072, 44, 'dOcIsqBXZkie'),
+(18073, 60, 'dOcIsqBXZkie'),
+(18074, 7, 'dOcIsqBXZkie'),
+(18075, 63, 'dOcIsqBXZkie'),
+(18076, 16, 'dOcIsqBXZkie'),
+(18077, 80, 'dOcIsqBXZkie'),
+(18078, 10, 'dOcIsqBXZkie'),
+(18079, 64, 'dOcIsqBXZkie'),
+(18080, 35, 'dOcIsqBXZkie'),
+(18081, 39, 'dOcIsqBXZkie'),
+(18082, 5, 'dOcIsqBXZkie'),
+(18083, 83, 'dOcIsqBXZkie'),
+(18084, 11, 'hVFywDWMQciG'),
+(18085, 65, 'hVFywDWMQciG'),
+(18086, 87, 'hVFywDWMQciG'),
+(18087, 71, 'hVFywDWMQciG'),
+(18088, 66, 'hVFywDWMQciG'),
+(18089, 32, 'hVFywDWMQciG'),
+(18090, 57, 'hVFywDWMQciG'),
+(18091, 74, 'hVFywDWMQciG'),
+(18092, 28, 'hVFywDWMQciG'),
+(18093, 13, 'hVFywDWMQciG'),
+(18094, 46, 'hVFywDWMQciG'),
+(18095, 17, 'hVFywDWMQciG'),
+(18096, 40, 'hVFywDWMQciG'),
+(18097, 12, 'hVFywDWMQciG'),
+(18098, 73, 'hVFywDWMQciG'),
+(18099, 18, 'ufqlOKwECTpW'),
+(18100, 84, 'ufqlOKwECTpW'),
+(18101, 78, 'ufqlOKwECTpW'),
+(18102, 53, 'ufqlOKwECTpW'),
+(18103, 49, 'ufqlOKwECTpW'),
+(18104, 70, 'ufqlOKwECTpW'),
+(18105, 72, 'ufqlOKwECTpW'),
+(18106, 6, 'ufqlOKwECTpW'),
+(18107, 52, 'ufqlOKwECTpW'),
+(18108, 86, 'ufqlOKwECTpW'),
+(18109, 14, 'ufqlOKwECTpW'),
+(18110, 20, 'ufqlOKwECTpW'),
+(18111, 2, 'ufqlOKwECTpW'),
+(18112, 91, 'ufqlOKwECTpW'),
+(18113, 26, 'ufqlOKwECTpW'),
+(18114, 58, 'ZNzHfJJIpQKV'),
+(18115, 77, 'ZNzHfJJIpQKV'),
+(18116, 69, 'ZNzHfJJIpQKV'),
+(18117, 25, 'ZNzHfJJIpQKV'),
+(18118, 33, 'ZNzHfJJIpQKV'),
+(18119, 8, 'ZNzHfJJIpQKV'),
+(18120, 41, 'ZNzHfJJIpQKV'),
+(18121, 37, 'ZNzHfJJIpQKV'),
+(18122, 55, 'ZNzHfJJIpQKV'),
+(18123, 29, 'ZNzHfJJIpQKV'),
+(18124, 48, 'ZNzHfJJIpQKV'),
+(18125, 9, 'ZNzHfJJIpQKV'),
+(18126, 88, 'ZNzHfJJIpQKV'),
+(18127, 108, 'ZNzHfJJIpQKV'),
+(18128, 62, 'ZNzHfJJIpQKV'),
+(18129, 30, 'lvPEIzugpHcP'),
+(18130, 110, 'lvPEIzugpHcP'),
+(18131, 61, 'lvPEIzugpHcP'),
+(18132, 42, 'lvPEIzugpHcP'),
+(18133, 15, 'lvPEIzugpHcP'),
+(18134, 21, 'lvPEIzugpHcP'),
+(18135, 90, 'lvPEIzugpHcP'),
+(18136, 19, 'lvPEIzugpHcP'),
+(18137, 82, 'lvPEIzugpHcP'),
+(18138, 38, 'lvPEIzugpHcP'),
+(18139, 51, 'lvPEIzugpHcP'),
+(18140, 85, 'lvPEIzugpHcP'),
+(18141, 56, 'lvPEIzugpHcP'),
+(18142, 22, 'lvPEIzugpHcP'),
+(18143, 23, 'lvPEIzugpHcP'),
+(18144, 36, 'UIdryYBMmtuU'),
+(18145, 67, 'UIdryYBMmtuU'),
+(18146, 112, 'UIdryYBMmtuU'),
+(18147, 79, 'UIdryYBMmtuU');
 
 -- --------------------------------------------------------
 
@@ -195,10 +199,10 @@ INSERT INTO `league_users` (`id`, `user_id`, `weekly_league_id`) VALUES
 --
 
 CREATE TABLE `lesson` (
-  `lesson_id` int(11) NOT NULL,
+  `lesson_id` int NOT NULL,
   `lesson_name` varchar(100) NOT NULL,
-  `lesson_language` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `lesson_language` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `lesson`
@@ -210,8 +214,7 @@ INSERT INTO `lesson` (`lesson_id`, `lesson_name`, `lesson_language`) VALUES
 (3, 'Животные', 1),
 (4, 'Японский: базовые слова', 2),
 (5, 'Еда', 2),
-(6, 'Животные', 2),
-(26, 'Пусто', 1);
+(6, 'Животные', 2);
 
 -- --------------------------------------------------------
 
@@ -220,10 +223,10 @@ INSERT INTO `lesson` (`lesson_id`, `lesson_name`, `lesson_language`) VALUES
 --
 
 CREATE TABLE `lessons_words` (
-  `id` int(11) NOT NULL,
-  `lesson_id` int(11) NOT NULL,
-  `word_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` int NOT NULL,
+  `lesson_id` int NOT NULL,
+  `word_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `lessons_words`
@@ -267,8 +270,7 @@ INSERT INTO `lessons_words` (`id`, `lesson_id`, `word_id`) VALUES
 (41, 6, 53),
 (42, 6, 54),
 (43, 6, 55),
-(44, 6, 56),
-(77, 26, 20);
+(44, 6, 56);
 
 -- --------------------------------------------------------
 
@@ -277,111 +279,115 @@ INSERT INTO `lessons_words` (`id`, `lesson_id`, `word_id`) VALUES
 --
 
 CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL,
+  `user_id` int NOT NULL,
   `user_login` text NOT NULL,
   `user_email` text NOT NULL,
   `user_password` text NOT NULL,
   `user_role` enum('user','admin') NOT NULL DEFAULT 'user',
-  `user_weekly_xp` int(11) NOT NULL DEFAULT '0',
-  `user_league` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `user_weekly_xp` int NOT NULL DEFAULT '0',
+  `user_league` int NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `users`
 --
 
 INSERT INTO `users` (`user_id`, `user_login`, `user_email`, `user_password`, `user_role`, `user_weekly_xp`, `user_league`) VALUES
-(2, 'Under-The-Bridge', 'ramazanikbaev6@gmail.com', 'Under-The-Bridge', 'user', 0, 2),
+(2, 'Under-The-Bridge', 'ramazanikbaev6@gmail.com', 'Under-The-Bridge', 'user', 3987, 2),
 (3, 'admin', 'admin@admin.admin', 'admin', 'admin', 0, 1),
 (4, 'qweqwe', 'qweqwe@qweqwe.qweqwe', 'qweqwe', 'user', 0, 1),
-(5, 'alex_smith', 'alex.smith@example.com', '123456', 'user', 0, 2),
-(6, 'maria_johnson', 'maria.johnson@example.com', '123456', 'user', 0, 3),
-(7, 'dmitry_volkov', 'dmitry.volkov@example.com', '123456', 'user', 0, 2),
+(5, 'alex_smith', 'alex.smith@example.com', '123456', 'user', 0, 1),
+(6, 'maria_johnson', 'maria.johnson@example.com', '123456', 'user', 0, 2),
+(7, 'dmitry_volkov', 'dmitry.volkov@example.com', '123456', 'user', 0, 1),
 (8, 'elena_petrova', 'elena.petrova@example.com', '123456', 'user', 0, 3),
-(9, 'maxim_ivanov', 'maxim.ivanov@example.com', '123456', 'user', 0, 1),
+(9, 'maxim_ivanov', 'maxim.ivanov@example.com', '123456', 'user', 0, 3),
 (10, 'anna_kozlov', 'anna.kozlov@example.com', '123456', 'user', 0, 1),
-(11, 'sergey_nikolaev', 'sergey.nikolaev@example.com', '123456', 'user', 0, 1),
-(12, 'olga_smirnova', 'olga.smirnova@example.com', '123456', 'user', 0, 3),
+(11, 'sergey_nikolaev', 'sergey.nikolaev@example.com', '123456', 'user', 0, 2),
+(12, 'olga_smirnova', 'olga.smirnova@example.com', '123456', 'user', 0, 2),
 (13, 'ivan_morozov', 'ivan.morozov@example.com', '123456', 'user', 0, 2),
 (14, 'natalia_fedorova', 'natalia.fedorova@example.com', '123456', 'user', 0, 2),
-(15, 'andrey_popov', 'andrey.popov@example.com', '123456', 'user', 0, 2),
-(16, 'tatyana_sokolova', 'tatyana.sokolova@example.com', '123456', 'user', 0, 2),
-(17, 'pavel_lebenev', 'pavel.lebenev@example.com', '123456', 'user', 0, 1),
+(15, 'andrey_popov', 'andrey.popov@example.com', '123456', 'user', 0, 3),
+(16, 'tatyana_sokolova', 'tatyana.sokolova@example.com', '123456', 'user', 0, 1),
+(17, 'pavel_lebenev', 'pavel.lebenev@example.com', '123456', 'user', 0, 2),
 (18, 'yulia_novikova', 'yulia.novikova@example.com', '123456', 'user', 0, 2),
 (19, 'vladimir_zaits', 'vladimir.zaits@example.com', '123456', 'user', 0, 3),
 (20, 'ekaterina_orlova', 'ekaterina.orlova@example.com', '123456', 'user', 0, 2),
-(21, 'konstantin_makarov', 'konstantin.makarov@example.com', '123456', 'user', 0, 2),
-(22, 'irina_pavlova', 'irina.pavlova@example.com', '123456', 'user', 0, 2),
-(23, 'artem_egorov', 'artem.egorov@example.com', '123456', 'user', 0, 1),
-(24, 'svetlana_timofeeva', 'svetlana.timofeeva@example.com', '123456', 'user', 0, 3),
+(21, 'konstantin_makarov', 'konstantin.makarov@example.com', '123456', 'user', 0, 3),
+(22, 'irina_pavlova', 'irina.pavlova@example.com', '123456', 'user', 0, 3),
+(23, 'artem_egorov', 'artem.egorov@example.com', '123456', 'user', 0, 3),
+(24, 'svetlana_timofeeva', 'svetlana.timofeeva@example.com', '123456', 'user', 0, 1),
 (25, 'denis_volkov', 'denis.volkov@example.com', '123456', 'user', 0, 3),
 (26, 'ksenia_morozova', 'ksenia.morozova@example.com', '123456', 'user', 0, 2),
-(27, 'roman_borisov', 'roman.borisov@example.com', '123456', 'user', 0, 2),
-(28, 'vera_kuznetsova', 'vera.kuznetsova@example.com', '123456', 'user', 0, 1),
-(29, 'nikita_sidorov', 'nikita.sidorov@example.com', '123456', 'user', 0, 2),
-(30, 'polina_vasilyeva', 'polina.vasilyeva@example.com', '123456', 'user', 0, 2),
-(31, 'oleg_timofeev', 'oleg.timofeev@example.com', '123456', 'user', 0, 3),
-(32, 'bash_ars', 'bash.bash@example.com', '123456', 'user', 0, 1),
-(33, 'user_001', 'user001@example.com', '123456', 'user', 0, 1),
-(34, 'user_002', 'user002@example.com', '123456', 'user', 0, 3),
-(35, 'user_003', 'user003@example.com', '123456', 'user', 0, 3),
-(36, 'user_004', 'user004@example.com', '123456', 'user', 0, 2),
-(37, 'user_005', 'user005@example.com', '123456', 'user', 0, 1),
+(27, 'roman_borisov', 'roman.borisov@example.com', '123456', 'user', 0, 1),
+(28, 'vera_kuznetsova', 'vera.kuznetsova@example.com', '123456', 'user', 0, 2),
+(29, 'nikita_sidorov', 'nikita.sidorov@example.com', '123456', 'user', 0, 3),
+(30, 'polina_vasilyeva', 'polina.vasilyeva@example.com', '123456', 'user', 0, 3),
+(31, 'oleg_timofeev', 'oleg.timofeev@example.com', '123456', 'user', 0, 1),
+(32, 'bash_ars', 'bash.bash@example.com', '123456', 'user', 0, 2),
+(33, 'user_001', 'user001@example.com', '123456', 'user', 0, 3),
+(34, 'user_002', 'user002@example.com', '123456', 'user', 0, 1),
+(35, 'user_003', 'user003@example.com', '123456', 'user', 0, 1),
+(36, 'user_004', 'user004@example.com', '123456', 'user', 0, 3),
+(37, 'user_005', 'user005@example.com', '123456', 'user', 0, 3),
 (38, 'user_006', 'user006@example.com', '123456', 'user', 0, 3),
-(39, 'user_007', 'user007@example.com', '123456', 'user', 0, 2),
-(40, 'user_008', 'user008@example.com', '123456', 'user', 0, 1),
+(39, 'user_007', 'user007@example.com', '123456', 'user', 0, 1),
+(40, 'user_008', 'user008@example.com', '123456', 'user', 0, 2),
 (41, 'user_009', 'user009@example.com', '123456', 'user', 0, 3),
 (42, 'user_010', 'user010@example.com', '123456', 'user', 0, 3),
-(43, 'user_011', 'user011@example.com', '123456', 'user', 0, 2),
-(44, 'user_012', 'user012@example.com', '123456', 'user', 0, 2),
-(45, 'user_013', 'user013@example.com', '123456', 'user', 0, 3),
-(46, 'user_014', 'user014@example.com', '123456', 'user', 0, 1),
-(47, 'user_015', 'user015@example.com', '123456', 'user', 0, 2),
-(48, 'user_016', 'user016@example.com', '123456', 'user', 0, 1),
-(49, 'user_017', 'user017@example.com', '123456', 'user', 0, 1),
-(50, 'user_018', 'user018@example.com', '123456', 'user', 0, 3),
-(51, 'user_019', 'user019@example.com', '123456', 'user', 0, 2),
-(52, 'user_020', 'user020@example.com', '123456', 'user', 0, 1),
-(53, 'user_021', 'user021@example.com', '123456', 'user', 0, 1),
-(54, 'user_022', 'user022@example.com', '123456', 'user', 0, 2),
-(55, 'user_023', 'user023@example.com', '123456', 'user', 0, 1),
+(43, 'user_011', 'user011@example.com', '123456', 'user', 0, 1),
+(44, 'user_012', 'user012@example.com', '123456', 'user', 0, 1),
+(45, 'user_013', 'user013@example.com', '123456', 'user', 0, 1),
+(46, 'user_014', 'user014@example.com', '123456', 'user', 0, 2),
+(47, 'user_015', 'user015@example.com', '123456', 'user', 0, 1),
+(48, 'user_016', 'user016@example.com', '123456', 'user', 0, 3),
+(49, 'user_017', 'user017@example.com', '123456', 'user', 0, 2),
+(50, 'user_018', 'user018@example.com', '123456', 'user', 0, 1),
+(51, 'user_019', 'user019@example.com', '123456', 'user', 0, 3),
+(52, 'user_020', 'user020@example.com', '123456', 'user', 0, 2),
+(53, 'user_021', 'user021@example.com', '123456', 'user', 0, 2),
+(54, 'user_022', 'user022@example.com', '123456', 'user', 0, 1),
+(55, 'user_023', 'user023@example.com', '123456', 'user', 0, 3),
 (56, 'user_024', 'user024@example.com', '123456', 'user', 0, 3),
-(57, 'user_025', 'user025@example.com', '123456', 'user', 0, 3),
-(58, 'user_026', 'user026@example.com', '123456', 'user', 0, 2),
-(59, 'user_027', 'user027@example.com', '123456', 'user', 0, 3),
-(60, 'user_028', 'user028@example.com', '123456', 'user', 0, 2),
-(61, 'user_029', 'user029@example.com', '123456', 'user', 0, 1),
+(57, 'user_025', 'user025@example.com', '123456', 'user', 0, 2),
+(58, 'user_026', 'user026@example.com', '123456', 'user', 0, 3),
+(59, 'user_027', 'user027@example.com', '123456', 'user', 0, 1),
+(60, 'user_028', 'user028@example.com', '123456', 'user', 0, 1),
+(61, 'user_029', 'user029@example.com', '123456', 'user', 0, 3),
 (62, 'user_030', 'user030@example.com', '123456', 'user', 0, 3),
 (63, 'user_031', 'user031@example.com', '123456', 'user', 0, 1),
-(64, 'user_032', 'user032@example.com', '123456', 'user', 0, 3),
-(65, 'user_033', 'user033@example.com', '123456', 'user', 0, 3),
-(66, 'user_034', 'user034@example.com', '123456', 'user', 0, 1),
-(67, 'user_035', 'user035@example.com', '123456', 'user', 0, 1),
+(64, 'user_032', 'user032@example.com', '123456', 'user', 0, 1),
+(65, 'user_033', 'user033@example.com', '123456', 'user', 0, 2),
+(66, 'user_034', 'user034@example.com', '123456', 'user', 0, 2),
+(67, 'user_035', 'user035@example.com', '123456', 'user', 0, 3),
 (68, 'user_036', 'user036@example.com', '123456', 'user', 0, 1),
 (69, 'user_037', 'user037@example.com', '123456', 'user', 0, 3),
-(70, 'user_038', 'user038@example.com', '123456', 'user', 0, 3),
-(71, 'user_039', 'user039@example.com', '123456', 'user', 0, 1),
-(72, 'user_040', 'user040@example.com', '123456', 'user', 0, 3),
-(73, 'user_041', 'user041@example.com', '123456', 'user', 0, 3),
+(70, 'user_038', 'user038@example.com', '123456', 'user', 0, 2),
+(71, 'user_039', 'user039@example.com', '123456', 'user', 0, 2),
+(72, 'user_040', 'user040@example.com', '123456', 'user', 0, 2),
+(73, 'user_041', 'user041@example.com', '123456', 'user', 0, 2),
 (74, 'user_042', 'user042@example.com', '123456', 'user', 0, 2),
-(75, 'user_043', 'user043@example.com', '123456', 'user', 0, 3),
+(75, 'user_043', 'user043@example.com', '123456', 'user', 0, 1),
 (76, 'user_044', 'user044@example.com', '123456', 'user', 0, 1),
 (77, 'user_045', 'user045@example.com', '123456', 'user', 0, 3),
 (78, 'user_046', 'user046@example.com', '123456', 'user', 0, 2),
-(79, 'user_047', 'user047@example.com', '123456', 'user', 0, 1),
-(80, 'user_048', 'user048@example.com', '123456', 'user', 0, 2),
-(81, 'user_049', 'user049@example.com', '123456', 'user', 0, 2),
-(82, 'user_050', 'user050@example.com', '123456', 'user', 0, 2),
-(83, 'user_051', 'user051@example.com', '123456', 'user', 0, 3),
-(84, 'user_052', 'user052@example.com', '123456', 'user', 0, 3),
-(85, 'user_053', 'user053@example.com', '123456', 'user', 0, 1),
-(86, 'user_054', 'user054@example.com', '123456', 'user', 0, 1),
-(87, 'user_055', 'user055@example.com', '123456', 'user', 0, 3),
-(88, 'user_056', 'user056@example.com', '123456', 'user', 0, 1),
+(79, 'user_047', 'user047@example.com', '123456', 'user', 0, 3),
+(80, 'user_048', 'user048@example.com', '123456', 'user', 0, 1),
+(81, 'user_049', 'user049@example.com', '123456', 'user', 0, 1),
+(82, 'user_050', 'user050@example.com', '123456', 'user', 0, 3),
+(83, 'user_051', 'user051@example.com', '123456', 'user', 0, 1),
+(84, 'user_052', 'user052@example.com', '123456', 'user', 0, 2),
+(85, 'user_053', 'user053@example.com', '123456', 'user', 0, 3),
+(86, 'user_054', 'user054@example.com', '123456', 'user', 0, 2),
+(87, 'user_055', 'user055@example.com', '123456', 'user', 0, 2),
+(88, 'user_056', 'user056@example.com', '123456', 'user', 0, 3),
 (89, 'user_057', 'user057@example.com', '123456', 'user', 0, 1),
-(90, 'user_058', 'user058@example.com', '123456', 'user', 0, 1),
+(90, 'user_058', 'user058@example.com', '123456', 'user', 0, 3),
 (91, 'user_059', 'user059@example.com', '123456', 'user', 0, 2),
-(92, 'user_060', 'user060@example.com', '123456', 'user', 0, 3);
+(92, 'user_060', 'user060@example.com', '123456', 'user', 0, 1),
+(108, 'ramz', 'ramz@ramz', 'ramz', 'user', 0, 3),
+(110, 'qqqq', 'qqqq@qqqq', 'qqqq', 'user', 0, 3),
+(111, 'zxczxczxc', 'zxczxczxc@zxczxczxc', 'zxczxczxc', 'user', 0, 1),
+(112, 'ramziktvt@gmail.com', 'ramziktvt@gmail.com', 'ramziktvt@gmail.com', 'user', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -390,10 +396,10 @@ INSERT INTO `users` (`user_id`, `user_login`, `user_email`, `user_password`, `us
 --
 
 CREATE TABLE `user_lang_progress` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `lang_id` int(11) NOT NULL,
-  `progress` int(11) NOT NULL DEFAULT '0'
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `lang_id` int NOT NULL,
+  `progress` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -401,7 +407,7 @@ CREATE TABLE `user_lang_progress` (
 --
 
 INSERT INTO `user_lang_progress` (`id`, `user_id`, `lang_id`, `progress`) VALUES
-(15, 2, 1, 2);
+(45, 2, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -410,19 +416,29 @@ INSERT INTO `user_lang_progress` (`id`, `user_id`, `lang_id`, `progress`) VALUES
 --
 
 CREATE TABLE `user_words` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `word_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `word_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `user_words`
 --
 
 INSERT INTO `user_words` (`id`, `user_id`, `word_id`) VALUES
-(1, 2, 22),
-(2, 2, 20),
-(3, 2, 21);
+(1, 2, 20),
+(2, 2, 23),
+(3, 2, 24),
+(4, 2, 25),
+(5, 2, 38),
+(6, 2, 40),
+(7, 2, 41),
+(8, 110, 42),
+(9, 112, 23),
+(10, 112, 42),
+(11, 2, 21),
+(12, 2, 39),
+(13, 2, 42);
 
 -- --------------------------------------------------------
 
@@ -432,21 +448,22 @@ INSERT INTO `user_words` (`id`, `user_id`, `word_id`) VALUES
 
 CREATE TABLE `weekly_league` (
   `id` varchar(12) NOT NULL,
-  `league_id` int(11) NOT NULL,
+  `league_id` int NOT NULL,
   `time` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `weekly_league`
 --
 
 INSERT INTO `weekly_league` (`id`, `league_id`, `time`) VALUES
-('amCSoRfRJeIc', 1, '1778571871'),
-('ejvcwqWBaImB', 3, '1778571871'),
-('GGxPQjgxiUTd', 3, '1778571871'),
-('JXusYTkRCnvT', 2, '1778571871'),
-('ldLXKyLxwYxI', 2, '1778571871'),
-('ReXrjpGOpCLi', 1, '1778571871');
+('dOcIsqBXZkie', 1, '1779624652'),
+('hVFywDWMQciG', 2, '1779624652'),
+('lvPEIzugpHcP', 3, '1779624652'),
+('QtUoPyEgrylq', 1, '1779624652'),
+('ufqlOKwECTpW', 2, '1779624652'),
+('UIdryYBMmtuU', 3, '1779624652'),
+('ZNzHfJJIpQKV', 3, '1779624652');
 
 -- --------------------------------------------------------
 
@@ -455,12 +472,12 @@ INSERT INTO `weekly_league` (`id`, `league_id`, `time`) VALUES
 --
 
 CREATE TABLE `words` (
-  `word_id` int(11) NOT NULL,
+  `word_id` int NOT NULL,
   `word_name` varchar(100) NOT NULL,
   `word_transcription` varchar(100) DEFAULT NULL,
   `word_translate` varchar(100) NOT NULL,
-  `lang_id` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `lang_id` int NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `words`
@@ -598,61 +615,61 @@ ALTER TABLE `words`
 -- AUTO_INCREMENT для таблицы `completed_lessons`
 --
 ALTER TABLE `completed_lessons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
 
 --
 -- AUTO_INCREMENT для таблицы `langs`
 --
 ALTER TABLE `langs`
-  MODIFY `lang_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `lang_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `leagues`
 --
 ALTER TABLE `leagues`
-  MODIFY `league_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `league_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `league_users`
 --
 ALTER TABLE `league_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27852;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18148;
 
 --
 -- AUTO_INCREMENT для таблицы `lesson`
 --
 ALTER TABLE `lesson`
-  MODIFY `lesson_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `lesson_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT для таблицы `lessons_words`
 --
 ALTER TABLE `lessons_words`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT для таблицы `user_lang_progress`
 --
 ALTER TABLE `user_lang_progress`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT для таблицы `user_words`
 --
 ALTER TABLE `user_words`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT для таблицы `words`
 --
 ALTER TABLE `words`
-  MODIFY `word_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `word_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
@@ -669,7 +686,7 @@ ALTER TABLE `completed_lessons`
 -- Ограничения внешнего ключа таблицы `league_users`
 --
 ALTER TABLE `league_users`
-  ADD CONSTRAINT `league_users_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `league_users_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `league_users_ibfk_2` FOREIGN KEY (`weekly_league_id`) REFERENCES `weekly_league` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -689,27 +706,27 @@ ALTER TABLE `lessons_words`
 -- Ограничения внешнего ключа таблицы `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`user_league`) REFERENCES `leagues` (`league_id`);
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`user_league`) REFERENCES `leagues` (`league_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Ограничения внешнего ключа таблицы `user_lang_progress`
 --
 ALTER TABLE `user_lang_progress`
-  ADD CONSTRAINT `user_lang_progress_ibfk_1` FOREIGN KEY (`lang_id`) REFERENCES `langs` (`lang_id`),
-  ADD CONSTRAINT `user_lang_progress_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+  ADD CONSTRAINT `user_lang_progress_ibfk_1` FOREIGN KEY (`lang_id`) REFERENCES `langs` (`lang_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `user_lang_progress_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Ограничения внешнего ключа таблицы `user_words`
 --
 ALTER TABLE `user_words`
-  ADD CONSTRAINT `user_words_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `user_words_ibfk_2` FOREIGN KEY (`word_id`) REFERENCES `words` (`word_id`);
+  ADD CONSTRAINT `user_words_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `user_words_ibfk_2` FOREIGN KEY (`word_id`) REFERENCES `words` (`word_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Ограничения внешнего ключа таблицы `words`
 --
 ALTER TABLE `words`
-  ADD CONSTRAINT `words_ibfk_1` FOREIGN KEY (`lang_id`) REFERENCES `langs` (`lang_id`);
+  ADD CONSTRAINT `words_ibfk_1` FOREIGN KEY (`lang_id`) REFERENCES `langs` (`lang_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

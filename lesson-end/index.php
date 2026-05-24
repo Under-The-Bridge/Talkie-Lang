@@ -23,6 +23,7 @@ $lang = mysqli_fetch_array(mysqli_query($conn, "select lesson_language from less
 $nums = mysqli_num_rows(mysqli_query($conn, "select * from completed_lessons where lesson_id = $lesson_id and user_id = $id"));
 
 $count = mysqli_fetch_assoc(mysqli_query($conn, "select * from completed_lessons where user_id = $id and lesson_id = $lesson_id"))["count"];
+
 if (round($prog * 0.25) >= $mistakes) {
     if ($count == 3 && $c == 3) {
         $lessons_count = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `lesson` WHERE lesson_id <= $lesson_id and lesson_language = 1"))[0];
