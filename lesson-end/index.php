@@ -18,14 +18,16 @@ if (!isset($_SESSION["fail"])) {
     $xp = $xp - ($current_time - $time) - ($mistakes * 150);
     $id = $_SESSION["id"];
 
-    $lang = mysqli_fetch_array(mysqli_query($conn, "select lesson_language from lesson"))[0];
+    $lang = mysqli_fetch_array(mysqli_query($conn, "select lesson_language from lesson where lesson_id = $lesson_id"))[0];
 
     $nums = mysqli_num_rows(mysqli_query($conn, "select * from completed_lessons where lesson_id = $lesson_id and user_id = $id"));
 
     $count = mysqli_fetch_assoc(mysqli_query($conn, "select * from completed_lessons where user_id = $id and lesson_id = $lesson_id"))["count"];
     if ($count == 3 && $c == 3) {
-        $lessons_count = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `lesson` WHERE lesson_id <= $lesson_id and lesson_language = 1"))[0];
-        $les_id = mysqli_fetch_array(mysqli_query($conn, "SELECT * from lesson where lesson_language = 1 LIMIT 1 OFFSET $lessons_count"))[0];
+        echo "SELECT COUNT(*) FROM `lesson` WHERE lesson_id <= $lesson_id and lesson_language = $lang";
+        $lessons_count = mysqli_fetch_array(mysqli_query($conn, "SELECT COUNT(*) FROM `lesson` WHERE lesson_id <= $lesson_id and lesson_language = $lang"))[0];
+        echo "SELECT * from lesson where lesson_language = $lang LIMIT 1 OFFSET $lessons_count";
+        $les_id = mysqli_fetch_array(mysqli_query($conn, "SELECT * from lesson where lesson_language = $lang LIMIT 1 OFFSET $lessons_count"))[0];
         mysqli_query($conn, "INSERT INTO `completed_lessons`(`user_id`, `lesson_id`) VALUES ('$id','$les_id')");
         $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_lang_progress where lang_id = $lang and user_id = $id"))[0];
         $progress++;

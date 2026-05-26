@@ -821,12 +821,13 @@ aside {
 .welcome-banner {
     background: linear-gradient(135deg, var(--main-color) 0%, var(--main-color-shadow) 100%);
     border-radius: 24px;
-    padding: 40px;
+    /* padding: 40px; */
     margin-bottom: 40px;
     box-shadow: 0 10px 30px rgba(224, 131, 77, 0.3);
 }
 
 .welcome-content {
+    padding: 10px 40px 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1118,22 +1119,70 @@ aside {
         flex-direction: column;
         text-align: center;
     }
-    
+
     .welcome-stats {
         width: 100%;
         justify-content: center;
     }
-    
+
     .languages-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .achievements-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .section-header {
         flex-direction: column;
         align-items: flex-start;
     }
+}
+
+
+.pfp {
+    border-radius: 100%;
+    box-shadow: 0px 0px 25px var(--gray-color-light);
+    width: 20vh;
+    aspect-ratio: 1/1;
+    background-color: white;
+}
+
+.pfp .dropdown {
+    height: 100%;
+}
+.pfp .dropdown-item {
+    color: var(--main-color);
+    font-weight: 900;
+}
+.pfp .dropdown-item:hover {
+    color: white;
+    background-color: var(--main-color);
+}
+
+.pfp .dropdown-menu {
+    transform: translateY(225%) !important;
+}
+
+.empty-pfp {
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--main-color);
+    height: 100%;
+    display: grid;
+    place-content: center;
+}
+
+.profile-part {
+    padding: 20px 40px 0px 40px;
+    border-radius: 24px 24px 0px 0px;
+}
+
+img.pfp{
+    width: 100%;
+    aspect-ratio: 1/1;
+}
+img.pfp.player-avatar{
+    width: 44px;
+    aspect-ratio: 1/1;
 }

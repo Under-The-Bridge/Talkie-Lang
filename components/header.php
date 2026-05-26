@@ -31,6 +31,7 @@
                 <?php else: ?>
                     <p class="xp"><?= $user["user_weekly_xp"] ?> XP</p>
                     <a class="header-btns" href="/profile/">Профиль</a>
+                    <a class="header-btns" href="/logout.php">Выйти</a>
                 <?php endif; ?>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "../connection-db.php";
-$lessonSize = 15;
+$lessonSize = 7;
 $maxMistake = 5;
 $lesson_id = $_GET["id"];
 if (isset($_GET["c"])) {
@@ -15,7 +15,7 @@ if (isset($_GET["c"])) {
 if(isset($_SESSION["lesson_count"])){
     if($_SESSION["lesson_count"] == 3){
         $maxMistake = 3;
-        $lessonSize = 20;
+        $lessonSize = 7;
     }
 }
 $progress = $_SESSION["progress"] ?? 0;

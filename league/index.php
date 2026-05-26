@@ -28,16 +28,20 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `league_users` where user
 <body>
     <?php include "../components/header.php"; ?>
     <main class="container">
-        
+
         <?php if ($inLeague): ?>
             <div>
-            <!-- <div style="mb-3" class="d-flex align-items-center"> -->
+                <!-- <div style="mb-3" class="d-flex align-items-center"> -->
                 <div class="d-flex align-items-end mb-2">
-                    <img class="trophy copper <?= $user["league_name"] == 'Бронзавая лига' ? "active": ""?>" src="../assets/trophy-svgrepo-com.svg" alt="">
-                    <img class="trophy silver <?= $user["league_name"] == 'Серебряная лига' ? "active": ""?>" src="../assets/trophy-svgrepo-com.svg" alt="">
-                    <img class="trophy gold <?= $user["league_name"] == 'Золотая лига' ? "active": ""?>" src="../assets/trophy-svgrepo-com.svg" alt="">
+                    <img class="trophy copper <?= $user["league_name"] == 'Бронзавая лига' ? "active" : "" ?>"
+                        src="../assets/trophy-svgrepo-com.svg" alt="">
+                    <img class="trophy silver <?= $user["league_name"] == 'Серебряная лига' ? "active" : "" ?>"
+                        src="../assets/trophy-svgrepo-com.svg" alt="">
+                    <img class="trophy gold <?= $user["league_name"] == 'Золотая лига' ? "active" : "" ?>"
+                        src="../assets/trophy-svgrepo-com.svg" alt="">
                 </div>
-                <h4 style="color: var(--main-color); font-weight: 900;"><?= $user["league_name"] ?> | До обновления лиги осталось: <span class="timer" style="color: var(--green-color);"></span></h4>
+                <h4 style="color: var(--main-color); font-weight: 900;"><?= $user["league_name"] ?> | До обновления лиги
+                    осталось: <span class="timer" style="color: var(--green-color);"></span></h4>
             </div>
             <div class="league-table-wrapper">
                 <table class="league-table">
@@ -56,20 +60,25 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `league_users` where user
                             $rank = ($count == 1) ? 'top-rank' : (($count == 2) ? 'mid-rank' : (($count == 3) ? 'bottom-rank' : ''));
                             $row = ($count >= 1 && $count <= 5) ? 'green' : (($count > 10 && $count <= 15) ? 'red' : '');
                             ?>
-                            <tr class="league-row <?=$row?>" style="animation: t <?= $count / 10 ?>s ease;">
+                            <tr class="league-row <?= $row ?>" style="animation: t <?= $count / 10 ?>s ease;">
                                 <td class="rank-cell">
-                                    <span class="rank-number <?= $rank?>">
+                                    <span class="rank-number <?= $rank ?>">
                                         <?= $count ?>
                                     </span>
                                 </td>
                                 <td class="player-cell">
                                     <div class="player-info">
-                                        <div class="player-avatar">
-                                            <?= strtoupper($us["user_login"][0]) ?>
-                                        </div>
-                                        <span class="player-name <?= ($us["user_id"] == $user["user_id"]) ? 'current-user-name' : '' ?> <?=$rank?>">
+                                        <?php if (empty($us["user_pfp"])): ?>
+                                            <div class="player-avatar">
+                                                <?= strtoupper($us["user_login"][0]) ?>
+                                            </div>
+                                        <?php else: ?>
+                                            <img class="player-avatar pfp" src="/images/<?= $us["user_pfp"] ?>" alt="">
+                                        <?php endif; ?>
+                                        <a href="/profile/?user=<?= $us["user_login"] ?>"
+                                            class="player-name <?= ($us["user_id"] == $user["user_id"]) ? 'current-user-name' : '' ?> <?= $rank ?>">
                                             <?= $us["user_login"] ?>
-                                        </span>
+                                        </a>
                                         <?php if ($us["user_id"] == $user["user_id"]): ?>
                                             <span class="you-badge">Вы</span>
                                         <?php endif; ?>
@@ -77,12 +86,12 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `league_users` where user
                                 </td>
                                 <td class="xp-cell">
                                     <div class="xp-display">
-                                        <span class="xp-value"><?=$us["user_weekly_xp"] ?></span>
+                                        <span class="xp-value"><?= $us["user_weekly_xp"] ?></span>
                                         <span class="xp-value">XP</span>
                                     </div>
                                 </td>
                             </tr>
-                            
+
                             <?php if ($count == 5): ?>
                                 <tr class="separator-row promotion-separator">
                                     <td colspan="3">
@@ -92,7 +101,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `league_users` where user
                                     </td>
                                 </tr>
                             <?php endif; ?>
-                            
+
                             <?php if ($count == 10): ?>
                                 <tr class="separator-row demotion-separator">
                                     <td colspan="3">
@@ -108,17 +117,18 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `league_users` where user
             </div>
         <?php else: ?>
             <div class="not-in-league">
-                <div class="not-in-league-icon"><img class="trophy gold active" src="../assets/trophy-svgrepo-com.svg" alt=""></div>
+                <div class="not-in-league-icon"><img class="trophy gold active" src="../assets/trophy-svgrepo-com.svg"
+                        alt=""></div>
                 <h4>Вы не в лиге</h4>
                 <p>Присоединяйтесь к лиге, чтобы соревноваться с другими игроками!</p>
             </div>
         <?php endif; ?>
     </main>
-    
+
     <style>
 
     </style>
-    
+
     <script>
         function startTime() {
             if (<?= $time ?> <= Math.floor(Date.now() / 1000)) {
@@ -135,7 +145,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `league_users` where user
             setTimeout(startTime, 1000);
         }
         startTime();
-        
+
         function restartLeague() {
             location.href = "/server";
         }
