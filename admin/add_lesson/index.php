@@ -32,7 +32,7 @@ $lessons = mysqli_fetch_all(mysqli_query($conn, "select * from lesson join langs
             </div>
             <button type="submit" class="btn">Добавить</button>
         </form>
-        <table class="table table-striped-columns">
+        <table class="table table-striped-columns mt-5">
             <?php foreach ($lessons as $lesson): ?>
                 <tr>
                     <td><?= $lesson["lesson_name"] ?></td>

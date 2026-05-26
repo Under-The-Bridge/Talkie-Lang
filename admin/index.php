@@ -10,8 +10,7 @@ require "../connection-db.php";?>
 <body>
     <?php include "../components/header-admin.php"; ?>
     <main class="container">
-        <a href="/en/">Английский</a>
-        <a href="/jp/">Японский</a>
+        
     </main>
 </body>
 

@@ -1,8 +1,10 @@
 <?php
 session_start();
+$json = file_get_contents('../config.json');
+$config = json_decode($json,true);
 require "../connection-db.php";
-$lessonSize = 7;
-$maxMistake = 5;
+$lessonSize = $config["lesson_size"];
+$maxMistake = $config["lesson_mistakes"];
 $lesson_id = $_GET["id"];
 if (isset($_GET["c"])) {
     require "../clearSession.php";
@@ -14,8 +16,8 @@ if (isset($_GET["c"])) {
 }
 if(isset($_SESSION["lesson_count"])){
     if($_SESSION["lesson_count"] == 3){
-        $maxMistake = 3;
-        $lessonSize = 7;
+        $lessonSize = $config["lesson_test_size"];
+        $maxMistake = $config["lesson_test_mistakes"];
     }
 }
 $progress = $_SESSION["progress"] ?? 0;
@@ -54,6 +56,7 @@ if($attempt < 0){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/style.css">
     <title>Document</title>

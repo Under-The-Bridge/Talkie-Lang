@@ -29,7 +29,26 @@ if ($check) {
 ?>
 
 <main class="container">
-    <a href="/?lang=<?= $lang ?>" class="btn btn-danger mb-2">Выйти</a>
+    <div class="d-flex justify-content-end">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Вы уверены?</h1>
+                        <div type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></div>
+                    </div>
+                    <div class="modal-body">
+                        Прогресс не сохраниться, прийдется заного всё пройти!
+                    </div>
+                    <div class="modal-footer">
+                        <div type="button" class="btn btn-secondary exit-test" data-bs-dismiss="modal">Остаться</div>
+                        <a href="/?lang=<?= $lang ?>" class="btn btn-primary exit-test">Выйти</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn btn-danger mb-2 exit-test" data-bs-toggle="modal" data-bs-target="#exampleModal">Выйти</div>
+    </div>
     <div class="progressbar">
         <div class="bar"></div>
         <div class="d-flex justify-content-end mt-3 heart-container">

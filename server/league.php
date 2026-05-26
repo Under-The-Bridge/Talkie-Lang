@@ -1,6 +1,8 @@
 <?php
 require "../connection-db.php";
-$time = time() + 3600;
+$json = file_get_contents('../config.json');
+$config = json_decode($json,true);
+$time = time() + $config['league_time_reset'] * 3600;
 // echo $time;
 $leagues = mysqli_fetch_all(mysqli_query($conn,"SELECT * FROM `leagues`"),MYSQLI_ASSOC);
 foreach($leagues as $league){

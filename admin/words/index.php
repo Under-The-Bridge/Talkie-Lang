@@ -46,7 +46,7 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
             </div>
             <button name="add" type="submit" class="btn">Добавить</button>
         </form>
-        <form action="" method="post">
+        <form action="" method="post" class="mt-5">
             <label for="filter">Язык</label>
             <select name="filter" id="filter" class="form-select">
                 <option value="-1" <?= $filter == -1 ? "selected" : "" ?>>Все</option>

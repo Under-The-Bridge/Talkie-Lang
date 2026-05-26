@@ -398,3 +398,18 @@ button.bad {
         opacity: 0;
     }
 }
+.exit-test{
+    /* width: 5em; */
+    transition: 0.1s ease-out;
+    background-color: white;
+    color: var(--main-color);
+}
+.exit-test:hover{
+    background-color: var(--main-color);
+    color: white;
+}
+.exit-test:active{
+    border-color: var(--main-color-shadow) !important;
+    background-color: var(--main-color-shadow) !important;
+    color: white;
+}

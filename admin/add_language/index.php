@@ -1,7 +1,7 @@
 <?php
 require "../../connection-db.php";
 
-$langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"),MYSQLI_ASSOC);
+$langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"), MYSQLI_ASSOC);
 
 
 ?>
@@ -21,7 +21,7 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"),MYSQLI_ASSO
             </div>
             <button type="submit" class="btn">Добавить</button>
         </form>
-                <table class="table table-striped-columns">
+        <table class="table table-striped-columns mt-5">
             <?php foreach ($langs as $lang): ?>
                 <tr>
                     <td>Язык: <?= $lang["lang_name"] ?></td>

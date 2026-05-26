@@ -14,16 +14,23 @@ foreach ($check as $c) {
         exit();
     }
 }
-$sql = "INSERT INTO `words`(`word_name`, `word_transcription`, `word_translate`, `lang_id`) VALUES ('$name','[$transcription]','$translate','$lang')";
-$query = mysqli_query($conn, $sql);
-if ($query) {
-    echo "<script>
-                alert('Добавлено');
-                location.href = '/admin/words/';
-                </script>";
+if (mysqli_num_rows(mysqli_query($conn,"select * from words where words.word_name = '$name' and words.lang_id = $lang")) == 0) {
+    $sql = "INSERT INTO `words`(`word_name`, `word_transcription`, `word_translate`, `lang_id`) VALUES ('$name','[$transcription]','$translate','$lang')";
+    $query = mysqli_query($conn, $sql);
+    if ($query) {
+        echo "<script>
+                    alert('Добавлено');
+                    location.href = '/admin/words/';
+                    </script>";
+    } else {
+        echo "<script>
+                    alert('Ошибка');
+                    location.href = '/admin/words/';
+                    </script>";
+    }
 } else {
     echo "<script>
-                alert('Ошибка');
+                alert('Такое слово в этом языке уже существует');
                 location.href = '/admin/words/';
                 </script>";
 }

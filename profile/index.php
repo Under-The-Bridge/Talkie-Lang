@@ -11,14 +11,14 @@ $myAcc = true;
 $id = $_SESSION["id"];
 $sql = "SELECT * FROM users WHERE user_id = $id";
 if (isset($_GET["user"])) {
-    $myAcc = false;
     $name = $_GET["user"];
+    $id = mysqli_fetch_assoc(mysqli_query($conn, "select * from users join leagues on leagues.league_id = users.user_league where user_login = '$name'"))["user_id"];
+    $myAcc = false;
     $sql = "SELECT * FROM users WHERE user_login = '$name'";
 }
 $user = mysqli_fetch_assoc(mysqli_query($conn, $sql));
 $progresses = mysqli_fetch_all(mysqli_query($conn, "SELECT * FROM user_lang_progress JOIN langs ON langs.lang_id = user_lang_progress.lang_id WHERE user_id = $id"), MYSQLI_ASSOC);
 
-// Подсчет общей статистики
 $totalLessons = 0;
 $totalProgress = 0;
 foreach ($progresses as $progress) {
@@ -99,6 +99,7 @@ $overallProgress = $totalLessons > 0 ? round(100 * $totalProgress / $totalLesson
                 <?php endif; ?>
             </div>
 
+            <?php if(count($progresses) != 0):?>
             <div class="languages-grid">
                 <?php foreach ($progresses as $progress):
                     $lessonsCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as count FROM lesson WHERE lesson_language = " . $progress["lang_id"]))['count'];
@@ -127,6 +128,9 @@ $overallProgress = $totalLessons > 0 ? round(100 * $totalProgress / $totalLesson
                     </div>
                 <?php endforeach; ?>
             </div>
+            <?php else:?>
+                <h5>Похоже этот пользователь ещё не начал изучать языки :(</h5>
+            <?php endif;?>
         </div>
     </main>
     <script>

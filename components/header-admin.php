@@ -1,14 +1,14 @@
 <header>
     <div class="nav-bar">
-        <div>
+        <div class="container header">
             <div>
-                <a href="/admin">Talkie Lang</a>
-                <a href="/admin/words/">Слова</a>
-                <a href="/admin/add_lesson/">Уроки</a>
-                <a href="/admin/add_language/">Языки</a>
+                <a class="header-btns" href="/admin">Talkie Lang</a>
+                <a class="header-btns" href="/admin/words/">Слова</a>
+                <a class="header-btns" href="/admin/add_lesson/">Уроки</a>
+                <a class="header-btns" href="/admin/add_language/">Языки</a>
             </div>
             <div>
-                <a href="logout.php">Выйти</a>
+                <a class="header-btns" href="/admin/logout.php">Выйти</a>
             </div>
         </div>
     </div>
