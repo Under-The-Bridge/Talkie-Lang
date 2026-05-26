@@ -22,48 +22,56 @@ shuffle($w1);
 shuffle($w2);
 ?>
 
-    <main class="container">
-        <a href="/?lang=<?= $lang ?>" class="btn btn-danger mb-2">Выйти</a>
-        <div class="progressbar">
-            <div class="bar"></div>
+<main class="container">
+    <a href="/?lang=<?= $lang ?>" class="btn btn-danger mb-2">Выйти</a>
+    <div class="progressbar">
+        <div class="bar"></div>
+        <div class="d-flex justify-content-end mt-3 heart-container">
+            <?php for ($i = $attempt; $i >= 0; $i--): ?>
+                <svg class="me-1" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#e0524d"
+                    class="bi bi-heart-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                </svg>
+            <?php endfor; ?>
         </div>
-        <div class="q my-auto" style="gap:2.5%">
-            <div class="lesson-word">
-                <h1>Соедени переводы</h1>
+    </div>
+    <div class="q my-auto" style="gap:2.5%">
+        <div class="lesson-word">
+            <h1>Соедени переводы</h1>
+        </div>
+        <div id="answers">
+            <div class="column">
+                <?php foreach ($w1 as $w):
+                    $wt = mysqli_fetch_assoc(mysqli_query($conn, "select * from words where word_translate = '$w' and lang_id = $lang")) ?>
+                    <button class="word">
+                        <div class="w"><?= $w ?></div>
+                        <div class="word-hover" style="transform: translateX(-165%);">
+                            <p>
+                                <?= $wt["word_transcription"] ?>
+                            </p>
+                            <p>
+                                <?= $wt["word_name"] ?>
+                            </p>
+                        </div>
+                    </button>
+                <?php endforeach; ?>
             </div>
-            <div id="answers">
-                <div class="column">
-                    <?php foreach ($w1 as $w):
-                        $wt = mysqli_fetch_assoc(mysqli_query($conn, "select * from words where word_translate = '$w' and lang_id = $lang")) ?>
-                        <button class="word">
-                            <div class="w"><?= $w ?></div>
-                            <div class="word-hover" style="transform: translateX(-165%);">
-                                <p>
-                                    <?= $wt["word_transcription"] ?>
-                                </p>
-                                <p>
-                                    <?= $wt["word_name"] ?>
-                                </p>
-                            </div>
-                        </button>
-                    <?php endforeach; ?>
-                </div>
-                <div class="column">
-                    <?php foreach ($w2 as $w): ?>
-                        <button class="translate">
-                            <div class="w" value="<?= $w[0] ?>"><?= $w[1] ?></div>
-                        </button>
-                    <?php endforeach; ?>
-                </div>
-                <!-- <button>вапп</button> -->
-                <!-- <button><?= $answer ?></button> -->
-                <!-- <button>выавыа</button> -->
+            <div class="column">
+                <?php foreach ($w2 as $w): ?>
+                    <button class="translate">
+                        <div class="w" value="<?= $w[0] ?>"><?= $w[1] ?></div>
+                    </button>
+                <?php endforeach; ?>
             </div>
+            <!-- <button>вапп</button> -->
+            <!-- <button><?= $answer ?></button> -->
+            <!-- <button>выавыа</button> -->
         </div>
-        <div class="alert alert-success hidden" role="alert">
-            <p>Всё верно!</p>
-        </div>
-    </main>
+    </div>
+    <div class="alert alert-success hidden" role="alert">
+        <p>Всё верно!</p>
+    </div>
+</main>
 </body>
 <script>
 
@@ -211,6 +219,12 @@ shuffle($w2);
                 </div>
                 `;
         document.querySelector(".container").innerHTML += link;
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.code == "Space") {
+                event.preventDefault();
+                window.location.href = href;
+            }
+        });
     }
 
 

@@ -32,6 +32,14 @@ if ($check) {
     <a href="/?lang=<?= $lang ?>" class="btn btn-danger mb-2">Выйти</a>
     <div class="progressbar">
         <div class="bar"></div>
+        <div class="d-flex justify-content-end mt-3 heart-container">
+            <?php for ($i = $attempt; $i >= 0; $i--): ?>
+                <svg class="me-1" xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#e0524d"
+                    class="bi bi-heart-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314" />
+                </svg>
+            <?php endfor; ?>
+        </div>
     </div>
     <div class="q my-auto">
         <div class="lesson-word">
@@ -101,10 +109,10 @@ if ($check) {
     function next(mistake) {
         document.querySelector('.alert.hidden').remove();
         let nextBad = `
-            <div class="alert alert-danger bad" role="alert">
-                    <p>Правильный ответ: <?= $word["word_translate"] ?></p>
-                    <a class="alert-link" href=`+ href + `>Дальше</a>
-                </div>
+        <div class="alert alert-danger bad" role="alert">
+        <p>Правильный ответ: <?= $word["word_translate"] ?></p>
+        <a class="alert-link" href=`+ href + `>Дальше</a>
+        </div>
                 `;
         let nextGood = `
                 <div class="alert alert-success good" role="alert">
@@ -112,7 +120,14 @@ if ($check) {
                 <a class="alert-link" href=`+ href + `>Дальше</a>
                 </div>
                 `;
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.code == "Space") {
+                event.preventDefault();
+                window.location.href = href;
+            }
+        });
         if (mistake) {
+            document.querySelectorAll('.heart-container>svg')[0].classList.add("broke");
             document.querySelector(".container").innerHTML += nextBad;
         } else {
             document.querySelector(".container").innerHTML += nextGood;
