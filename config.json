@@ -1,6 +1,6 @@
 {
-    "lesson_size" : 15,
-    "lesson_test_size" : 20,
+    "lesson_size" : 1,
+    "lesson_test_size" : 1,
     "lesson_mistakes" : 5,
     "lesson_test_mistakes" : 3,
     "league_time_reset" : 24

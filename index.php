@@ -1,5 +1,4 @@
 <?php
-session_start();
 require "connection-db.php";
 require "clearSession.php";
 

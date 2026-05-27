@@ -1,5 +1,4 @@
 <?php
-session_start();
 require "../connection-db.php";
 $id = $_SESSION["id"];
 $mistakes = $_POST["mistakes"] ?? false;

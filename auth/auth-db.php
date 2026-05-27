@@ -1,5 +1,4 @@
 <?php
-session_start();
 require "../connection-db.php";
 
 $login = $_POST["login"] ?? false;

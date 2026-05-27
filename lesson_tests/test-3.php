@@ -56,7 +56,7 @@ shuffle($w2);
     </div>
     <div class="q my-auto" style="gap:2.5%">
         <div class="lesson-word">
-            <h1>Соедени переводы</h1>
+            <h1>Соедини переводы</h1>
         </div>
         <div id="answers">
             <div class="column">
