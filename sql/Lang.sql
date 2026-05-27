@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3307
--- Время создания: Май 24 2026 г., 14:56
+-- Время создания: Май 27 2026 г., 22:06
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -39,7 +39,14 @@ CREATE TABLE `completed_lessons` (
 --
 
 INSERT INTO `completed_lessons` (`id`, `user_id`, `lesson_id`, `count`) VALUES
-(161, 2, 4, 4);
+(165, 2, 4, 4),
+(166, 2, 5, 0),
+(167, 9, 4, 0),
+(168, 2, 1, 3),
+(169, 12, 1, 4),
+(170, 12, 2, 1),
+(171, 32, 1, 4),
+(172, 32, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -97,100 +104,101 @@ CREATE TABLE `league_users` (
 --
 
 INSERT INTO `league_users` (`id`, `user_id`, `weekly_league_id`) VALUES
-(18054, 31, 'QtUoPyEgrylq'),
-(18055, 111, 'QtUoPyEgrylq'),
-(18056, 50, 'QtUoPyEgrylq'),
-(18057, 27, 'QtUoPyEgrylq'),
-(18058, 92, 'QtUoPyEgrylq'),
-(18059, 24, 'QtUoPyEgrylq'),
-(18060, 34, 'QtUoPyEgrylq'),
-(18061, 47, 'QtUoPyEgrylq'),
-(18062, 4, 'QtUoPyEgrylq'),
-(18063, 54, 'QtUoPyEgrylq'),
-(18064, 76, 'QtUoPyEgrylq'),
-(18065, 89, 'QtUoPyEgrylq'),
-(18066, 43, 'QtUoPyEgrylq'),
-(18067, 81, 'QtUoPyEgrylq'),
-(18068, 68, 'QtUoPyEgrylq'),
-(18069, 75, 'dOcIsqBXZkie'),
-(18070, 59, 'dOcIsqBXZkie'),
-(18071, 45, 'dOcIsqBXZkie'),
-(18072, 44, 'dOcIsqBXZkie'),
-(18073, 60, 'dOcIsqBXZkie'),
-(18074, 7, 'dOcIsqBXZkie'),
-(18075, 63, 'dOcIsqBXZkie'),
-(18076, 16, 'dOcIsqBXZkie'),
-(18077, 80, 'dOcIsqBXZkie'),
-(18078, 10, 'dOcIsqBXZkie'),
-(18079, 64, 'dOcIsqBXZkie'),
-(18080, 35, 'dOcIsqBXZkie'),
-(18081, 39, 'dOcIsqBXZkie'),
-(18082, 5, 'dOcIsqBXZkie'),
-(18083, 83, 'dOcIsqBXZkie'),
-(18084, 11, 'hVFywDWMQciG'),
-(18085, 65, 'hVFywDWMQciG'),
-(18086, 87, 'hVFywDWMQciG'),
-(18087, 71, 'hVFywDWMQciG'),
-(18088, 66, 'hVFywDWMQciG'),
-(18089, 32, 'hVFywDWMQciG'),
-(18090, 57, 'hVFywDWMQciG'),
-(18091, 74, 'hVFywDWMQciG'),
-(18092, 28, 'hVFywDWMQciG'),
-(18093, 13, 'hVFywDWMQciG'),
-(18094, 46, 'hVFywDWMQciG'),
-(18095, 17, 'hVFywDWMQciG'),
-(18096, 40, 'hVFywDWMQciG'),
-(18097, 12, 'hVFywDWMQciG'),
-(18098, 73, 'hVFywDWMQciG'),
-(18099, 18, 'ufqlOKwECTpW'),
-(18100, 84, 'ufqlOKwECTpW'),
-(18101, 78, 'ufqlOKwECTpW'),
-(18102, 53, 'ufqlOKwECTpW'),
-(18103, 49, 'ufqlOKwECTpW'),
-(18104, 70, 'ufqlOKwECTpW'),
-(18105, 72, 'ufqlOKwECTpW'),
-(18106, 6, 'ufqlOKwECTpW'),
-(18107, 52, 'ufqlOKwECTpW'),
-(18108, 86, 'ufqlOKwECTpW'),
-(18109, 14, 'ufqlOKwECTpW'),
-(18110, 20, 'ufqlOKwECTpW'),
-(18111, 2, 'ufqlOKwECTpW'),
-(18112, 91, 'ufqlOKwECTpW'),
-(18113, 26, 'ufqlOKwECTpW'),
-(18114, 58, 'ZNzHfJJIpQKV'),
-(18115, 77, 'ZNzHfJJIpQKV'),
-(18116, 69, 'ZNzHfJJIpQKV'),
-(18117, 25, 'ZNzHfJJIpQKV'),
-(18118, 33, 'ZNzHfJJIpQKV'),
-(18119, 8, 'ZNzHfJJIpQKV'),
-(18120, 41, 'ZNzHfJJIpQKV'),
-(18121, 37, 'ZNzHfJJIpQKV'),
-(18122, 55, 'ZNzHfJJIpQKV'),
-(18123, 29, 'ZNzHfJJIpQKV'),
-(18124, 48, 'ZNzHfJJIpQKV'),
-(18125, 9, 'ZNzHfJJIpQKV'),
-(18126, 88, 'ZNzHfJJIpQKV'),
-(18127, 108, 'ZNzHfJJIpQKV'),
-(18128, 62, 'ZNzHfJJIpQKV'),
-(18129, 30, 'lvPEIzugpHcP'),
-(18130, 110, 'lvPEIzugpHcP'),
-(18131, 61, 'lvPEIzugpHcP'),
-(18132, 42, 'lvPEIzugpHcP'),
-(18133, 15, 'lvPEIzugpHcP'),
-(18134, 21, 'lvPEIzugpHcP'),
-(18135, 90, 'lvPEIzugpHcP'),
-(18136, 19, 'lvPEIzugpHcP'),
-(18137, 82, 'lvPEIzugpHcP'),
-(18138, 38, 'lvPEIzugpHcP'),
-(18139, 51, 'lvPEIzugpHcP'),
-(18140, 85, 'lvPEIzugpHcP'),
-(18141, 56, 'lvPEIzugpHcP'),
-(18142, 22, 'lvPEIzugpHcP'),
-(18143, 23, 'lvPEIzugpHcP'),
-(18144, 36, 'UIdryYBMmtuU'),
-(18145, 67, 'UIdryYBMmtuU'),
-(18146, 112, 'UIdryYBMmtuU'),
-(18147, 79, 'UIdryYBMmtuU');
+(22365, 22, 'zSVVFzeejugq'),
+(22366, 79, 'zSVVFzeejugq'),
+(22367, 18, 'zSVVFzeejugq'),
+(22368, 67, 'zSVVFzeejugq'),
+(22369, 9, 'zSVVFzeejugq'),
+(22370, 27, 'zSVVFzeejugq'),
+(22371, 46, 'zSVVFzeejugq'),
+(22372, 70, 'zSVVFzeejugq'),
+(22373, 61, 'zSVVFzeejugq'),
+(22374, 58, 'zSVVFzeejugq'),
+(22375, 45, 'zSVVFzeejugq'),
+(22376, 8, 'zSVVFzeejugq'),
+(22377, 92, 'zSVVFzeejugq'),
+(22378, 89, 'zSVVFzeejugq'),
+(22379, 26, 'zSVVFzeejugq'),
+(22380, 12, 'AxAuwDLGtpIA'),
+(22381, 64, 'AxAuwDLGtpIA'),
+(22382, 16, 'AxAuwDLGtpIA'),
+(22383, 49, 'AxAuwDLGtpIA'),
+(22384, 29, 'AxAuwDLGtpIA'),
+(22385, 33, 'QBpiRYUiIGeA'),
+(22386, 44, 'QBpiRYUiIGeA'),
+(22387, 31, 'QBpiRYUiIGeA'),
+(22388, 91, 'QBpiRYUiIGeA'),
+(22389, 39, 'QBpiRYUiIGeA'),
+(22390, 36, 'QBpiRYUiIGeA'),
+(22391, 50, 'QBpiRYUiIGeA'),
+(22392, 83, 'QBpiRYUiIGeA'),
+(22393, 68, 'QBpiRYUiIGeA'),
+(22394, 47, 'QBpiRYUiIGeA'),
+(22395, 14, 'QBpiRYUiIGeA'),
+(22396, 74, 'QBpiRYUiIGeA'),
+(22397, 111, 'QBpiRYUiIGeA'),
+(22398, 25, 'QBpiRYUiIGeA'),
+(22399, 13, 'QBpiRYUiIGeA'),
+(22400, 59, 'qhQzJDVtwWCS'),
+(22401, 90, 'qhQzJDVtwWCS'),
+(22402, 10, 'qhQzJDVtwWCS'),
+(22403, 75, 'qhQzJDVtwWCS'),
+(22404, 48, 'qhQzJDVtwWCS'),
+(22405, 88, 'qhQzJDVtwWCS'),
+(22406, 20, 'qhQzJDVtwWCS'),
+(22407, 17, 'qhQzJDVtwWCS'),
+(22408, 86, 'qhQzJDVtwWCS'),
+(22409, 19, 'qhQzJDVtwWCS'),
+(22410, 43, 'qhQzJDVtwWCS'),
+(22411, 63, 'qhQzJDVtwWCS'),
+(22412, 66, 'qhQzJDVtwWCS'),
+(22413, 80, 'qhQzJDVtwWCS'),
+(22414, 77, 'qhQzJDVtwWCS'),
+(22415, 57, 'kUXJkgBHHnUb'),
+(22416, 32, 'kUXJkgBHHnUb'),
+(22417, 113, 'kUXJkgBHHnUb'),
+(22418, 65, 'kUXJkgBHHnUb'),
+(22419, 23, 'kUXJkgBHHnUb'),
+(22420, 52, 'kUXJkgBHHnUb'),
+(22421, 11, 'kUXJkgBHHnUb'),
+(22422, 4, 'kUXJkgBHHnUb'),
+(22423, 2, 'kUXJkgBHHnUb'),
+(22424, 41, 'kUXJkgBHHnUb'),
+(22425, 6, 'kUXJkgBHHnUb'),
+(22426, 7, 'kUXJkgBHHnUb'),
+(22427, 73, 'kUXJkgBHHnUb'),
+(22428, 38, 'kUXJkgBHHnUb'),
+(22429, 72, 'kUXJkgBHHnUb'),
+(22430, 108, 'FpUOoSbncOTb'),
+(22431, 28, 'FpUOoSbncOTb'),
+(22432, 82, 'FpUOoSbncOTb'),
+(22433, 55, 'FpUOoSbncOTb'),
+(22434, 54, 'FpUOoSbncOTb'),
+(22435, 84, 'FpUOoSbncOTb'),
+(22436, 60, 'FpUOoSbncOTb'),
+(22437, 78, 'FpUOoSbncOTb'),
+(22438, 87, 'FpUOoSbncOTb'),
+(22439, 42, 'FpUOoSbncOTb'),
+(22440, 24, 'FpUOoSbncOTb'),
+(22441, 76, 'FpUOoSbncOTb'),
+(22442, 40, 'FpUOoSbncOTb'),
+(22443, 51, 'FpUOoSbncOTb'),
+(22444, 53, 'FpUOoSbncOTb'),
+(22445, 69, 'akykmGnQmysK'),
+(22446, 71, 'akykmGnQmysK'),
+(22447, 56, 'akykmGnQmysK'),
+(22448, 30, 'akykmGnQmysK'),
+(22449, 15, 'akykmGnQmysK'),
+(22450, 34, 'akykmGnQmysK'),
+(22451, 110, 'akykmGnQmysK'),
+(22452, 62, 'akykmGnQmysK'),
+(22453, 81, 'akykmGnQmysK'),
+(22454, 112, 'akykmGnQmysK'),
+(22455, 85, 'akykmGnQmysK'),
+(22456, 21, 'akykmGnQmysK'),
+(22457, 37, 'akykmGnQmysK'),
+(22458, 5, 'akykmGnQmysK'),
+(22459, 35, 'akykmGnQmysK');
 
 -- --------------------------------------------------------
 
@@ -283,6 +291,7 @@ CREATE TABLE `users` (
   `user_login` text NOT NULL,
   `user_email` text NOT NULL,
   `user_password` text NOT NULL,
+  `user_pfp` text NOT NULL,
   `user_role` enum('user','admin') NOT NULL DEFAULT 'user',
   `user_weekly_xp` int NOT NULL DEFAULT '0',
   `user_league` int NOT NULL DEFAULT '1'
@@ -292,102 +301,103 @@ CREATE TABLE `users` (
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_login`, `user_email`, `user_password`, `user_role`, `user_weekly_xp`, `user_league`) VALUES
-(2, 'Under-The-Bridge', 'ramazanikbaev6@gmail.com', 'Under-The-Bridge', 'user', 3987, 2),
-(3, 'admin', 'admin@admin.admin', 'admin', 'admin', 0, 1),
-(4, 'qweqwe', 'qweqwe@qweqwe.qweqwe', 'qweqwe', 'user', 0, 1),
-(5, 'alex_smith', 'alex.smith@example.com', '123456', 'user', 0, 1),
-(6, 'maria_johnson', 'maria.johnson@example.com', '123456', 'user', 0, 2),
-(7, 'dmitry_volkov', 'dmitry.volkov@example.com', '123456', 'user', 0, 1),
-(8, 'elena_petrova', 'elena.petrova@example.com', '123456', 'user', 0, 3),
-(9, 'maxim_ivanov', 'maxim.ivanov@example.com', '123456', 'user', 0, 3),
-(10, 'anna_kozlov', 'anna.kozlov@example.com', '123456', 'user', 0, 1),
-(11, 'sergey_nikolaev', 'sergey.nikolaev@example.com', '123456', 'user', 0, 2),
-(12, 'olga_smirnova', 'olga.smirnova@example.com', '123456', 'user', 0, 2),
-(13, 'ivan_morozov', 'ivan.morozov@example.com', '123456', 'user', 0, 2),
-(14, 'natalia_fedorova', 'natalia.fedorova@example.com', '123456', 'user', 0, 2),
-(15, 'andrey_popov', 'andrey.popov@example.com', '123456', 'user', 0, 3),
-(16, 'tatyana_sokolova', 'tatyana.sokolova@example.com', '123456', 'user', 0, 1),
-(17, 'pavel_lebenev', 'pavel.lebenev@example.com', '123456', 'user', 0, 2),
-(18, 'yulia_novikova', 'yulia.novikova@example.com', '123456', 'user', 0, 2),
-(19, 'vladimir_zaits', 'vladimir.zaits@example.com', '123456', 'user', 0, 3),
-(20, 'ekaterina_orlova', 'ekaterina.orlova@example.com', '123456', 'user', 0, 2),
-(21, 'konstantin_makarov', 'konstantin.makarov@example.com', '123456', 'user', 0, 3),
-(22, 'irina_pavlova', 'irina.pavlova@example.com', '123456', 'user', 0, 3),
-(23, 'artem_egorov', 'artem.egorov@example.com', '123456', 'user', 0, 3),
-(24, 'svetlana_timofeeva', 'svetlana.timofeeva@example.com', '123456', 'user', 0, 1),
-(25, 'denis_volkov', 'denis.volkov@example.com', '123456', 'user', 0, 3),
-(26, 'ksenia_morozova', 'ksenia.morozova@example.com', '123456', 'user', 0, 2),
-(27, 'roman_borisov', 'roman.borisov@example.com', '123456', 'user', 0, 1),
-(28, 'vera_kuznetsova', 'vera.kuznetsova@example.com', '123456', 'user', 0, 2),
-(29, 'nikita_sidorov', 'nikita.sidorov@example.com', '123456', 'user', 0, 3),
-(30, 'polina_vasilyeva', 'polina.vasilyeva@example.com', '123456', 'user', 0, 3),
-(31, 'oleg_timofeev', 'oleg.timofeev@example.com', '123456', 'user', 0, 1),
-(32, 'bash_ars', 'bash.bash@example.com', '123456', 'user', 0, 2),
-(33, 'user_001', 'user001@example.com', '123456', 'user', 0, 3),
-(34, 'user_002', 'user002@example.com', '123456', 'user', 0, 1),
-(35, 'user_003', 'user003@example.com', '123456', 'user', 0, 1),
-(36, 'user_004', 'user004@example.com', '123456', 'user', 0, 3),
-(37, 'user_005', 'user005@example.com', '123456', 'user', 0, 3),
-(38, 'user_006', 'user006@example.com', '123456', 'user', 0, 3),
-(39, 'user_007', 'user007@example.com', '123456', 'user', 0, 1),
-(40, 'user_008', 'user008@example.com', '123456', 'user', 0, 2),
-(41, 'user_009', 'user009@example.com', '123456', 'user', 0, 3),
-(42, 'user_010', 'user010@example.com', '123456', 'user', 0, 3),
-(43, 'user_011', 'user011@example.com', '123456', 'user', 0, 1),
-(44, 'user_012', 'user012@example.com', '123456', 'user', 0, 1),
-(45, 'user_013', 'user013@example.com', '123456', 'user', 0, 1),
-(46, 'user_014', 'user014@example.com', '123456', 'user', 0, 2),
-(47, 'user_015', 'user015@example.com', '123456', 'user', 0, 1),
-(48, 'user_016', 'user016@example.com', '123456', 'user', 0, 3),
-(49, 'user_017', 'user017@example.com', '123456', 'user', 0, 2),
-(50, 'user_018', 'user018@example.com', '123456', 'user', 0, 1),
-(51, 'user_019', 'user019@example.com', '123456', 'user', 0, 3),
-(52, 'user_020', 'user020@example.com', '123456', 'user', 0, 2),
-(53, 'user_021', 'user021@example.com', '123456', 'user', 0, 2),
-(54, 'user_022', 'user022@example.com', '123456', 'user', 0, 1),
-(55, 'user_023', 'user023@example.com', '123456', 'user', 0, 3),
-(56, 'user_024', 'user024@example.com', '123456', 'user', 0, 3),
-(57, 'user_025', 'user025@example.com', '123456', 'user', 0, 2),
-(58, 'user_026', 'user026@example.com', '123456', 'user', 0, 3),
-(59, 'user_027', 'user027@example.com', '123456', 'user', 0, 1),
-(60, 'user_028', 'user028@example.com', '123456', 'user', 0, 1),
-(61, 'user_029', 'user029@example.com', '123456', 'user', 0, 3),
-(62, 'user_030', 'user030@example.com', '123456', 'user', 0, 3),
-(63, 'user_031', 'user031@example.com', '123456', 'user', 0, 1),
-(64, 'user_032', 'user032@example.com', '123456', 'user', 0, 1),
-(65, 'user_033', 'user033@example.com', '123456', 'user', 0, 2),
-(66, 'user_034', 'user034@example.com', '123456', 'user', 0, 2),
-(67, 'user_035', 'user035@example.com', '123456', 'user', 0, 3),
-(68, 'user_036', 'user036@example.com', '123456', 'user', 0, 1),
-(69, 'user_037', 'user037@example.com', '123456', 'user', 0, 3),
-(70, 'user_038', 'user038@example.com', '123456', 'user', 0, 2),
-(71, 'user_039', 'user039@example.com', '123456', 'user', 0, 2),
-(72, 'user_040', 'user040@example.com', '123456', 'user', 0, 2),
-(73, 'user_041', 'user041@example.com', '123456', 'user', 0, 2),
-(74, 'user_042', 'user042@example.com', '123456', 'user', 0, 2),
-(75, 'user_043', 'user043@example.com', '123456', 'user', 0, 1),
-(76, 'user_044', 'user044@example.com', '123456', 'user', 0, 1),
-(77, 'user_045', 'user045@example.com', '123456', 'user', 0, 3),
-(78, 'user_046', 'user046@example.com', '123456', 'user', 0, 2),
-(79, 'user_047', 'user047@example.com', '123456', 'user', 0, 3),
-(80, 'user_048', 'user048@example.com', '123456', 'user', 0, 1),
-(81, 'user_049', 'user049@example.com', '123456', 'user', 0, 1),
-(82, 'user_050', 'user050@example.com', '123456', 'user', 0, 3),
-(83, 'user_051', 'user051@example.com', '123456', 'user', 0, 1),
-(84, 'user_052', 'user052@example.com', '123456', 'user', 0, 2),
-(85, 'user_053', 'user053@example.com', '123456', 'user', 0, 3),
-(86, 'user_054', 'user054@example.com', '123456', 'user', 0, 2),
-(87, 'user_055', 'user055@example.com', '123456', 'user', 0, 2),
-(88, 'user_056', 'user056@example.com', '123456', 'user', 0, 3),
-(89, 'user_057', 'user057@example.com', '123456', 'user', 0, 1),
-(90, 'user_058', 'user058@example.com', '123456', 'user', 0, 3),
-(91, 'user_059', 'user059@example.com', '123456', 'user', 0, 2),
-(92, 'user_060', 'user060@example.com', '123456', 'user', 0, 1),
-(108, 'ramz', 'ramz@ramz', 'ramz', 'user', 0, 3),
-(110, 'qqqq', 'qqqq@qqqq', 'qqqq', 'user', 0, 3),
-(111, 'zxczxczxc', 'zxczxczxc@zxczxczxc', 'zxczxczxc', 'user', 0, 1),
-(112, 'ramziktvt@gmail.com', 'ramziktvt@gmail.com', 'ramziktvt@gmail.com', 'user', 0, 3);
+INSERT INTO `users` (`user_id`, `user_login`, `user_email`, `user_password`, `user_pfp`, `user_role`, `user_weekly_xp`, `user_league`) VALUES
+(2, 'Under-The-Bridge', 'ramazanikbaev6@gmail.com', 'Under-The-Bridge', 'tzEXQykmqGVFiAWd.jpg', 'user', 992, 3),
+(3, 'admin', 'admin@admin.admin', 'admin', '', 'admin', 0, 1),
+(4, 'qweqwe', 'qweqwe@qweqwe.qweqwe', 'qweqwe', '', 'user', 0, 3),
+(5, 'alex_smith', 'alex.smith@example.com', '123456', '', 'user', 0, 3),
+(6, 'maria_johnson', 'maria.johnson@example.com', '123456', '', 'user', 0, 3),
+(7, 'dmitry_volkov', 'dmitry.volkov@example.com', '123456', '', 'user', 0, 3),
+(8, 'elena_petrova', 'elena.petrova@example.com', '123456', '', 'user', 0, 1),
+(9, 'maxim_ivanov', 'maxim.ivanov@example.com', '123456', 'ZYgDMUwvxFQIudpF.jpg', 'user', 0, 1),
+(10, 'anna_kozlov', 'anna.kozlov@example.com', '123456', '', 'user', 0, 2),
+(11, 'sergey_nikolaev', 'sergey.nikolaev@example.com', '123456', '', 'user', 0, 3),
+(12, 'olga_smirnova', 'olga.smirnova@example.com', '123456', '', 'user', 0, 1),
+(13, 'ivan_morozov', 'ivan.morozov@example.com', '123456', '', 'user', 0, 2),
+(14, 'natalia_fedorova', 'natalia.fedorova@example.com', '123456', '', 'user', 0, 2),
+(15, 'andrey_popov', 'andrey.popov@example.com', '123456', '', 'user', 0, 3),
+(16, 'tatyana_sokolova', 'tatyana.sokolova@example.com', '123456', '', 'user', 0, 1),
+(17, 'pavel_lebenev', 'pavel.lebenev@example.com', '123456', '', 'user', 0, 2),
+(18, 'yulia_novikova', 'yulia.novikova@example.com', '123456', '', 'user', 0, 1),
+(19, 'vladimir_zaits', 'vladimir.zaits@example.com', '123456', '', 'user', 0, 2),
+(20, 'ekaterina_orlova', 'ekaterina.orlova@example.com', '123456', '', 'user', 0, 2),
+(21, 'konstantin_makarov', 'konstantin.makarov@example.com', '123456', '', 'user', 0, 3),
+(22, 'irina_pavlova', 'irina.pavlova@example.com', '123456', '', 'user', 0, 1),
+(23, 'artem_egorov', 'artem.egorov@example.com', '123456', '', 'user', 0, 3),
+(24, 'svetlana_timofeeva', 'svetlana.timofeeva@example.com', '123456', '', 'user', 0, 3),
+(25, 'denis_volkov', 'denis.volkov@example.com', '123456', '', 'user', 0, 2),
+(26, 'ksenia_morozova', 'ksenia.morozova@example.com', '123456', '', 'user', 0, 1),
+(27, 'roman_borisov', 'roman.borisov@example.com', '123456', '', 'user', 0, 1),
+(28, 'vera_kuznetsova', 'vera.kuznetsova@example.com', '123456', '', 'user', 0, 3),
+(29, 'nikita_sidorov', 'nikita.sidorov@example.com', '123456', '', 'user', 0, 1),
+(30, 'polina_vasilyeva', 'polina.vasilyeva@example.com', '123456', '', 'user', 0, 3),
+(31, 'oleg_timofeev', 'oleg.timofeev@example.com', '123456', '', 'user', 0, 2),
+(32, 'bash_ars', 'bash.bash@example.com', '123456', 'mgneafswCvlfKcvN.jpg', 'user', 4957, 3),
+(33, 'user_001', 'user001@example.com', '123456', '', 'user', 0, 2),
+(34, 'user_002', 'user002@example.com', '123456', '', 'user', 0, 3),
+(35, 'user_003', 'user003@example.com', '123456', '', 'user', 0, 3),
+(36, 'user_004', 'user004@example.com', '123456', '', 'user', 0, 2),
+(37, 'user_005', 'user005@example.com', '123456', '', 'user', 0, 3),
+(38, 'user_006', 'user006@example.com', '123456', '', 'user', 0, 3),
+(39, 'user_007', 'user007@example.com', '123456', '', 'user', 0, 2),
+(40, 'user_008', 'user008@example.com', '123456', '', 'user', 0, 3),
+(41, 'user_009', 'user009@example.com', '123456', '', 'user', 0, 3),
+(42, 'user_010', 'user010@example.com', '123456', '', 'user', 0, 3),
+(43, 'user_011', 'user011@example.com', '123456', '', 'user', 0, 2),
+(44, 'user_012', 'user012@example.com', '123456', '', 'user', 0, 2),
+(45, 'user_013', 'user013@example.com', '123456', '', 'user', 0, 1),
+(46, 'user_014', 'user014@example.com', '123456', '', 'user', 0, 1),
+(47, 'user_015', 'user015@example.com', '123456', '', 'user', 0, 2),
+(48, 'user_016', 'user016@example.com', '123456', '', 'user', 0, 2),
+(49, 'user_017', 'user017@example.com', '123456', '', 'user', 0, 1),
+(50, 'user_018', 'user018@example.com', '123456', '', 'user', 0, 2),
+(51, 'user_019', 'user019@example.com', '123456', '', 'user', 0, 3),
+(52, 'user_020', 'user020@example.com', '123456', '', 'user', 0, 3),
+(53, 'user_021', 'user021@example.com', '123456', '', 'user', 0, 3),
+(54, 'user_022', 'user022@example.com', '123456', '', 'user', 0, 3),
+(55, 'user_023', 'user023@example.com', '123456', '', 'user', 0, 3),
+(56, 'user_024', 'user024@example.com', '123456', '', 'user', 0, 3),
+(57, 'user_025', 'user025@example.com', '123456', '', 'user', 0, 3),
+(58, 'user_026', 'user026@example.com', '123456', '', 'user', 0, 1),
+(59, 'user_027', 'user027@example.com', '123456', '', 'user', 0, 2),
+(60, 'user_028', 'user028@example.com', '123456', '', 'user', 0, 3),
+(61, 'user_029', 'user029@example.com', '123456', '', 'user', 0, 1),
+(62, 'user_030', 'user030@example.com', '123456', '', 'user', 0, 3),
+(63, 'user_031', 'user031@example.com', '123456', '', 'user', 0, 2),
+(64, 'user_032', 'user032@example.com', '123456', '', 'user', 0, 1),
+(65, 'user_033', 'user033@example.com', '123456', '', 'user', 0, 3),
+(66, 'user_034', 'user034@example.com', '123456', '', 'user', 0, 2),
+(67, 'user_035', 'user035@example.com', '123456', '', 'user', 0, 1),
+(68, 'user_036', 'user036@example.com', '123456', '', 'user', 0, 2),
+(69, 'user_037', 'user037@example.com', '123456', '', 'user', 0, 3),
+(70, 'user_038', 'user038@example.com', '123456', '', 'user', 0, 1),
+(71, 'user_039', 'user039@example.com', '123456', '', 'user', 0, 3),
+(72, 'user_040', 'user040@example.com', '123456', '', 'user', 0, 3),
+(73, 'user_041', 'user041@example.com', '123456', '', 'user', 0, 3),
+(74, 'user_042', 'user042@example.com', '123456', '', 'user', 0, 2),
+(75, 'user_043', 'user043@example.com', '123456', '', 'user', 0, 2),
+(76, 'user_044', 'user044@example.com', '123456', '', 'user', 0, 3),
+(77, 'user_045', 'user045@example.com', '123456', '', 'user', 0, 2),
+(78, 'user_046', 'user046@example.com', '123456', '', 'user', 0, 3),
+(79, 'user_047', 'user047@example.com', '123456', '', 'user', 0, 1),
+(80, 'user_048', 'user048@example.com', '123456', '', 'user', 0, 2),
+(81, 'user_049', 'user049@example.com', '123456', '', 'user', 0, 3),
+(82, 'user_050', 'user050@example.com', '123456', '', 'user', 0, 3),
+(83, 'user_051', 'user051@example.com', '123456', '', 'user', 0, 2),
+(84, 'user_052', 'user052@example.com', '123456', '', 'user', 0, 3),
+(85, 'user_053', 'user053@example.com', '123456', '', 'user', 0, 3),
+(86, 'user_054', 'user054@example.com', '123456', '', 'user', 0, 2),
+(87, 'user_055', 'user055@example.com', '123456', '', 'user', 0, 3),
+(88, 'user_056', 'user056@example.com', '123456', '', 'user', 0, 2),
+(89, 'user_057', 'user057@example.com', '123456', '', 'user', 0, 1),
+(90, 'user_058', 'user058@example.com', '123456', '', 'user', 0, 2),
+(91, 'user_059', 'user059@example.com', '123456', '', 'user', 0, 2),
+(92, 'user_060', 'user060@example.com', '123456', '', 'user', 0, 1),
+(108, 'ramz', 'ramz@ramz', 'ramz', '', 'user', 0, 3),
+(110, 'qqqq', 'qqqq@qqqq', 'qqqq', '', 'user', 0, 3),
+(111, 'zxczxczxc', 'zxczxczxc@zxczxczxc', 'zxczxczxc', '', 'user', 0, 2),
+(112, 'ramziktvt@gmail.com', 'ramziktvt@gmail.com', 'ramziktvt@gmail.com', '', 'user', 0, 3),
+(113, 'wwww', 'ww@ww', 'wwww', '', 'user', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -407,7 +417,11 @@ CREATE TABLE `user_lang_progress` (
 --
 
 INSERT INTO `user_lang_progress` (`id`, `user_id`, `lang_id`, `progress`) VALUES
-(45, 2, 2, 0);
+(48, 2, 2, 1),
+(49, 9, 2, 0),
+(50, 2, 1, 0),
+(51, 12, 1, 1),
+(52, 32, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -438,7 +452,17 @@ INSERT INTO `user_words` (`id`, `user_id`, `word_id`) VALUES
 (10, 112, 42),
 (11, 2, 21),
 (12, 2, 39),
-(13, 2, 42);
+(13, 2, 42),
+(14, 2, 22),
+(15, 2, 19),
+(16, 12, 22),
+(17, 12, 19),
+(18, 12, 21),
+(19, 12, 23),
+(20, 12, 26),
+(21, 12, 20),
+(22, 32, 23),
+(23, 32, 19);
 
 -- --------------------------------------------------------
 
@@ -457,13 +481,13 @@ CREATE TABLE `weekly_league` (
 --
 
 INSERT INTO `weekly_league` (`id`, `league_id`, `time`) VALUES
-('dOcIsqBXZkie', 1, '1779624652'),
-('hVFywDWMQciG', 2, '1779624652'),
-('lvPEIzugpHcP', 3, '1779624652'),
-('QtUoPyEgrylq', 1, '1779624652'),
-('ufqlOKwECTpW', 2, '1779624652'),
-('UIdryYBMmtuU', 3, '1779624652'),
-('ZNzHfJJIpQKV', 3, '1779624652');
+('akykmGnQmysK', 3, '1779994506'),
+('AxAuwDLGtpIA', 1, '1779994506'),
+('FpUOoSbncOTb', 3, '1779994506'),
+('kUXJkgBHHnUb', 3, '1779994506'),
+('QBpiRYUiIGeA', 2, '1779994506'),
+('qhQzJDVtwWCS', 2, '1779994506'),
+('zSVVFzeejugq', 1, '1779994506');
 
 -- --------------------------------------------------------
 
@@ -615,7 +639,7 @@ ALTER TABLE `words`
 -- AUTO_INCREMENT для таблицы `completed_lessons`
 --
 ALTER TABLE `completed_lessons`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
 
 --
 -- AUTO_INCREMENT для таблицы `langs`
@@ -633,7 +657,7 @@ ALTER TABLE `leagues`
 -- AUTO_INCREMENT для таблицы `league_users`
 --
 ALTER TABLE `league_users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18148;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22460;
 
 --
 -- AUTO_INCREMENT для таблицы `lesson`
@@ -651,19 +675,19 @@ ALTER TABLE `lessons_words`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
 -- AUTO_INCREMENT для таблицы `user_lang_progress`
 --
 ALTER TABLE `user_lang_progress`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT для таблицы `user_words`
 --
 ALTER TABLE `user_words`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT для таблицы `words`
