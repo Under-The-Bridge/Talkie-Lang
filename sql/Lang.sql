@@ -2,8 +2,8 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1:3307
--- Время создания: Май 27 2026 г., 22:06
+-- Хост: 127.0.0.1:3306
+-- Время создания: Май 28 2026 г., 12:32
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -46,7 +46,9 @@ INSERT INTO `completed_lessons` (`id`, `user_id`, `lesson_id`, `count`) VALUES
 (169, 12, 1, 4),
 (170, 12, 2, 1),
 (171, 32, 1, 4),
-(172, 32, 2, 0);
+(172, 32, 2, 0),
+(173, 114, 1, 4),
+(174, 114, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -291,7 +293,7 @@ CREATE TABLE `users` (
   `user_login` text NOT NULL,
   `user_email` text NOT NULL,
   `user_password` text NOT NULL,
-  `user_pfp` text NOT NULL,
+  `user_pfp` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `user_role` enum('user','admin') NOT NULL DEFAULT 'user',
   `user_weekly_xp` int NOT NULL DEFAULT '0',
   `user_league` int NOT NULL DEFAULT '1'
@@ -397,7 +399,8 @@ INSERT INTO `users` (`user_id`, `user_login`, `user_email`, `user_password`, `us
 (110, 'qqqq', 'qqqq@qqqq', 'qqqq', '', 'user', 0, 3),
 (111, 'zxczxczxc', 'zxczxczxc@zxczxczxc', 'zxczxczxc', '', 'user', 0, 2),
 (112, 'ramziktvt@gmail.com', 'ramziktvt@gmail.com', 'ramziktvt@gmail.com', '', 'user', 0, 3),
-(113, 'wwww', 'ww@ww', 'wwww', '', 'user', 0, 3);
+(113, 'wwww', 'ww@ww', 'wwww', '', 'user', 0, 3),
+(114, 'rama', 'rama@rama', 'rama', 'VjMohxedYfLYNCtB.jpg', 'user', 3986, 1);
 
 -- --------------------------------------------------------
 
@@ -421,7 +424,8 @@ INSERT INTO `user_lang_progress` (`id`, `user_id`, `lang_id`, `progress`) VALUES
 (49, 9, 2, 0),
 (50, 2, 1, 0),
 (51, 12, 1, 1),
-(52, 32, 1, 1);
+(52, 32, 1, 1),
+(53, 114, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -462,7 +466,10 @@ INSERT INTO `user_words` (`id`, `user_id`, `word_id`) VALUES
 (20, 12, 26),
 (21, 12, 20),
 (22, 32, 23),
-(23, 32, 19);
+(23, 32, 19),
+(24, 114, 22),
+(25, 114, 23),
+(26, 114, 21);
 
 -- --------------------------------------------------------
 
@@ -639,7 +646,7 @@ ALTER TABLE `words`
 -- AUTO_INCREMENT для таблицы `completed_lessons`
 --
 ALTER TABLE `completed_lessons`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
 
 --
 -- AUTO_INCREMENT для таблицы `langs`
@@ -675,19 +682,19 @@ ALTER TABLE `lessons_words`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT для таблицы `user_lang_progress`
 --
 ALTER TABLE `user_lang_progress`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT для таблицы `user_words`
 --
 ALTER TABLE `user_words`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT для таблицы `words`
