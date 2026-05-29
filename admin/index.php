@@ -1,10 +1,12 @@
 <?php
-require "../connection-db.php";?>
+require "../connection-db.php";
+if($user["user_role"] != "admin") header("Location: /profile");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 
-<?php include "../components/head.php"; ?>
+<?php include "../components/head-admin.php"; ?>
 
 <body>
     <?php include "../components/header-admin.php"; ?>

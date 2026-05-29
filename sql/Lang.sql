@@ -78,7 +78,7 @@ INSERT INTO `langs` (`lang_id`, `lang_name`) VALUES
 CREATE TABLE `leagues` (
   `league_id` int NOT NULL,
   `league_name` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Дамп данных таблицы `leagues`
@@ -98,8 +98,8 @@ INSERT INTO `leagues` (`league_id`, `league_name`) VALUES
 CREATE TABLE `league_users` (
   `id` int NOT NULL,
   `user_id` int NOT NULL,
-  `weekly_league_id` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `weekly_league_id` varchar(12) CHARACTER SET utf8mb4 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Дамп данных таблицы `league_users`
@@ -212,7 +212,7 @@ CREATE TABLE `lesson` (
   `lesson_id` int NOT NULL,
   `lesson_name` varchar(100) NOT NULL,
   `lesson_language` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Дамп данных таблицы `lesson`
@@ -236,7 +236,7 @@ CREATE TABLE `lessons_words` (
   `id` int NOT NULL,
   `lesson_id` int NOT NULL,
   `word_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Дамп данных таблицы `lessons_words`
@@ -293,11 +293,11 @@ CREATE TABLE `users` (
   `user_login` text NOT NULL,
   `user_email` text NOT NULL,
   `user_password` text NOT NULL,
-  `user_pfp` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `user_pfp` text CHARACTER SET utf8mb4,
   `user_role` enum('user','admin') NOT NULL DEFAULT 'user',
   `user_weekly_xp` int NOT NULL DEFAULT '0',
   `user_league` int NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Дамп данных таблицы `users`
@@ -437,7 +437,7 @@ CREATE TABLE `user_words` (
   `id` int NOT NULL,
   `user_id` int NOT NULL,
   `word_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Дамп данных таблицы `user_words`
@@ -481,7 +481,7 @@ CREATE TABLE `weekly_league` (
   `id` varchar(12) NOT NULL,
   `league_id` int NOT NULL,
   `time` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Дамп данных таблицы `weekly_league`
@@ -508,7 +508,7 @@ CREATE TABLE `words` (
   `word_transcription` varchar(100) DEFAULT NULL,
   `word_translate` varchar(100) NOT NULL,
   `lang_id` int NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 --
 -- Дамп данных таблицы `words`

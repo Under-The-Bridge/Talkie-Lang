@@ -9,7 +9,7 @@ $lessons = mysqli_fetch_all(mysqli_query($conn, "select * from lesson join langs
 <html lang="en">
 
 
-<?php include "../../components/head.php"; ?>
+<?php include "../../components/head-admin.php"; ?>
 
 <body>
     <?php include "../../components/header-admin.php"; ?>

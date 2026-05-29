@@ -37,7 +37,7 @@ $overallProgress = $totalLessons > 0 ? round(100 * $totalProgress / $totalLesson
     <main class="container">
         <div class="welcome-banner <?php if (!$myAcc)
             echo "d-flex pb-4" ?>">
-                <div class="profile-part">
+                <div class="profile-part d-flex">
                     <div class="pfp">
                     <?php if ($myAcc): ?>
                         <div class="dropdown">
@@ -98,38 +98,38 @@ $overallProgress = $totalLessons > 0 ? round(100 * $totalProgress / $totalLesson
                 <?php endif; ?>
             </div>
 
-            <?php if(count($progresses) != 0):?>
-            <div class="languages-grid">
-                <?php foreach ($progresses as $progress):
-                    $lessonsCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as count FROM lesson WHERE lesson_language = " . $progress["lang_id"]))['count'];
-                    $percent = $lessonsCount > 0 ? round(100 * $progress['progress'] / $lessonsCount) : 0;
-                    ?>
-                    <div class="lang-card">
-                        <div class="lang-card-header">
-                            <h3 class="lang-name"><?= $progress["lang_name"] ?></h3>
-                        </div>
-                        <div class="lang-card-body">
-                            <div class="progress-stats">
-                                <div class="progress-percent"><?= $percent ?>%</div>
-                                <div class="progress-bar-custom">
-                                    <div class="progress-fill" style="width: <?= $percent ?>%;"></div>
-                                </div>
-                                <div class="progress-details">
-                                    <span>Пройдено: <?= $progress['progress'] ?> из <?= $lessonsCount ?> разделов</span>
-                                </div>
+            <?php if (count($progresses) != 0): ?>
+                <div class="languages-grid">
+                    <?php foreach ($progresses as $progress):
+                        $lessonsCount = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as count FROM lesson WHERE lesson_language = " . $progress["lang_id"]))['count'];
+                        $percent = $lessonsCount > 0 ? round(100 * $progress['progress'] / $lessonsCount) : 0;
+                        ?>
+                        <div class="lang-card">
+                            <div class="lang-card-header">
+                                <h3 class="lang-name"><?= $progress["lang_name"] ?></h3>
                             </div>
-                            <?php if ($myAcc): ?>
-                                <a href="/?lang=<?= $progress["lang_id"] ?>" class="continue-btn">
-                                    Продолжить обучение →
-                                </a>
-                            <?php endif; ?>
+                            <div class="lang-card-body">
+                                <div class="progress-stats">
+                                    <div class="progress-percent"><?= $percent ?>%</div>
+                                    <div class="progress-bar-custom">
+                                        <div class="progress-fill" style="width: <?= $percent ?>%;"></div>
+                                    </div>
+                                    <div class="progress-details">
+                                        <span>Пройдено: <?= $progress['progress'] ?> из <?= $lessonsCount ?> разделов</span>
+                                    </div>
+                                </div>
+                                <?php if ($myAcc): ?>
+                                    <a href="/?lang=<?= $progress["lang_id"] ?>" class="continue-btn">
+                                        Продолжить обучение →
+                                    </a>
+                                <?php endif; ?>
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <?php else:?>
+                    <?php endforeach; ?>
+                </div>
+            <?php else: ?>
                 <h5>Похоже этот пользователь ещё не начал изучать языки :(</h5>
-            <?php endif;?>
+            <?php endif; ?>
         </div>
     </main>
     <script>

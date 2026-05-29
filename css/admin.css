@@ -1,0 +1,69 @@
+*{
+    margin: 0 !important;
+}
+:root {
+    --main-color: #e0834d;
+    --main-color-shadow: #c06b3a;
+    --main-color-light: rgb(235, 155, 109);
+    --green-color: #4de06d;
+    --green-color-shadow: #2db64b;
+    --red-color: #e0524d;
+    --red-color-shadow: #b6362d;
+    --bg-color: #0f0f0f;
+    --bg-secondary: #1f1d27;
+    --gray-color: #a38a7a;
+    --gray-color-light: #d3c2b6;
+}
+body{
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    min-height: 100vh;
+}
+header{
+    border-radius: 0;
+    display: flex;
+    align-self: stretch;
+    height: 100%;
+    background-color: var(--bg-secondary);
+    max-width: 175px;
+}
+.aside{
+    max-width: 175px !important;
+    width: 100% !important;
+    position: fixed;
+    border-radius: 0;
+    background: none;
+    padding: 25px !important;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between !important;
+    align-items: start !important;
+    height: 100%;
+}
+.aside-links{
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.aside a{
+    font-size: 22px;
+    color: white;
+}
+.aside a:hover{
+    transform: translateX(4px);
+    color: var(--main-color-light);
+}
+.container{
+    box-shadow: none;
+    max-width: 100%;
+    min-height: 100%;
+}
+.hide-btn{
+    align-self: flex-end;
+    background: none;
+    color: white;
+    border: none;
+    font-size: 32px;
+    font-weight: 900;
+}
