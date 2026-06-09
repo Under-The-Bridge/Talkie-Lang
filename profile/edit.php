@@ -27,6 +27,7 @@ if (isset($_GET["clear"])) {
 
         move_uploaded_file($temp, $path);
         echo "<script>
+        alert('Аватарка добавлена!')
                 location.href='/profile';
                 </script>";
     }
