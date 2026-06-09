@@ -17,7 +17,7 @@ location.href = '/admin';
 </script>";
         }else{
             echo "    <script>
-// alert('Вы вошли');
+alert('Вы вошли');
 location.href = '/?lang=$lang';
 </script>";
         }
