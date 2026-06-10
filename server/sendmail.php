@@ -1,4 +1,14 @@
 <?php
+require "../connection-db.php";
+$letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+$password = '';
+
+
+for ($i = 0; $i < 16; $i++) {
+    $password .= $letters[random_int(0, strlen($letters) - 1)];
+}
+
 $to = $_POST["email"];
 $subject = "Talkie Lang";
 
@@ -24,10 +34,9 @@ $message = '
                 <p style="font-size: 15px;line-height: 1.6;margin: 0 0 15px 0;">Привет! Мы получили запрос на восстановление пароля для вашего аккаунта на Talkie Lang.</p>
                 <p style="font-size: 15px;line-height: 1.6;margin: 0 0 15px 0;">Ваш код для восстановления пароля:</p>
                 <div style="text-align: center;margin: 30px 0;">
-                    <p style="display: inline-block;background: #e0834d;color: #ffffff;text-decoration: none;padding: 16px 42px;font-size: 28px;font-weight: bold;border-radius: 8px;letter-spacing: 4px;">wwewewe</p>
+                    <p style="display: inline-block;background: #e0834d;color: #ffffff;text-decoration: none;padding: 16px 42px;font-size: 28px;font-weight: bold;border-radius: 8px;letter-spacing: 4px;">'.$password.'</p>
                 </div>
                 <p style="font-size: 15px;line-height: 1.6;margin: 0 0 15px 0;">Если вы не запрашивали восстановление пароля, просто проигнорируйте это письмо.</p>
-                <p style="font-size: 13px;line-height: 1.6;margin: 20px 0 0 0;color: #888888;">Код действует 30 минут.</p>
             </div>
             <footer style="background: #e0834d;padding: 22px;text-align: center;color: #ffffff;font-size: 12px;">© Talkie Lang. Все права защищены.</footer>
         </div>
@@ -39,6 +48,9 @@ $message = '
 $headers = "Content-type: text/html; charset=UTF-8\r\n";
 
 mail($to, $subject, $message, $headers);
+// $password = password_hash($password,PASSWORD_DEFAULT);
+$sql = "UPDATE `users` SET `user_password`='$password' where user_email='$to'";
+mysqli_query($conn,$sql);
 echo "    <script>
         alert('Письмо отправлено');
         location.href = '/welcome/';

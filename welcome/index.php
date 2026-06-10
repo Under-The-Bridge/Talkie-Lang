@@ -65,7 +65,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
                         Уже есть аккаунт? <a id="switchToLoginBtn">Войти</a>
                     </div>
                 </form>
-
             </div>
 
             <!-- Форма авторизации (скрыта по умолчанию) -->
@@ -74,8 +73,7 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
                 <form method="post" action="../server/auth-db.php" id="loginForm">
                     <div class="form-group">
                         <label>Логин или Email</label>
-                        <input type="text" name="login" placeholder="Введите логин или email" id="loginUsername"
-                            required>
+                        <input type="text" name="login" placeholder="Введите логин или email" id="loginUsername" required>
                     </div>
                     <div class="form-group">
                         <label>Пароль</label>
@@ -85,6 +83,24 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
                     <button type="submit" class="btn-submit">Войти</button>
                     <div class="form-footer">
                         Нет аккаунта? <a id="switchToRegBtn">Зарегистрироваться</a>
+                    </div>
+                    <div class="form-footer">
+                        <a id="switchToForgotBtn" class="forgot-link">Забыли пароль?</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Форма восстановления пароля (скрыта по умолчанию) -->
+            <div id="forgotFormBlock" class="hidden">
+                <div class="form-title">Восстановление пароля</div>
+                <form method="post" action="../server/sendmail.php" id="forgotForm">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="Введите ваш email" id="forgotEmail" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Отправить</button>
+                    <div class="form-footer">
+                        <a id="backToLoginFromForgot">Вернуться ко входу</a>
                     </div>
                 </form>
             </div>
@@ -103,10 +119,14 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
 
         const registerBlock = document.getElementById('registerFormBlock');
         const loginBlock = document.getElementById('loginFormBlock');
+        const forgotBlock = document.getElementById('forgotFormBlock');
         const switchToLogin = document.getElementById('switchToLoginBtn');
         const switchToReg = document.getElementById('switchToRegBtn');
+        const switchToForgot = document.getElementById('switchToForgotBtn');
+        const backToLoginFromForgot = document.getElementById('backToLoginFromForgot');
 
         let currentLang = '';
+        let idLang = '';
 
         // Выбор языка
         langBtns.forEach(btn => {
@@ -125,6 +145,7 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
                 // Показываем форму регистрации, авторизацию скрываем
                 registerBlock.classList.remove('hidden');
                 loginBlock.classList.add('hidden');
+                forgotBlock.classList.add('hidden');
             });
         });
 
@@ -139,14 +160,34 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
             });
         }
 
+        // Функция показа формы регистрации
+        function showRegisterForm() {
+            registerBlock.classList.remove('hidden');
+            loginBlock.classList.add('hidden');
+            forgotBlock.classList.add('hidden');
+            if (hiddenLang) hiddenLang.value = idLang;
+        }
+
+        // Функция показа формы авторизации
+        function showLoginForm() {
+            registerBlock.classList.add('hidden');
+            loginBlock.classList.remove('hidden');
+            forgotBlock.classList.add('hidden');
+            if (hiddenLangLogin) hiddenLangLogin.value = idLang;
+        }
+
+        // Функция показа формы восстановления
+        function showForgotForm() {
+            registerBlock.classList.add('hidden');
+            loginBlock.classList.add('hidden');
+            forgotBlock.classList.remove('hidden');
+        }
+
         // Переключение на форму авторизации
         if (switchToLogin) {
             switchToLogin.addEventListener('click', function (e) {
                 e.preventDefault();
-                registerBlock.classList.add('hidden');
-                loginBlock.classList.remove('hidden');
-                // обновляем скрытое поле в форме авторизации
-                if (hiddenLangLogin) hiddenLangLogin.value = idLang;
+                showLoginForm();
             });
         }
 
@@ -154,10 +195,23 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
         if (switchToReg) {
             switchToReg.addEventListener('click', function (e) {
                 e.preventDefault();
-                loginBlock.classList.add('hidden');
-                registerBlock.classList.remove('hidden');
-                // обновляем скрытое поле в форме регистрации
-                if (hiddenLang) hiddenLang.value = idLang;
+                showRegisterForm();
+            });
+        }
+
+        // Переключение на форму восстановления
+        if (switchToForgot) {
+            switchToForgot.addEventListener('click', function (e) {
+                e.preventDefault();
+                showForgotForm();
+            });
+        }
+
+        // Возврат к авторизации из формы восстановления
+        if (backToLoginFromForgot) {
+            backToLoginFromForgot.addEventListener('click', function (e) {
+                e.preventDefault();
+                showLoginForm();
             });
         }
 
@@ -192,6 +246,22 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
                 if (!username || !pass) {
                     e.preventDefault();
                     alert('Заполните все поля');
+                }
+            });
+        }
+
+        // Валидация формы восстановления пароля
+        const forgotForm = document.getElementById('forgotForm');
+        if (forgotForm) {
+            forgotForm.addEventListener('submit', function (e) {
+                const email = document.getElementById('forgotEmail').value.trim();
+
+                if (!email) {
+                    e.preventDefault();
+                    alert('Введите email');
+                } else if (!email.includes('@') || !email.includes('.')) {
+                    e.preventDefault();
+                    alert('Введите корректный email');
                 }
             });
         }
@@ -271,6 +341,20 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
                     return false;
                 }
                 showSuccess(field, 'OK');
+                return true;
+            }
+
+            // Функция валидации email для восстановления
+            function validateForgotEmail(email) {
+                const value = email.value.trim();
+                if (!value) {
+                    showError(email, 'Введите email');
+                    return false;
+                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                    showError(email, 'Введите корректный email');
+                    return false;
+                }
+                showSuccess(email, 'Email найден');
                 return true;
             }
 
@@ -361,6 +445,20 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
             .success-message.show {
                 display: block;
             }
+            .info-text {
+                font-size: 12px;
+                color: #6c757d;
+                margin: 10px 0;
+                text-align: center;
+            }
+            .forgot-link {
+                color: #6c757d;
+                cursor: pointer;
+                text-decoration: underline;
+            }
+            .forgot-link:hover {
+                color: #dc3545;
+            }
         `;
                 document.head.appendChild(style);
             }
@@ -415,16 +513,24 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
                 }
             }
 
+            // Активация валидации для формы восстановления
+            function initForgotValidation() {
+                const forgotEmail = document.getElementById('forgotEmail');
+
+                if (forgotEmail) {
+                    forgotEmail.addEventListener('input', function () { validateForgotEmail(this); });
+                    forgotEmail.addEventListener('blur', function () { validateForgotEmail(this); });
+                }
+            }
+
             // Переопределяем submit формы регистрации с активной валидацией
             function enhanceRegistrationForm() {
                 const regForm = document.getElementById('registerForm');
                 if (regForm) {
-                    const originalSubmit = regForm.onsubmit;
                     regForm.addEventListener('submit', function (e) {
                         const login = document.getElementById('regLogin');
                         const email = document.getElementById('regEmail');
                         const password = document.getElementById('regPassword');
-                        const currentLang = window.currentLang || '';
 
                         let isValid = true;
 
@@ -447,7 +553,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
                     loginForm.addEventListener('submit', function (e) {
                         const username = document.getElementById('loginUsername');
                         const password = document.getElementById('loginPassword');
-                        const currentLang = window.currentLang || '';
 
                         let isValid = true;
 
@@ -467,10 +572,30 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
                 }
             }
 
+            // Переопределяем submit формы восстановления
+            function enhanceForgotForm() {
+                const forgotForm = document.getElementById('forgotForm');
+                if (forgotForm) {
+                    forgotForm.addEventListener('submit', function (e) {
+                        const email = document.getElementById('forgotEmail');
+
+                        let isValid = true;
+                        if (!validateForgotEmail(email)) isValid = false;
+
+                        if (!isValid) {
+                            e.preventDefault();
+                            alert('Исправьте ошибки в форме!');
+                        }
+                    });
+                }
+            }
+
             // Следим за переключением между формами
             function watchFormSwitching() {
                 const switchToLogin = document.getElementById('switchToLoginBtn');
                 const switchToReg = document.getElementById('switchToRegBtn');
+                const switchToForgot = document.getElementById('switchToForgotBtn');
+                const backToLogin = document.getElementById('backToLoginFromForgot');
 
                 if (switchToLogin) {
                     switchToLogin.addEventListener('click', function () {
@@ -483,6 +608,18 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
                         setTimeout(initRegistrationValidation, 100);
                     });
                 }
+
+                if (switchToForgot) {
+                    switchToForgot.addEventListener('click', function () {
+                        setTimeout(initForgotValidation, 100);
+                    });
+                }
+
+                if (backToLogin) {
+                    backToLogin.addEventListener('click', function () {
+                        setTimeout(initLoginValidation, 100);
+                    });
+                }
             }
 
             // Инициализация при загрузке
@@ -490,8 +627,10 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
             addValidationMessages();
             initRegistrationValidation();
             initLoginValidation();
+            initForgotValidation();
             enhanceRegistrationForm();
             enhanceLoginForm();
+            enhanceForgotForm();
             watchFormSwitching();
         })();
     </script>
