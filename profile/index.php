@@ -93,9 +93,9 @@ if (isset($_GET['error'])) {
                                 <div class="edit-section-header">
                                     <h4>Смена логина</h4>
                                 </div>
-                                <form action="update-profile.php" method="post" class="inline-form">
-                                    <input type="text" name="new_login" placeholder="Новый логин" value="<?= htmlspecialchars($user["user_login"]) ?>">
-                                    <button type="submit" class="btn-edit">Сохранить</button>
+                                <form action="profile-update.php" method="post" class="inline-form">
+                                    <input type="text" name="login" placeholder="Новый логин" value="<?= htmlspecialchars($user["user_login"]) ?>">
+                                    <button name="btnLogin" type="submit" class="btn-edit">Сохранить</button>
                                 </form>
                             </div>
                             
@@ -103,9 +103,9 @@ if (isset($_GET['error'])) {
                                 <div class="edit-section-header">
                                     <h4>Смена email</h4>
                                 </div>
-                                <form action="update-profile.php" method="post" class="inline-form">
-                                    <input type="email" name="new_email" placeholder="Новый email" value="<?= htmlspecialchars($user["user_email"]) ?>">
-                                    <button type="submit" class="btn-edit">Сохранить</button>
+                                <form action="profile-update.php" method="post" class="inline-form">
+                                    <input type="email" name="email" placeholder="Новый email" value="<?= htmlspecialchars($user["user_email"]) ?>">
+                                    <button name="btnEmail" type="submit" class="btn-edit">Сохранить</button>
                                 </form>
                             </div>
                             
@@ -113,10 +113,10 @@ if (isset($_GET['error'])) {
                                 <div class="edit-section-header">
                                     <h4>Смена пароля</h4>
                                 </div>
-                                <form action="update-profile.php" method="post" class="inline-form password-form">
-                                    <input type="password" name="current_password" placeholder="Текущий пароль">
-                                    <input type="password" name="new_password" placeholder="Новый пароль">
-                                    <button type="submit" class="btn-edit">Сохранить</button>
+                                <form action="profile-update.php" method="post" class="inline-form password-form">
+                                    <input type="password" name="currentPassword" placeholder="Текущий пароль">
+                                    <input type="password" name="newPassword" placeholder="Новый пароль">
+                                    <button name="btnPassword" type="submit" class="btn-edit">Сохранить</button>
                                 </form>
                             </div>
                         </div>
