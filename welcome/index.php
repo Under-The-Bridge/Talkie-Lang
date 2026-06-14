@@ -1,6 +1,6 @@
 <?php
 require "../connection-db.php";
-$langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
+$langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_name from langs join lesson on langs.lang_id = lesson.lesson_language"));
 ?>
 <!DOCTYPE html>
 <html lang="ru">

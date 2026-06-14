@@ -15,7 +15,7 @@
                     </button>
                     <ul class="dropdown-menu">
                         <?php
-                        $langs = mysqli_fetch_all(mysqli_query($conn, "select * from langs"));
+                        $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_name from langs join  lesson on langs.lang_id = lesson.lesson_language"));
                         foreach ($langs as $lang): ?>
                             <li><a class="dropdown-item header-btns" href="/?lang=<?= $lang[0] ?>">
                                     <?= $lang[1] ?>

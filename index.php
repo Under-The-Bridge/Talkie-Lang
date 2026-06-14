@@ -6,19 +6,23 @@ if (!isset($_GET['lang'])) {
     header("Location: /welcome");
 }
 
+if (mysqli_num_rows(mysqli_query($conn, "select DISTINCT lang_id, lang_name from langs join  lesson on langs.lang_id = lesson.lesson_language where langs.lang_id =" . $_GET["lang"])) <= 0) {
+    $lang = $_SESSION['lang'] ?? 1;
+} else {
+    if(isset($_SESSION['lang'])){
+        if ($_GET['lang'] != $_SESSION['lang']) {
+            unset($_SESSION['lang']);
+        }
+    }
+    $lang = $_GET['lang'];
+    $_SESSION['lang'] = $lang;
 
-if ($_GET['lang'] != $_SESSION['lang']) {
-    unset($_SESSION['lang']);
-}
-
-$lang = $_GET['lang'];
-$_SESSION['lang'] = $lang;
-
-if (!isset($_SESSION["id"])) {
-    echo "    <script>
-        alert('Войдите в профиль');
-        location.href = '/welcome/';
-    </script>";
+    if (!isset($_SESSION["id"])) {
+        echo "    <script>
+            alert('Войдите в профиль');
+            location.href = '/welcome/';
+        </script>";
+    }
 }
 
 
@@ -66,7 +70,7 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
                         <?php if ($temp < $count && $check):
                             ?>
                             <?php if ($temp == 2): ?>
-                                <a href="lesson/?id=<?= $lesson[0] ?>&c=<?= $temp+1 ?>" class="circles evil"
+                                <a href="lesson/?id=<?= $lesson[0] ?>&c=<?= $temp + 1 ?>" class="circles evil"
                                     style="animation: show <?= $anim / 5 ?>s ease;">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                             class="bi bi-star" viewBox="0 0 16 16">
@@ -80,7 +84,7 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
                                     </div>
                                 </a>
                             <?php elseif ($temp + 1 < $count): ?>
-                                <a href="lesson/?id=<?= $lesson[0] ?>&c=<?= $temp+1 ?>" class="circles good"
+                                <a href="lesson/?id=<?= $lesson[0] ?>&c=<?= $temp + 1 ?>" class="circles good"
                                     style="animation: show <?= $anim / 5 ?>s ease;">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                             class="bi bi-check" viewBox="0 0 16 16">
@@ -98,7 +102,7 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
                                 </a>
                             <?php else:
                                 ?>
-                                <a href="lesson/?id=<?= $lesson[0] ?>&c=<?= $temp+1 ?>" class="circles"
+                                <a href="lesson/?id=<?= $lesson[0] ?>&c=<?= $temp + 1 ?>" class="circles"
                                     style="animation: show <?= $anim / 5 ?>s ease;">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                             class="bi bi-play" viewBox="0 0 16 16">
@@ -115,14 +119,13 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
                                     </div>
                                 </a>
                             <?php endif; ?>
-                        <?php
+                            <?php
                         else:
                             $check = false;
                             ?>
                             <?php if ($temp == 2): ?>
 
-                                <div class="circles closed"
-                                    style="animation: show <?= $anim / 5 ?>s ease;">
+                                <div class="circles closed" style="animation: show <?= $anim / 5 ?>s ease;">
                                     <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                             class="bi bi-star" viewBox="0 0 16 16">
                                             <path

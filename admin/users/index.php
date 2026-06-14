@@ -159,7 +159,7 @@ function buildQuery($overrides = []) {
                                     <td>
                                         <div class="player-cell">
                                             <?php if (!empty($row['user_pfp'])): ?>
-                                                <img class="pfp player-avatar" src="/uploads/avatars/<?= htmlspecialchars($row['user_pfp']) ?>" alt="">
+                                                <img class="pfp player-avatar" src="../../images/<?= htmlspecialchars($row['user_pfp']) ?>" alt="">
                                             <?php else: ?>
                                                 <div class="mini-avatar"><?= mb_strtoupper(mb_substr($row['user_login'], 0, 1)) ?></div>
                                             <?php endif; ?>

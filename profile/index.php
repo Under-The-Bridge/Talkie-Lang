@@ -58,7 +58,7 @@ if (isset($_GET['error'])) {
         <?php endif; ?>
 
         <div class="welcome-banner <?php if (!$myAcc) echo "d-flex pb-4" ?>">
-            <div class="profile-info-wrapper">
+            <div class="profile-info-wrapper" <?php if (!$myAcc) echo "style='display:flex'"; ?>>
                 <div class="profile-part d-flex">
                     <div class="pfp">
                         <?php if ($myAcc): ?>
