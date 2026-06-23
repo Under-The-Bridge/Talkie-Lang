@@ -1,5 +1,4 @@
 <?php
-//http://talkie-lang/en/lesson/index.php?id=1&prog=9&mistakes=5
 require "../connection-db.php";
 $xp = 1000;
 

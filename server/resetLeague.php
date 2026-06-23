@@ -11,18 +11,12 @@ foreach ($weekly_league as $league) {
     $query = mysqli_fetch_all(mysqli_query($conn, $sql), MYSQLI_ASSOC);
     foreach ($query as $user) {
         array_push($upUser, $user);
-        // echo $user["user_login"]."<br>";
     }
-    // print_r($upUser);
-    // echo "<br>";
     $sql = "select * from league_users JOIN users on users.user_id = league_users.user_id where weekly_league_id = '$league_id' ORDER by user_weekly_xp DESC, id ASC LIMIT 5 OFFSET 10";
     $query = mysqli_fetch_all(mysqli_query($conn, $sql), MYSQLI_ASSOC);
     foreach ($query as $user) {
         array_push($downUser, $user);
-        // echo $user["user_login"]."<br>";
     }
-    // print_r($downUser);
-    // echo "<br>";
 }
 
 foreach ($upUser as $user) {
@@ -45,7 +39,6 @@ foreach ($downUser as $user) {
     if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `leagues` limit 1 OFFSET $leagues")) != 0) {
         $league = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM `leagues` limit 1 OFFSET $leagues"))[0];
         $sql = "UPDATE `users` SET `user_league`='$league' WHERE user_id = $user_id";
-        // echo $sql."<br>";
         mysqli_query($conn, $sql);
     }
 }

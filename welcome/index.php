@@ -226,9 +226,9 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 if (!login || !email || !pass) {
                     e.preventDefault();
                     alert('Заполните все поля');
-                } else if (pass.length < 4) {
+                } else if (pass.length < 6) {
                     e.preventDefault();
-                    alert('Пароль должен быть минимум 4 символа');
+                    alert('Пароль должен быть минимум 6 символа');
                 } else if (!email.includes('@')) {
                     e.preventDefault();
                     alert('Введите корректный email');

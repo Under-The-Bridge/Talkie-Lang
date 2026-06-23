@@ -3,10 +3,8 @@ require "../connection-db.php";
 $json = file_get_contents('../config.json');
 $config = json_decode($json,true);
 $time = time() + $config['league_time_reset'] * 3600;
-// echo $time;
 $leagues = mysqli_fetch_all(mysqli_query($conn,"SELECT * FROM `leagues`"),MYSQLI_ASSOC);
 foreach($leagues as $league){
-    // echo $league["league_name"]."<br>";
     $league_id = $league["league_id"];
     $users = mysqli_fetch_all(mysqli_query($conn, "select * from users where user_role = 'user' and user_league = '$league_id'"),MYSQLI_ASSOC);
     $u = [];
@@ -39,11 +37,8 @@ foreach($leagues as $league){
                 };
                 array_push($league_users,$u[$i]["user_id"]);
                 $sql = "INSERT INTO `league_users`(`user_id`, `weekly_league_id`) VALUES ('$user_id','$id_league')";
-                // print_r($u[$i]);
-                // echo $u[$i]["user_id"]."<br>";
                 mysqli_query($conn,$sql);
             }
-            // echo "<br>";
         }
     }
 }

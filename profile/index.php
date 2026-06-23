@@ -425,9 +425,9 @@ if (isset($_GET['error'])) {
                     if (!currentPass || !newPass || !confirmPass) {
                         e.preventDefault();
                         alert('Заполните все поля');
-                    } else if (newPass.length < 4) {
+                    } else if (newPass.length < 6) {
                         e.preventDefault();
-                        alert('Новый пароль должен быть минимум 4 символа');
+                        alert('Новый пароль должен быть минимум 6 символа');
                     } else if (newPass !== confirmPass) {
                         e.preventDefault();
                         alert('Пароли не совпадают');
