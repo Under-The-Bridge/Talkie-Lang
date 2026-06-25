@@ -61,11 +61,12 @@ if (isset($_POST["btnLogin"])) {
 
     if (mysqli_num_rows($usercheck) != 0) {
         $user = mysqli_fetch_assoc($usercheck);
-        if ($user["user_password"] == $currentPassword) {
+        if (password_verify($currentPassword,$user["user_password"])) {
+            $newPassword = password_hash($newPassword,PASSWORD_DEFAULT);
             $sql = "UPDATE `users` SET `user_password`='$newPassword' WHERE `user_id` = '$id'";
             mysqli_query($conn, $sql);
             echo "<script>
-        alert('Пароль изменен изменена!')
+        alert('Пароль изменен!')
         location.href='/profile';
         </script>";
         } else {

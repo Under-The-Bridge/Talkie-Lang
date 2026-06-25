@@ -82,7 +82,6 @@ header{
     font-weight: 900;
 }
 
-/* ================= Dashboard ================= */
 
 .dash-header{
     display: flex;
@@ -137,7 +136,6 @@ header{
     font-size: 15px;
 }
 
-/* Stat cards */
 .stats-grid{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -200,7 +198,6 @@ header{
     text-overflow: ellipsis;
 }
 
-/* Grid of dashboard cards */
 .dash-grid{
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -224,7 +221,6 @@ header{
     margin-bottom: 18px !important;
 }
 
-/* Tables */
 .table-scroll{
     width: 100%;
     overflow-x: auto;
@@ -277,7 +273,6 @@ header{
     color: var(--main-color);
 }
 
-/* Player cell with avatar */
 .player-cell{
     display: flex;
     align-items: center;
@@ -313,7 +308,6 @@ header{
     object-fit: cover;
 }
 
-/* Rank badge */
 .rank-badge{
     display: inline-flex;
     align-items: center;
@@ -327,7 +321,6 @@ header{
     font-size: 13px;
 }
 
-/* Role badges */
 .role-badge{
     display: inline-block;
     padding: 4px 12px;
@@ -346,7 +339,6 @@ header{
     color: var(--gray-color);
 }
 
-/* Languages progress list */
 .lang-progress-list{
     display: flex;
     flex-direction: column;
@@ -387,7 +379,6 @@ header{
     background: linear-gradient(90deg, var(--main-color) 0%, var(--main-color-light) 100%);
 }
 
-/* Responsive */
 @media (max-width: 1100px){
     .dash-grid{
         grid-template-columns: minmax(0, 1fr);
@@ -444,7 +435,6 @@ header{
     }
 }
 
-/* ================= Users page ================= */
 
 .users-toolbar{
     display: flex;
@@ -551,7 +541,6 @@ header{
     background: var(--main-color);
 }
 
-/* Status badges */
 .status-badge{
     display: inline-flex;
     align-items: center;
@@ -580,7 +569,6 @@ header{
     color: var(--red-color-shadow);
 }
 
-/* Warning badge (e.g. language with no lessons) */
 .warning-badge{
     display: inline-flex;
     align-items: center;
@@ -593,7 +581,6 @@ header{
     color: #b8762e;
 }
 
-/* Language add form */
 .lang-add-form{
     display: flex;
     align-items: center;
@@ -611,7 +598,6 @@ header{
     }
 }
 
-/* ================= Lessons page ================= */
 
 .field-label{
     display: block;
@@ -740,7 +726,6 @@ header{
     }
 }
 
-/* ================= Words page ================= */
 
 .word-form-row{
     display: grid;
@@ -782,7 +767,6 @@ header{
     }
 }
 
-/* Action buttons */
 .action-form{
     display: inline-block;
 }
@@ -824,7 +808,6 @@ header{
     color: var(--gray-color);
 }
 
-/* Empty state */
 .no-results{
     text-align: center;
     padding: 50px 20px;
@@ -835,7 +818,6 @@ header{
     margin-bottom: 10px;
 }
 
-/* Pagination */
 .pagination{
     display: flex;
     justify-content: center;

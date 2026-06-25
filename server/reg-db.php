@@ -8,6 +8,7 @@ $password = $_POST["password"] ?? false;
 
 $usercheck = mysqli_query($conn, "select * from users where user_login = '$login' or user_email = '$email'");
 if (mysqli_num_rows($usercheck) == 0) {
+    $password = password_hash($password,PASSWORD_DEFAULT);
     $sql = "insert into `users`(`user_login`,`user_email`,`user_password`) values ('$login','$email','$password')";
     $result = mysqli_query($conn, $sql);
     $user = mysqli_fetch_assoc(mysqli_query($conn, "select * from users where user_login = '$login' or user_email = '$email'"));

@@ -25,16 +25,6 @@ $mistakes = $_SESSION["mistakes"] ?? 0;
 if ($progress == $lessonSize) {
     header("location: /lesson-end/?id=$lesson_id");
 }
-// $w1 = [];
-// $w2 = [];
-// foreach ($words as $word) {
-//     array_push($w1, $word["word_translate"]);
-// }
-// foreach ($words as $word) {
-//     array_push($w2, [$word["word_translate"], $word["word_name"]]);
-// }
-// shuffle($w1);
-// shuffle($w2);
 $rand = rand(1,3);
 $link = $_SERVER['PHP_SELF'];
 $progress++;

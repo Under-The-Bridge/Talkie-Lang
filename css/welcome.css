@@ -37,7 +37,6 @@
             border-bottom: 1px solid #eee;
         }
 
-        /* сетка языков */
         .lang-list {
             display: flex;
             flex-wrap: wrap;
@@ -62,7 +61,6 @@
             color: white;
         }
 
-        /* выбранный язык */
         .selected-info {
             max-width: 300px;
             background: #f9f0ea;
@@ -92,7 +90,6 @@
             color: #e0834d;
         }
 
-        /* формы */
         .form-group {
             margin-bottom: 16px;
         }

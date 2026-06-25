@@ -48,7 +48,7 @@ $message = '
 $headers = "Content-type: text/html; charset=UTF-8\r\n";
 
 mail($to, $subject, $message, $headers);
-// $password = password_hash($password,PASSWORD_DEFAULT);
+$password = password_hash($password,PASSWORD_DEFAULT);
 $sql = "UPDATE `users` SET `user_password`='$password' where user_email='$to'";
 mysqli_query($conn,$sql);
 echo "    <script>

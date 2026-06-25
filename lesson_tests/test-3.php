@@ -121,19 +121,6 @@ shuffle($w2);
             }
         })
 
-
-        // butt.classList.remove("bad");
-        // if (butt.classList[1] != "good") {
-        //     buttons_word.forEach(e => { e.classList.remove("selected") });
-        //     if (butt.classList[1] == "selected") {
-        //         butt.classList.remove("selected");
-        //     } else {
-        //         butt.classList.add("selected");
-        //     }
-        //     checkWords()
-        // } else {
-        //     buttons_word.forEach(e => { e.classList.remove("good") });
-        // }
     })
 
     buttons_translate.forEach(butt => {
@@ -152,24 +139,6 @@ shuffle($w2);
                     butt.classList.remove("bad");
                 }
             }
-
-
-            // console.log(butt.classList);
-            // if (butt.classList[1] != "bad") {
-            //     en_speak(butt.children[0].innerHTML)
-            //     butt.classList.remove("bad");
-            //     if (butt.classList[1] != "good") {
-            //         buttons_translate.forEach(e => { e.classList.remove("selected") });
-            //         if (butt.classList[1] == "selected") {
-            //             butt.classList.remove("selected");
-            //         } else {
-            //             butt.classList.add("selected");
-            //         }
-            //         checkWords();
-            //     }
-            // } else {
-            //     buttons_translate.forEach(e => { e.classList.remove("bad") });
-            // }
         })
     });
 

@@ -16,7 +16,7 @@ if (mysqli_num_rows($usercheck) != 0) {
     </script>";
     exit;
     }
-    if ($user["user_password"] == $password) {
+    if (password_verify($password,$user['user_password'])) {
         $_SESSION["id"] = $user["user_id"];
         if ($user["user_role"] == "admin") {
             echo "    <script>

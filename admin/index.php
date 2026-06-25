@@ -2,21 +2,12 @@
 require "../connection-db.php";
 if ($user["user_role"] != "admin")
     header("Location: /profile");
-
-/* ====== Сбор статистики для дашборда ======
-   ВАЖНО: запросы написаны под mysqli ($conn).
-   Если в твоём connection-db.php соединение называется иначе (например $pdo),
-   замени mysqli_query($conn, ...) на свой вариант.
-*/
-
-// Общие цифры
 $totalUsers = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS c FROM users"))["c"];
 $totalLangs = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS c FROM langs"))["c"];
 $totalLessons = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS c FROM lesson"))["c"];
 $totalWords = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS c FROM words"))["c"];
 $totalLeagues = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS c FROM leagues"))["c"];
 
-// Топ-5 пользователей по недельному XP
 $topUsersQ = mysqli_query($conn, "
     SELECT u.user_login, u.user_pfp, u.user_weekly_xp, l.league_name
     FROM users u
@@ -25,7 +16,6 @@ $topUsersQ = mysqli_query($conn, "
     LIMIT 5
 ");
 
-// Последние зарегистрированные пользователи
 $recentUsersQ = mysqli_query($conn, "
     SELECT user_id, user_login, user_email, user_pfp, user_role
     FROM users
@@ -33,7 +23,6 @@ $recentUsersQ = mysqli_query($conn, "
     LIMIT 6
 ");
 
-// Языки + количество уроков и слов в каждом
 $langsQ = mysqli_query($conn, "
     SELECT lg.lang_id, lg.lang_name,
            (SELECT COUNT(*) FROM lesson WHERE lesson_language = lg.lang_id) AS lessons_count,
@@ -42,7 +31,6 @@ $langsQ = mysqli_query($conn, "
     ORDER BY lg.lang_id
 ");
 
-// Самые проходимые уроки (по числу записей в completed_lessons)
 $popularLessonsQ = mysqli_query($conn, "
     SELECT l.lesson_name, lg.lang_name, COUNT(cl.id) AS passes
     FROM completed_lessons cl

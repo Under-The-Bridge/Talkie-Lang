@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Страница-1" id="Ihru_sfVTjgpejmeWQov">
-    <mxGraphModel dx="1645" dy="1188" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1406" dy="788" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -29,7 +29,7 @@
           <mxGeometry height="60" width="30" x="525" y="150" as="geometry" />
         </mxCell>
         <mxCell id="3uf_DUEFZ21KATfuv-RH-9" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Выбор языка" vertex="1">
-          <mxGeometry height="40" width="120" x="480" y="69" as="geometry" />
+          <mxGeometry height="40" width="120" x="497" y="78" as="geometry" />
         </mxCell>
         <mxCell id="3uf_DUEFZ21KATfuv-RH-10" edge="1" parent="1" source="3uf_DUEFZ21KATfuv-RH-8" style="endArrow=none;html=1;rounded=0;" target="3uf_DUEFZ21KATfuv-RH-9" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -86,9 +86,9 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="3uf_DUEFZ21KATfuv-RH-36" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Просмотр ошибок в уроке" vertex="1">
-          <mxGeometry height="40" width="120" x="750" y="102" as="geometry" />
+          <mxGeometry height="40" width="120" x="664" y="83" as="geometry" />
         </mxCell>
-        <mxCell id="3uf_DUEFZ21KATfuv-RH-38" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Повторение выученных слов" vertex="1">
+        <mxCell id="3uf_DUEFZ21KATfuv-RH-38" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Повторное прохожение урока" vertex="1">
           <mxGeometry height="40" width="120" x="445" y="293" as="geometry" />
         </mxCell>
         <mxCell id="3uf_DUEFZ21KATfuv-RH-39" edge="1" parent="1" source="3uf_DUEFZ21KATfuv-RH-8" style="endArrow=none;html=1;rounded=0;" target="3uf_DUEFZ21KATfuv-RH-38" value="">
@@ -107,7 +107,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="3uf_DUEFZ21KATfuv-RH-44" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Редактирование&lt;div&gt;профиля&lt;/div&gt;" vertex="1">
-          <mxGeometry height="40" width="120" x="337" y="37" as="geometry" />
+          <mxGeometry height="40" width="120" x="354" y="75" as="geometry" />
         </mxCell>
         <mxCell id="3uf_DUEFZ21KATfuv-RH-45" edge="1" parent="1" source="3uf_DUEFZ21KATfuv-RH-8" style="endArrow=none;html=1;rounded=0;" target="3uf_DUEFZ21KATfuv-RH-44" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -116,7 +116,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="UC5w2ttG8_Gqi2ts64Vz-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Удаить профиль" vertex="1">
-          <mxGeometry height="40" width="120" x="392" y="-37" as="geometry" />
+          <mxGeometry height="40" width="120" x="435" y="16" as="geometry" />
         </mxCell>
         <mxCell id="UC5w2ttG8_Gqi2ts64Vz-3" edge="1" parent="1" source="UC5w2ttG8_Gqi2ts64Vz-2" style="endArrow=classic;dashed=1;html=1;rounded=0;endFill=1;" target="3uf_DUEFZ21KATfuv-RH-44" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -130,7 +130,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="UC5w2ttG8_Gqi2ts64Vz-5" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Смена пароля" vertex="1">
-          <mxGeometry height="40" width="120" x="520" y="3" as="geometry" />
+          <mxGeometry height="40" width="120" x="327" y="148" as="geometry" />
         </mxCell>
         <mxCell id="UC5w2ttG8_Gqi2ts64Vz-6" edge="1" parent="1" source="UC5w2ttG8_Gqi2ts64Vz-5" style="endArrow=classic;dashed=1;html=1;rounded=0;endFill=1;" target="3uf_DUEFZ21KATfuv-RH-44" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -153,7 +153,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="UC5w2ttG8_Gqi2ts64Vz-11" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Получение игрового опыта" vertex="1">
-          <mxGeometry height="40" width="120" x="640" y="69" as="geometry" />
+          <mxGeometry height="40" width="120" x="565" y="26" as="geometry" />
         </mxCell>
         <mxCell id="UC5w2ttG8_Gqi2ts64Vz-12" edge="1" parent="1" source="3uf_DUEFZ21KATfuv-RH-11" style="endArrow=classic;dashed=1;html=1;rounded=0;endFill=1;" target="UC5w2ttG8_Gqi2ts64Vz-11" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -178,9 +178,9 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="UC5w2ttG8_Gqi2ts64Vz-17" parent="1" style="ellipse;whiteSpace=wrap;html=1;" value="Получение отчета в виде файла" vertex="1">
-          <mxGeometry height="40" width="120" x="350" y="164" as="geometry" />
+          <mxGeometry height="40" width="120" x="302" y="300" as="geometry" />
         </mxCell>
-        <mxCell id="UC5w2ttG8_Gqi2ts64Vz-18" edge="1" parent="1" source="3uf_DUEFZ21KATfuv-RH-8" style="endArrow=none;html=1;rounded=0;" target="UC5w2ttG8_Gqi2ts64Vz-17" value="">
+        <mxCell id="UC5w2ttG8_Gqi2ts64Vz-18" edge="1" parent="1" source="3uf_DUEFZ21KATfuv-RH-27" style="endArrow=none;html=1;rounded=0;" target="UC5w2ttG8_Gqi2ts64Vz-17" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
             <mxPoint x="305" y="156" as="sourcePoint" />
             <mxPoint x="515" y="152" as="targetPoint" />

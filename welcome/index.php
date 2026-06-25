@@ -14,25 +14,13 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
 
 <body>
     <div class="box">
-        <!-- Блок выбора языка -->
         <div id="step1">
             <h1>Какой язык учим?</h1>
             <div class="desc">Выберите язык, чтобы начать</div>
             <div class="lang-list" id="langList">
-                <?php
-                // Если $langs из БД не загружен, показываем примеры
-                if (!isset($langs) || empty($langs)) {
-                    $simpleLangs = ['🇪🇸 Испанский', '🇫🇷 Французский', '🇩🇪 Немецкий', '🇯🇵 Японский', '🇮🇹 Итальянский', '🇬🇧 Английский'];
-                    foreach ($simpleLangs as $lang) {
-                        $cleanName = preg_replace('/^[🇪🇸🇫🇷🇩🇪🇯🇵🇮🇹🇬🇧]\s*/', '', $lang);
-                        echo '<button class="lang-btn" data-lang="' . htmlspecialchars($cleanName) . '">' . htmlspecialchars($lang) . '</button>';
-                    }
-                } else {
-                    foreach ($langs as $lang): ?>
-                        <button class="lang-btn" value="<?= $lang[1] ?>" data="<?= $lang[0] ?>"><?= $lang[1] ?></button>
-                    <?php endforeach;
-                }
-                ?>
+                <?php foreach ($langs as $lang): ?>
+                    <button class="lang-btn" value="<?= $lang[1] ?>" data="<?= $lang[0] ?>"><?= $lang[1] ?></button>
+                <?php endforeach; ?>
             </div>
         </div>
 
@@ -73,7 +61,8 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 <form method="post" action="../server/auth-db.php" id="loginForm">
                     <div class="form-group">
                         <label>Логин или Email</label>
-                        <input type="text" name="login" placeholder="Введите логин или email" id="loginUsername" required>
+                        <input type="text" name="login" placeholder="Введите логин или email" id="loginUsername"
+                            required>
                     </div>
                     <div class="form-group">
                         <label>Пароль</label>
@@ -108,7 +97,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
     </div>
 
     <script>
-        // Получаем элементы
         const step1 = document.getElementById('step1');
         const step2 = document.getElementById('step2');
         const langBtns = document.querySelectorAll('.lang-btn');
@@ -128,7 +116,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
         let currentLang = '';
         let idLang = '';
 
-        // Выбор языка
         langBtns.forEach(btn => {
             btn.addEventListener('click', function () {
                 currentLang = this.getAttribute('value');
@@ -142,14 +129,12 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 step1.classList.add('hidden');
                 step2.classList.remove('hidden');
 
-                // Показываем форму регистрации, авторизацию скрываем
                 registerBlock.classList.remove('hidden');
                 loginBlock.classList.add('hidden');
                 forgotBlock.classList.add('hidden');
             });
         });
 
-        // Кнопка "изменить язык"
         if (changeBtn) {
             changeBtn.addEventListener('click', function () {
                 step2.classList.add('hidden');
@@ -160,7 +145,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
             });
         }
 
-        // Функция показа формы регистрации
         function showRegisterForm() {
             registerBlock.classList.remove('hidden');
             loginBlock.classList.add('hidden');
@@ -168,7 +152,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
             if (hiddenLang) hiddenLang.value = idLang;
         }
 
-        // Функция показа формы авторизации
         function showLoginForm() {
             registerBlock.classList.add('hidden');
             loginBlock.classList.remove('hidden');
@@ -176,14 +159,12 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
             if (hiddenLangLogin) hiddenLangLogin.value = idLang;
         }
 
-        // Функция показа формы восстановления
         function showForgotForm() {
             registerBlock.classList.add('hidden');
             loginBlock.classList.add('hidden');
             forgotBlock.classList.remove('hidden');
         }
 
-        // Переключение на форму авторизации
         if (switchToLogin) {
             switchToLogin.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -191,7 +172,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
             });
         }
 
-        // Переключение на форму регистрации
         if (switchToReg) {
             switchToReg.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -199,7 +179,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
             });
         }
 
-        // Переключение на форму восстановления
         if (switchToForgot) {
             switchToForgot.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -207,7 +186,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
             });
         }
 
-        // Возврат к авторизации из формы восстановления
         if (backToLoginFromForgot) {
             backToLoginFromForgot.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -215,7 +193,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
             });
         }
 
-        // Валидация формы регистрации
         const regForm = document.getElementById('registerForm');
         if (regForm) {
             regForm.addEventListener('submit', function (e) {
@@ -236,7 +213,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
             });
         }
 
-        // Валидация формы авторизации
         const loginForm = document.getElementById('loginForm');
         if (loginForm) {
             loginForm.addEventListener('submit', function (e) {
@@ -250,7 +226,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
             });
         }
 
-        // Валидация формы восстановления пароля
         const forgotForm = document.getElementById('forgotForm');
         if (forgotForm) {
             forgotForm.addEventListener('submit', function (e) {
@@ -266,9 +241,7 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
             });
         }
 
-        // Активная валидация в реальном времени
         (function () {
-            // Функция валидации логина
             function validateLogin(login) {
                 const value = login.value.trim();
                 if (!value) {
@@ -288,7 +261,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 return true;
             }
 
-            // Функция валидации email
             function validateEmail(email) {
                 const value = email.value.trim();
                 if (!value) {
@@ -302,7 +274,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 return true;
             }
 
-            // Функция валидации пароля
             function validatePassword(password) {
                 const value = password.value;
                 if (!value) {
@@ -316,7 +287,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                     return false;
                 }
 
-                // Проверка сложности пароля
                 let strength = '';
                 if (value.length >= 8 && /[a-z]/.test(value) && /[A-Z]/.test(value) && /[0-9]/.test(value)) {
                     strength = ' (сильный)';
@@ -330,7 +300,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 return true;
             }
 
-            // Функция валидации логина/email для авторизации
             function validateLoginOrEmail(field) {
                 const value = field.value.trim();
                 if (!value) {
@@ -344,7 +313,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 return true;
             }
 
-            // Функция валидации email для восстановления
             function validateForgotEmail(email) {
                 const value = email.value.trim();
                 if (!value) {
@@ -358,7 +326,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 return true;
             }
 
-            // Функция показа ошибки
             function showError(input, message) {
                 input.classList.add('error');
                 input.classList.remove('valid');
@@ -378,7 +345,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 }
             }
 
-            // Функция показа успеха
             function showSuccess(input, message) {
                 input.classList.remove('error');
                 input.classList.add('valid');
@@ -398,7 +364,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 }
             }
 
-            // Добавляем сообщения об ошибках и успехе, если их нет
             function addValidationMessages() {
                 const formGroups = document.querySelectorAll('.form-group');
                 formGroups.forEach(group => {
@@ -415,7 +380,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 });
             }
 
-            // Добавляем стили для валидации
             function addValidationStyles() {
                 const style = document.createElement('style');
                 style.textContent = `
@@ -463,7 +427,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 document.head.appendChild(style);
             }
 
-            // Активация валидации для формы регистрации
             function initRegistrationValidation() {
                 const regLogin = document.getElementById('regLogin');
                 const regEmail = document.getElementById('regEmail');
@@ -485,7 +448,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 }
             }
 
-            // Активация валидации для формы авторизации
             function initLoginValidation() {
                 const loginUsername = document.getElementById('loginUsername');
                 const loginPassword = document.getElementById('loginPassword');
@@ -513,7 +475,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 }
             }
 
-            // Активация валидации для формы восстановления
             function initForgotValidation() {
                 const forgotEmail = document.getElementById('forgotEmail');
 
@@ -523,7 +484,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 }
             }
 
-            // Переопределяем submit формы регистрации с активной валидацией
             function enhanceRegistrationForm() {
                 const regForm = document.getElementById('registerForm');
                 if (regForm) {
@@ -546,7 +506,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 }
             }
 
-            // Переопределяем submit формы авторизации с активной валидацией
             function enhanceLoginForm() {
                 const loginForm = document.getElementById('loginForm');
                 if (loginForm) {
@@ -572,7 +531,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 }
             }
 
-            // Переопределяем submit формы восстановления
             function enhanceForgotForm() {
                 const forgotForm = document.getElementById('forgotForm');
                 if (forgotForm) {
@@ -590,7 +548,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 }
             }
 
-            // Следим за переключением между формами
             function watchFormSwitching() {
                 const switchToLogin = document.getElementById('switchToLoginBtn');
                 const switchToReg = document.getElementById('switchToRegBtn');
@@ -622,7 +579,6 @@ $langs = mysqli_fetch_all(mysqli_query($conn, "select DISTINCT lang_id, lang_nam
                 }
             }
 
-            // Инициализация при загрузке
             addValidationStyles();
             addValidationMessages();
             initRegistrationValidation();

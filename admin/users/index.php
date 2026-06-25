@@ -2,14 +2,6 @@
 require "../../connection-db.php";
 if($user["user_role"] != "admin") header("Location: /profile");
 
-/* ====== ВАЖНО ======
-   Для бана/разбана нужна колонка `user_banned` в таблице `users`.
-   Если её ещё нет, выполни:
-
-   ALTER TABLE `users` ADD COLUMN `user_banned` TINYINT(1) NOT NULL DEFAULT 0 AFTER `user_role`;
-*/
-
-// ====== Бан / разбан ======
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_ban'], $_POST['user_id'])) {
     $targetId = (int) $_POST['user_id'];
 
@@ -18,7 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_ban'], $_POST[
     mysqli_stmt_execute($checkStmt);
     $targetRole = mysqli_fetch_assoc(mysqli_stmt_get_result($checkStmt))['user_role'] ?? null;
 
-    // Админов банить нельзя
     if ($targetRole === 'user') {
         $updStmt = mysqli_prepare($conn, "UPDATE users SET user_banned = NOT user_banned WHERE user_id = ?");
         mysqli_stmt_bind_param($updStmt, "i", $targetId);
@@ -30,9 +21,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_ban'], $_POST[
     exit;
 }
 
-// ====== Поиск и фильтр ======
 $search = trim($_GET['q'] ?? '');
-$status = $_GET['status'] ?? 'all'; // all | active | banned
+$status = $_GET['status'] ?? 'all';
 
 $conditions = [];
 $params = [];
@@ -54,7 +44,6 @@ if ($status === 'active') {
 
 $whereSql = $conditions ? 'WHERE ' . implode(' AND ', $conditions) : '';
 
-// ====== Пагинация ======
 $perPage = 12;
 $page = max(1, (int) ($_GET['page'] ?? 1));
 
@@ -81,10 +70,8 @@ mysqli_stmt_bind_param($listStmt, $listTypes, ...$listParams);
 mysqli_stmt_execute($listStmt);
 $usersResult = mysqli_stmt_get_result($listStmt);
 
-// Общее количество пользователей (без фильтра) для счётчика
 $totalAll = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS c FROM users"))['c'];
 
-// Хелпер для построения ссылок пагинации/фильтров с сохранением параметров
 function buildQuery($overrides = []) {
     $params = array_merge($_GET, $overrides);
     return '?' . http_build_query($params);

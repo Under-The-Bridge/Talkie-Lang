@@ -124,10 +124,6 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `league_users` where user
         <?php endif; ?>
     </main>
 
-    <style>
-
-    </style>
-
     <script>
         function startTime() {
             if (<?= $time ?> <= Math.floor(Date.now() / 1000)) {

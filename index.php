@@ -27,7 +27,6 @@ if (mysqli_num_rows(mysqli_query($conn, "select DISTINCT lang_id, lang_name from
 
 
 $id = $_SESSION["id"];
-// $_SESSION["lang"] = "en";
 $sql = "select * from lesson join langs on lesson.lesson_language = langs.lang_id where `lang_id` = '$lang'";
 $query = mysqli_query($conn, $sql);
 $lessons = mysqli_fetch_all($query);
@@ -47,9 +46,6 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
 <?php include "components/head.php"; ?>
 
 <body>
-    <style>
-
-    </style>
     <?php include "components/header.php"; ?>
     <main class="container">
         <div id="banner"><?= $lessons[0][1] ?></div>
@@ -162,7 +158,6 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
         </div>
     </main>
     <script>
-        // let count = <?= $count ?>;
         let html = document.querySelector("html");
         let banner = document.querySelector("#banner");
         let elems = document.querySelectorAll(".razd, .invert");
@@ -174,13 +169,6 @@ $progress = mysqli_fetch_array(mysqli_query($conn, "select progress from user_la
                 }
             })
         }
-        // document.addEventListener('scroll',()=>{
-        //     if(document.scrollTop > 500){
-        //         console.log(html.scrollTop);
-        //     }else{
-        //         console.log(html.scrollTop);
-        //     }
-        // })
     </script>
 </body>
 
